@@ -4,7 +4,7 @@ import { selectAddTransactionOpen } from 'redux/global/globalSelectors';
 import { useSelector } from 'react-redux';
 // import {ModalAddTransaction} from 'components/ModalAddTransaction/ModalAddTransaction'
 
-export const HomePage = () => {
+const HomePage = () => {
   const isModalAddTransactionOpen = useSelector(selectAddTransactionOpen);
 
   console.log('isModalAddTransactionOpen', isModalAddTransactionOpen);
@@ -16,3 +16,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;

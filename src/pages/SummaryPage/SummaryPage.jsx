@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const SummaryPage = () => {
+const SummaryPage = () => {
   return (
     <div>SummaryPage</div>
   )
 }
+
+export default SummaryPage;

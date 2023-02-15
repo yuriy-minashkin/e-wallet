@@ -10,9 +10,8 @@ export const DashboardPage = () => {
 
   return (
     <>
-      <button>log out</button>
-      {/* <Header />
-        <Container>
+      <Header />
+        {/* <Container>
           <SidebarWrapper>
             <NavBalanceWrapper>
               <Navigation />
