@@ -9,3 +9,5 @@ export const SummaryPage = () => {
     </>
   )
 }
+
+export default SummaryPage;
