@@ -1,6 +1,10 @@
 /* variables */
 
 :root {
+  /* fonts */
+  --main-font: 'Circe', sans-serif;
+  --secondary-font: 'Poppins', sans-serif;
+
   /* text */
   --title-main-color: #000000;
   --text-white-color: #FFFFFF;
