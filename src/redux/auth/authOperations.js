@@ -5,11 +5,11 @@ axios.defaults.baseURL = `https://wallet.goit.ua/api`;
 
 const authTokenHandler = {
   setToken(token) {
-    axios.defaults.headers.common['Authorization'] = token;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
 
   clearToken() {
-    axios.defaults.headers.common['Authorization'] = '';
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
