@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/951.1a45b6eb.chunk.js","mappings":"6KAEaA,EAAc,WACzB,OACE,wCAEH,C","sources":["pages/DiagramPage/DiagramPage.jsx"],"sourcesContent":["import React from 'react'\n\nexport const DiagramPage = () => {\n  return (\n    <div>DiagramPage</div>\n  )\n}\n"],"names":["DiagramPage"],"sourceRoot":""}
