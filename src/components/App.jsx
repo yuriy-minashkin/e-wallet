@@ -21,13 +21,13 @@ const App = () => {
 
   return isRefreshing ? ( <div>Loading...</div>) : (
     <Routes>
-          {/* <Route path="/login"  element={<PublicRoute component={<LoginPage />} />} />
-          <Route path="/register" element={<PublicRoute component={<RegistrationPage />} />} /> */}
-          <Route path="/" element={<PublicRoute component={<DashboardPage />} />} >
+          <Route path="/login"  element={<PublicRoute component={<LoginPage />} />} />
+          <Route path="/register" element={<PublicRoute component={<RegistrationPage />} />} />
+          <Route path="/" element={<PrivateRoute component={<DashboardPage />} />} >
             <Route index element={<HomePage />} />
             <Route path="diagram" element={<SummaryPage />} />
           </Route>
-          {/* <Route path="*" element={isLoggedIn ? <DashboardPage /> : <LoginPage />} /> */}
+          <Route path="*" element={isLoggedIn ? <DashboardPage /> : <LoginPage />} />
         </Routes>
   );
 };
