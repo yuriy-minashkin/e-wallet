@@ -11,5 +11,5 @@ export const PrivateRoute = ({ component: Component }) => {
 export const PublicRoute = ({ component: Component }) => {
   const loggedIn = useSelector(selectIsLoggedIn);
 
-  return loggedIn ? <Navigate to="/contacts" /> : Component;
+  return loggedIn ? <Navigate to="/" /> : Component;
 };
