@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-
+  display: flex;
 `;
 
 export const SidebarWrapper = styled.div`
@@ -10,6 +10,6 @@ export const SidebarWrapper = styled.div`
 `;
 
 export const NavBalanceWrapper = styled.div`
-  
+  display: flex;
 `;
 

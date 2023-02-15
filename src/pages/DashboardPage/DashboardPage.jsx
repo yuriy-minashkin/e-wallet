@@ -11,7 +11,7 @@ export const DashboardPage = () => {
   return (
     <>
       <Header />
-        {/* <Container>
+        <Container>
           <SidebarWrapper>
             <NavBalanceWrapper>
               <Navigation />
@@ -22,7 +22,7 @@ export const DashboardPage = () => {
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
-        </Container> */}
+        </Container>
     </>
   );
 };
