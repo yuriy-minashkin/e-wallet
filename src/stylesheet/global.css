@@ -82,9 +82,9 @@ link {
 }
 
 body {
-  color: var(--title-color);
+  color: var(--title-main-color);
   font-family: 'Circe', sans-serif;
-  background-color: var(--primary-background-color);
+  background-color: var(--main-background-color);
 }
 
 .container {
