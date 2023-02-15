@@ -1,8 +1,12 @@
+import { DiagramTab } from 'components/DiagramTab/DiagramTab'
 import React from 'react'
 
-const SummaryPage = () => {
+
+export const SummaryPage = () => {
   return (
-    <div>SummaryPage</div>
+    <>
+    <DiagramTab/>
+    </>
   )
 }
 
