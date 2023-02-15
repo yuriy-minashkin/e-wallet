@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunke_wallet=self.webpackChunke_wallet||[]).push([[49],{3049:function(e,n,u){u.r(n),u.d(n,{SummaryPage:function(){return a}});u(2791);var r=u(3329),a=function(){return(0,r.jsx)("div",{children:"SummaryPage"})}}}]);
-//# sourceMappingURL=49.db0464df.chunk.js.map
