@@ -118,7 +118,8 @@ export const ModalAddTransaction = () => {
 
           <ModalButtonWrap>
             <ModalButtonAdd type="submit">Add</ModalButtonAdd>
-            <ModalButtonCancel>Cancel</ModalButtonCancel>
+            <ModalButtonCancel type="button"
+          onClick={() => dispatch(closeModalAddTransaction())}>Cancel</ModalButtonCancel>
           </ModalButtonWrap>
         </ModalForm>
       </Modal>
