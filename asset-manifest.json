@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/e-wallet/static/css/main.a18acacb.css",
-    "main.js": "/e-wallet/static/js/main.cd135c22.js",
-    "static/js/919.b4733f3f.chunk.js": "/e-wallet/static/js/919.b4733f3f.chunk.js",
+    "main.js": "/e-wallet/static/js/main.b0e09aa8.js",
+    "static/js/198.c8e5ee51.chunk.js": "/e-wallet/static/js/198.c8e5ee51.chunk.js",
     "static/js/49.f1d8e826.chunk.js": "/e-wallet/static/js/49.f1d8e826.chunk.js",
     "static/js/358.61c8253a.chunk.js": "/e-wallet/static/js/358.61c8253a.chunk.js",
     "static/media/Circe Bold.otf": "/e-wallet/static/media/Circe Bold.f7a8e82475783e7e15d0.otf",
@@ -23,13 +23,13 @@
     "static/media/Circe Regular.woff": "/e-wallet/static/media/Circe Regular.e865a57a9dcbac40f142.woff",
     "index.html": "/e-wallet/index.html",
     "main.a18acacb.css.map": "/e-wallet/static/css/main.a18acacb.css.map",
-    "main.cd135c22.js.map": "/e-wallet/static/js/main.cd135c22.js.map",
-    "919.b4733f3f.chunk.js.map": "/e-wallet/static/js/919.b4733f3f.chunk.js.map",
+    "main.b0e09aa8.js.map": "/e-wallet/static/js/main.b0e09aa8.js.map",
+    "198.c8e5ee51.chunk.js.map": "/e-wallet/static/js/198.c8e5ee51.chunk.js.map",
     "49.f1d8e826.chunk.js.map": "/e-wallet/static/js/49.f1d8e826.chunk.js.map",
     "358.61c8253a.chunk.js.map": "/e-wallet/static/js/358.61c8253a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a18acacb.css",
-    "static/js/main.cd135c22.js"
+    "static/js/main.b0e09aa8.js"
   ]
 }
