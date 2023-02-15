@@ -10,7 +10,8 @@ export const DashboardPage = () => {
 
   return (
     <>
-      <Header />
+      <button>log out</button>
+      {/* <Header />
         <Container>
           <SidebarWrapper>
             <NavBalanceWrapper>
@@ -22,7 +23,7 @@ export const DashboardPage = () => {
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
-        </Container>
+        </Container> */}
     </>
   );
 };
