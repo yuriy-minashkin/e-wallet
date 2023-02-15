@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import { useState } from 'react';
 import {
   CheckboxLabel,
@@ -15,21 +14,18 @@ import {
   SelectLabel,
   ModalButtonClose,
 } from './ModalAddTransaction.styled';
-import * as React from 'react';
-
-// import TextField from '@mui/material/TextField';
-// // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useDispatch } from 'react-redux';
+import { closeModalAddTransaction } from 'redux/global/globalSlice';
+import { addTransaction } from 'redux/transaction/transactionOperations';
 
 export const ModalAddTransaction = () => {
+  const dispatch = useDispatch();
+
   const [transactionDate, setTransactionDate] = useState('');
   const [type, setType] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [comment, setComment] = useState('');
   const [amount, setAmount] = useState('');
-
-//   const [value, setValue] = useState(null);
 
   const handleChange = evt => {
     const { value, name } = evt.target;
@@ -44,10 +40,6 @@ export const ModalAddTransaction = () => {
     }
   };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const handleSubmit = evt => {
     evt.preventDefault();
     const obj = {
@@ -58,6 +50,7 @@ export const ModalAddTransaction = () => {
       amount,
     };
     console.log(obj);
+    dispatch(addTransaction(obj));
     reset();
   };
 
@@ -70,81 +63,65 @@ export const ModalAddTransaction = () => {
   };
 
   return (
-    <>
-      <Button onClick={handleOpen}>Open modal</Button>
-      <Overlay onClick={handleClose}>
-        <Modal open={open}>
-        <ModalButtonClose type="button" onClick={handleClose}>
-        {/* <svg width="18px" height="18px" >
+    <Overlay >
+      <Modal>
+        <ModalButtonClose
+          type="button"
+          onClick={() => dispatch(closeModalAddTransaction())}
+        >
+          {/* <svg width="18px" height="18px" >
             <use href="${icons}#icon-vector-off"></use>
         </svg> */}
-    </ModalButtonClose>
-          <ModalForm onSubmit={handleSubmit}>
-            <ModalTitle> Add transaction</ModalTitle>
-            {/* <input  type="checkbox" name="topic" id="topic-1" /> */}
+        </ModalButtonClose>
+        <ModalForm onSubmit={handleSubmit}>
+          <ModalTitle> Add transaction</ModalTitle>
+          {/* <input  type="checkbox" name="topic" id="topic-1" /> */}
 
-            <ModalWrap>
-              <p>Income</p>
-              <CheckboxLabel htmlFor="topic-1"></CheckboxLabel>
-              <p>Expense</p>
-            </ModalWrap>
-            <SelectLabel
-              name="categoryId"
+          <ModalWrap>
+            <p>Income</p>
+            <CheckboxLabel htmlFor="topic-1"></CheckboxLabel>
+            <p>Expense</p>
+          </ModalWrap>
+          <SelectLabel
+            name="categoryId"
+            onChange={handleChange}
+            value={categoryId}
+          >
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>May</option>
+          </SelectLabel>
+
+          <ModalWrap>
+            <InputLabel
+              value={amount}
               onChange={handleChange}
-              value={categoryId}
-            >
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>May</option>
-            </SelectLabel>
-
-            {/* <DatePicker
-      selected={startDate}
-      onChange={(date) => setStartDate(date)}
-      renderDayContents={renderDayContents} */}
-   
-    {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker
-        label="Basic example"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider> */}
-
-            <ModalWrap>
-              <InputLabel
-                value={amount}
-                onChange={handleChange}
-                type="text"
-                name="amount"
-                placeholder="0.00"
-              />
-              <InputLabel
-                value={transactionDate}
-                onChange={handleChange}
-                type="text"
-                name="transactionDate"
-                placeholder="15.02.2023"
-              />
-            </ModalWrap>
-            <InputLabelText
-              value={comment}
-              onChange={handleChange}
-              name="comment"
-              placeholder="Comment"
+              type="text"
+              name="amount"
+              placeholder="0.00"
             />
+            <InputLabel
+              value={transactionDate}
+              onChange={handleChange}
+              type="text"
+              name="transactionDate"
+              placeholder="15.02.2023"
+            />
+          </ModalWrap>
+          <InputLabelText
+            value={comment}
+            onChange={handleChange}
+            name="comment"
+            placeholder="Comment"
+          />
 
-            <ModalButtonWrap>
-              <ModalButtonAdd type="submit">Add</ModalButtonAdd>
-              <ModalButtonCancel>Cancel</ModalButtonCancel>
-            </ModalButtonWrap>
-          </ModalForm>
-        </Modal>
-      </Overlay>
-    </>
+          <ModalButtonWrap>
+            <ModalButtonAdd type="submit">Add</ModalButtonAdd>
+            <ModalButtonCancel>Cancel</ModalButtonCancel>
+          </ModalButtonWrap>
+        </ModalForm>
+      </Modal>
+    </Overlay>
   );
 };
