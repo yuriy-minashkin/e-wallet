@@ -28,6 +28,7 @@ import moment from 'moment';
 import { TextField } from '@mui/material';
 import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons";
+import { fetchCategories } from 'redux/categories/categoriesOperations';
 
 
 export const ModalAddTransaction = ()=> {
