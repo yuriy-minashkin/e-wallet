@@ -4,7 +4,7 @@ import { Container, Icon, Text } from './Logo.styled';
 export const Logo = () => {
   return (
     <Container>
-      <Icon width="16px" height="12px">
+      <Icon>
           <use href={`${Icons}#icon-logo`}></use>
       </Icon>
       <Text>
