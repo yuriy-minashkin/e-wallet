@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Overlay = styled.div`
 position: fixed;
@@ -64,7 +64,7 @@ height: 40px;
 background-color: #FFFFFF;
 border: 1px solid #E0E0E0;
 border-radius: 30px;
-    // transition: box-shadow 250ms linear;
+    transition: box-shadow 250ms linear;
 
     display: flex;
     justify-content: center;
@@ -92,6 +92,48 @@ border-radius: 30px;
     padding-top: 8px;
     
 `
+
+export const Input = styled.input`
+opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+        
+        // &:checked + label::after {
+        //     transform: translate(18px)
+        //   }
+        
+        `;
+
+export const Label = styled.label`
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+`
+
+export const LabelText = styled.span`
+  ${(props) => {
+    switch (props.$mode) {
+      case "dark":
+        return css`
+          background-color: black;
+          color: white;
+          ${Input}:checked + && {
+            color: blue;
+          }
+        `;
+      default:
+        return css`
+          background-color: white;
+          color: black;
+          ${Input}:checked + && {
+            color: red;
+          }
+        `;
+    }
+  }}
+`;
+
 
 export const ModalForm = styled.form`
 display: flex;
@@ -207,3 +249,5 @@ position: absolute;
         }
 `
 ;
+
+

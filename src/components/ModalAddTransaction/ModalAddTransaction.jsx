@@ -13,6 +13,9 @@ import {
   ModalTitle,
   SelectLabel,
   ModalButtonClose,
+  Input,
+  Label,
+  LabelText,
 } from './ModalAddTransaction.styled';
 import { useDispatch } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
@@ -75,8 +78,7 @@ export const ModalAddTransaction = () => {
         </ModalButtonClose>
         <ModalForm onSubmit={handleSubmit}>
           <ModalTitle> Add transaction</ModalTitle>
-          {/* <input  type="checkbox" name="topic" id="topic-1" /> */}
-
+          <Input  type="checkbox" name="topic" id="topic-1" />   
           <ModalWrap>
             <p>Income</p>
             <CheckboxLabel htmlFor="topic-1"></CheckboxLabel>
