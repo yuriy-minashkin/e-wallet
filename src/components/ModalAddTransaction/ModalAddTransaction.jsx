@@ -20,8 +20,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import { addTransaction } from 'redux/transaction/transactionOperations';
-// import { nanoid } from 'nanoid';
-import { fetchCategories } from 'redux/categories/categoriesOperations';
 import { selectCategories } from 'redux/categories/categoriesSelectors';
 import { useEffect } from 'react';
 import Datetime from 'react-datetime';
@@ -31,15 +29,19 @@ import { TextField } from '@mui/material';
 import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons";
 
-export const ModalAddTransaction = () => {
+
+export const ModalAddTransaction = ()=> {
+  
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
+  const currentDate = new Date(Date.now());
 
-  const [transactionDate, setTransactionDate] = useState('');
-  const [type, setType] = useState('');
+  const [transactionDate, setTransactionDate] = useState(currentDate);
+  const [, setType] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [comment, setComment] = useState('');
   const [amount, setAmount] = useState('');
+
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -52,6 +54,7 @@ export const ModalAddTransaction = () => {
   const onChange = e => {
     setChecked(e.target.checked);
   };
+
 
   const handleChange = evt => {
     console.log(evt.target);
@@ -68,24 +71,21 @@ export const ModalAddTransaction = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
+    const date = new Date(
+      transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
+    );
+
     const obj = {
-      transactionDate,
+      transactionDate: date,
       type: 'INCOME',
-      categoryId,
+      categoryId: categories[10].id,
       comment,
       amount: Number(amount),
     };
-    console.log(obj);
+    // console.log(obj);
     dispatch(addTransaction(obj));
     reset();
   };
-  //   {
-  //   "transactionDate": "string",/
-  //   "type": "INCOME",/
-  //   "categoryId": "string",/
-  //   "comment": "string",/
-  //   "amount": 0/
-  // }
 
   const reset = () => {
     setTransactionDate('');
@@ -153,6 +153,7 @@ export const ModalAddTransaction = () => {
                 setTransactionDate(moment(newValue).toISOString());
               }}
               renderInput={params => <InputLabel {...params} />}
+
             />
           </ModalWrap>
           <InputLabelText
