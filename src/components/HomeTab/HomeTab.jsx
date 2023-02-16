@@ -13,7 +13,7 @@ export const HomeTab = () => {
   const financeData = useSelector(selectFinanceData);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-  console.log(financeData);
+  // console.log(financeData);
 
 // const compareData=(a, b)=> {
 //   return a - b;
@@ -36,7 +36,6 @@ export const HomeTab = () => {
             <Rings />
           ) : (
             <>
-              <p>Day Type Cotegory Comment Sum</p>
               <TransactionsList data={financeData} />
             </>
           )}

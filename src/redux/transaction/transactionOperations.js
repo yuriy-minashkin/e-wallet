@@ -31,11 +31,10 @@ export const addTransaction = createAsyncThunk(
 );
 
 export const deleteTransaction = createAsyncThunk(
-  'transactions/deleteContacts',
+  'transactions/deleteTransactions',
   async (transactionId, thunkAPI) => {
     try {
       const { data } = await axios.delete(`/transactions/${transactionId}`);
-
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

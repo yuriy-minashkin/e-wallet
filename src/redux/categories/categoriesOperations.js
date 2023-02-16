@@ -3,11 +3,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 
 export const fetchCategories = createAsyncThunk(
-  'transactions/fetchAll',
+  'categories/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get('/transaction-categories');
-     return data;
+      const response = await axios.get('/transaction-categories');
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

@@ -17,26 +17,22 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import { addTransaction } from 'redux/transaction/transactionOperations';
-// import { nanoid } from 'nanoid';
-import { fetchCategories } from 'redux/categories/categoriesOperations';
+
 import { selectCategories } from 'redux/categories/categoriesSelectors';
-import { useEffect } from 'react';
+
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
 
-  const [transactionDate, setTransactionDate] = useState('');
+  const [transactionDate, setTransactionDate] = useState(new Date());
   const [type, setType] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [comment, setComment] = useState('');
   const [amount, setAmount] = useState('');
 
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
 
-//   console.log(categories);
+
 
   const handleChange = evt => {
     const { value, name } = evt.target;
@@ -53,11 +49,14 @@ export const ModalAddTransaction = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-
+   
+    const date = transactionDate.toISOString();
+    // .toISOString();
+    console.log(date);
     const obj = {
-      transactionDate,
+      transactionDate: date,
       type: 'INCOME',
-      categoryId,
+      categoryId: categories[10].id,
       comment,
       amount: Number(amount),
     };
