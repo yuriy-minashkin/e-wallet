@@ -77,14 +77,14 @@ th {
   padding: 0;
 }
 
-link {
+a {
   text-decoration: none;
 }
 
 body {
   color: var(--title-main-color);
   font-family: 'Circe', sans-serif;
-  background-color: var(--main-background-color);
+  /* background-color: var(--main-background-color); */
 }
 
 .container {
