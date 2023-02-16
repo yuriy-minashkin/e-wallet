@@ -17,13 +17,18 @@ import {
   LabelText,
   LabelTextExpense,
 } from './ModalAddTransaction.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import { addTransaction } from 'redux/transaction/transactionOperations';
+// import { nanoid } from 'nanoid';
+import { fetchCategories } from 'redux/categories/categoriesOperations';
+import { selectCategories } from 'redux/categories/categoriesSelectors';
+import { useEffect } from 'react';
 // import Datetime from 'react-datetime';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
+  const categories = useSelector(selectCategories);
 
   const [transactionDate, setTransactionDate] = useState('');
   const [type, setType] = useState('');
@@ -31,13 +36,20 @@ export const ModalAddTransaction = () => {
   const [comment, setComment] = useState('');
   const [amount, setAmount] = useState('');
 
-  const [checked, setChecked] = useState(false)
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
-  const onChange = (e) => {
-    console.log(e.target.checked);
-    
-    setChecked(e.target.checked);
-  }
+//   console.log(categories);
+
+
+const [checked, setChecked] = useState(false)
+
+const onChange = (e) => {
+  console.log(e.target.checked);
+  
+  setChecked(e.target.checked);
+}
 
   const handleChange = evt => {
     const { value, name } = evt.target;
@@ -54,17 +66,25 @@ export const ModalAddTransaction = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
+
     const obj = {
       transactionDate,
-      type,
+      type: 'INCOME',
       categoryId,
       comment,
-      amount,
+      amount: Number(amount),
     };
     console.log(obj);
     dispatch(addTransaction(obj));
     reset();
   };
+  //   {
+  //   "transactionDate": "string",/
+  //   "type": "INCOME",/
+  //   "categoryId": "string",/
+  //   "comment": "string",/
+  //   "amount": 0/
+  // }
 
   const reset = () => {
     setTransactionDate('');
@@ -75,7 +95,7 @@ export const ModalAddTransaction = () => {
   };
 
   return (
-    <Overlay >
+    <Overlay>
       <Modal>
         <ModalButtonClose
           type="button"
@@ -141,8 +161,12 @@ export const ModalAddTransaction = () => {
 
           <ModalButtonWrap>
             <ModalButtonAdd type="submit">Add</ModalButtonAdd>
-            <ModalButtonCancel type="button"
-          onClick={() => dispatch(closeModalAddTransaction())}>Cancel</ModalButtonCancel>
+            <ModalButtonCancel
+              type="button"
+              onClick={() => dispatch(closeModalAddTransaction())}
+            >
+              Cancel
+            </ModalButtonCancel>
           </ModalButtonWrap>
         </ModalForm>
       </Modal>
