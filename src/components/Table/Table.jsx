@@ -17,10 +17,13 @@ const FiltersBox = styled.div`
   gap: 32px;
   mix-blend-mode: 20px;
   margin-bottom: 20px;
+  
 `;
 const TotalBox = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 16px;
+  
 `;
 const TotalItem = styled.div`
   display: flex;
@@ -28,6 +31,7 @@ const TotalItem = styled.div`
   gap: 153px;
   font-size: 16px;
   font-weight: 700;
+  margin-bottom: 14px;
 `;
 const TotalExpenses = styled.div`
   color: #ff6596;
@@ -43,15 +47,17 @@ const CategoryBox = styled.div`
   border-radius: 30px;
   width: 336px;
   height: 58px;
+  background-color: var(--form-background-color);
 `;
 const ItemTitle = styled.div`
   padding: 20px;
   font-size: 18px;
   font-weight: 700;
+  
 `;
 export const Table = ({ data, handlePeriod }) => {
   const isDataPerPeriod = useMemo(() => {
-    console.log('TABLE DATA >>>', data);
+    // console.log('TABLE DATA >>>', data);
     return data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
   }, [data]);
 

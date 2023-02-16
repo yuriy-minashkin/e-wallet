@@ -12,6 +12,8 @@ const StyledChartContainer = styled.div`
   width: 288px;
   height: 288px;
   margin: 0 auto;
+  margin-left: 69px;
+  margin-right: 32px;
 `;
 
 const TotalBalance = styled.div`
@@ -29,7 +31,7 @@ export const ChartDoughnut = ({ data }) => {
   const userBalance = useSelector(selectBalance);
   const chartRef = useRef(null);
 
-console.log('Donut data comes here: ', data);
+// console.log('Donut data comes here: ', data);
 
   const isDataPerPeriod = useMemo(() => {
 
@@ -37,7 +39,7 @@ console.log('Donut data comes here: ', data);
 
   }, [data]);
 
-  console.log(isDataPerPeriod)
+  // console.log(isDataPerPeriod)
   
   const dataChart = useMemo(() => {
     if (isDataPerPeriod) {
@@ -64,6 +66,7 @@ console.log('Donut data comes here: ', data);
         display: false,
       },
     },
+     cutout: 95, 
   };
 
   return (

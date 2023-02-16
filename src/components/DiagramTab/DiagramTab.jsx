@@ -11,7 +11,7 @@ import { colorMap } from './colorMap';
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  background: papayawhip;
+  background: 'transparent';
   gap: 5px;
 `;
 const Box = styled.section`
@@ -21,11 +21,13 @@ const Box = styled.section`
 `;
 
 const StatisticsTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 400;
   line-height: 1.2;
-  color: #000000;
+  color: var(--title-main-color);
   margin-bottom: 20px;
+  margin-left: 84px;
+  margin-top: 32px;
 `;
 
 export const DiagramTab = () => {
@@ -111,14 +113,12 @@ export const DiagramTab = () => {
       if (color) {
         category.color = color;
       }
-      return category;
+      category.name = category.name.charAt(0).toUpperCase() + category.name.slice(1);
+    return category;
     });
     setRenderChart(updatedCategoriesSummary);
     setRenderTable(dataFetch);
-    console.log('UpdatedDataFetch', renderTable)
-    console.log('Color updated', renderChart)
-
-    
+  
   }, [summary]);
 
   return (
