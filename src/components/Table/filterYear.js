@@ -16,8 +16,7 @@ const RoundedBox = styled(Box)({
   border: '1px solid #000000',
 });
 
-
-export const FilterYear = ({getYear}) => {
+export const FilterYear = ({ getYear }) => {
   const options = [
     { label: '2019', id: 1 },
     { label: '2020', id: 2 },
@@ -26,14 +25,20 @@ export const FilterYear = ({getYear}) => {
     { label: '2023', id: 5 },
   ];
 
-  const currentYear = useMemo(() =>  new Date().toLocaleString('default', { year: 'numeric' }), []);;
+  const currentYear = useMemo(
+    () => new Date().toLocaleString('default', { year: 'numeric' }),
+    []
+  );
 
-  const handleYearChange = useCallback((selectedOption) => {
-    if (selectedOption) {
-      const selectedYear = selectedOption.label;
-      getYear(selectedYear);
-    }
-  }, [getYear]);
+  const handleYearChange = useCallback(
+    selectedOption => {
+      if (selectedOption) {
+        const selectedYear = selectedOption.label;
+        getYear(selectedYear);
+      }
+    },
+    [getYear]
+  );
 
   return (
     <Autocomplete
@@ -46,7 +51,7 @@ export const FilterYear = ({getYear}) => {
       renderInput={params => (
         <RoundedBox>
           <TextField {...params} label={currentYear} variant="outlined" />
-          </RoundedBox>
+        </RoundedBox>
       )}
     />
   );

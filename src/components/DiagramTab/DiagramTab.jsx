@@ -4,31 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSummary } from 'redux/summary/summaryOperationst';
 import { selectSummary } from 'redux/summary/summarySelectors';
-import styled from 'styled-components';
+import { Wrapper, StatisticsTitle, Box } from './DiagramTab.styled';
 import { colorMap } from './colorMap';
 
-
-const Wrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  background: 'transparent';
-  gap: 5px;
-`;
-const Box = styled.section`
-  max-height: 676px;
-  width: 715px;
-  display: flex;
-`;
-
-const StatisticsTitle = styled.h2`
-  font-size: 30px;
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--title-main-color);
-  margin-bottom: 20px;
-  margin-left: 84px;
-  margin-top: 32px;
-`;
 
 export const DiagramTab = () => {
   const dispatch = useDispatch();
@@ -52,12 +30,13 @@ export const DiagramTab = () => {
     else dispatch(fetchSummary({ month: month, year: year }));
   };
 
-  const dataFetch = {
+  const dataFetch =
+  {
     categoriesSummary: [
       {
         name: 'car',
         type: 'INCOME',
-        total: 10,
+        total: 10.99,
           },
 
       {
@@ -73,22 +52,22 @@ export const DiagramTab = () => {
       {
         name: 'main',
         type: 'EXPENSE',
-        total: 40,
+        total: 40.00,
       },
       {
         name: 'child-care',
         type: 'EXPENSE',
-        total: 50,
+        total: 50.34,
       },
       {
         name: 'leisure',
         type: 'EXPENSE',
-        total: 90,
+        total: 90.01,
       },
       {
         name: 'other',
         type: 'EXPENSE',
-        total: 15,
+        total: 15.88,
       },
     ],
     incomeSummary: 30,
@@ -114,7 +93,7 @@ export const DiagramTab = () => {
         category.color = color;
       }
       category.name = category.name.charAt(0).toUpperCase() + category.name.slice(1);
-    return category;
+       return category;
     });
     setRenderChart(updatedCategoriesSummary);
     setRenderTable(dataFetch);

@@ -11,6 +11,7 @@ const ColorBox = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 2px;
+  margin-left: 8px;
   background-color: ${props => props.backgroundColor};
 `;
 
@@ -23,7 +24,8 @@ const rowStyle = {
 
 const cellStyle = {
     width: '100px',
-       padding: '14px',
+  padding: '14px',
+       paddingLeft: '0px',
 };
 
 const cellColorStyle = {
@@ -48,7 +50,7 @@ export function BasicTable(tableData) {
                 <ColorBox backgroundColor={row.color}></ColorBox>
               </TableCell>
               <TableCell style={cellStyle} align="left">{row.name}</TableCell>
-              <TableCell style={cellStyle} align="right">{row.total}</TableCell>
+              <TableCell style={cellStyle} align="right">{row.total.toFixed(2)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
