@@ -25,9 +25,10 @@ import { useEffect } from 'react';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
-import { TextField } from '@mui/material';
-import { IoClose } from 'react-icons/io5';
-import { IconContext } from 'react-icons';
+
+// import { TextField } from '@mui/material';
+import { IoCloseOutline } from "react-icons/io5";
+import { IconContext } from "react-icons";
 import { fetchCategories } from 'redux/categories/categoriesOperations';
 
 export const ModalAddTransaction = () => {
@@ -97,15 +98,10 @@ export const ModalAddTransaction = () => {
           type="button"
           onClick={() => dispatch(closeModalAddTransaction())}
         >
-          <IconContext.Provider value={{ width: '16px', height: '16px' }}>
-            <h3>
-              {' '}
-              <IoClose />{' '}
-            </h3>
+
+          <IconContext.Provider value={{ size: "3em"}}>
+          <h3> <IoCloseOutline /> </h3>
           </IconContext.Provider>
-          {/* <svg width="18px" height="18px" >
-            <use href="${icons}#icon-vector-off"></use>
-        </svg> */}
         </ModalButtonClose>
         <ModalForm onSubmit={handleSubmit}>
           <ModalTitle> Add transaction</ModalTitle>

@@ -1,57 +1,12 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import styled from 'styled-components';
 import { FilterMonth } from 'components/Table/filterMonth';
 import { FilterYear } from './filterYear';
 import { BasicTable } from './basicTable';
+import { Box, FiltersBox, CategoryBox, ItemTitle, TotalBox, TotalItem, TotalExpenses, TotalIncom } from './Table.styled';
 
-const Box = styled.div`
-  max-width: 336px;
-  height: 715px;
-  margin: 0 auto;
-`;
-const FiltersBox = styled.div`
-  display: flex;
-  max-width: 395px;
-  height: auto;
-  margin: 0 auto;
-  gap: 32px;
-  mix-blend-mode: 20px;
-  margin-bottom: 20px;
-`;
-const TotalBox = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const TotalItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 153px;
-  font-size: 16px;
-  font-weight: 700;
-`;
-const TotalExpenses = styled.div`
-  color: #ff6596;
-`;
-const TotalIncom = styled.div`
-  color: #24cca7;
-`;
-const CategoryBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--main-background-color);
-  border-radius: 30px;
-  width: 336px;
-  height: 58px;
-`;
-const ItemTitle = styled.div`
-  padding: 20px;
-  font-size: 18px;
-  font-weight: 700;
-`;
 export const Table = ({ data, handlePeriod }) => {
   const isDataPerPeriod = useMemo(() => {
-    console.log('TABLE DATA >>>', data);
+    // console.log('TABLE DATA >>>', data);
     return data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
   }, [data]);
 
@@ -97,10 +52,10 @@ export const Table = ({ data, handlePeriod }) => {
         <TotalBox>
           <TotalItem>
             <p>Expenses: </p>
-            <TotalExpenses>{data.expenseSummary}</TotalExpenses>
+            <TotalExpenses>{data.expenseSummary.toFixed(2)}</TotalExpenses>
           </TotalItem>
           <TotalItem>
-            <p>Income: </p> <TotalIncom>{data.incomeSummary}</TotalIncom>
+            <p>Income: </p> <TotalIncom>{data.incomeSummary.toFixed(2)}</TotalIncom>
           </TotalItem>
         </TotalBox>
       )}
