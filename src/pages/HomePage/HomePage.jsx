@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { fetchCategories } from 'redux/categories/categoriesOperations';
 import { useState } from 'react';
 import { UpDateModal } from 'components/upDateModal/upDateModal';
+import { BlockForAddButton } from './HomePage.styled';
 
 const HomePage = () => {
   const isModalAddTransactionOpen = useSelector(selectAddTransactionOpen);
@@ -24,12 +25,12 @@ const HomePage = () => {
  
 
   return (
-    <>
+    <BlockForAddButton>
       <HomeTab info={setData} />
       <ButtonAddTransactions />
       {isModalUpDateTransaction && <UpDateModal trans={data} />}
       {isModalAddTransactionOpen && <ModalAddTransaction />}
-    </>
+    </BlockForAddButton>
   );
 };
 
