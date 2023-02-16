@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import { FilterMonth } from 'components/Table/filterMonth';
 import { FilterYear } from './filterYear';
@@ -50,28 +50,30 @@ const ItemTitle = styled.div`
   font-weight: 700;
 `;
 export const Table = ({data, handlePeriod}) => {
-  const isDataPerPeriod =
-    data?.data?.length > 0 || data?.data?.summary?.length > 0;
+  const isDataPerPeriod = useMemo(() => {
+    return data?.data?.length > 0 || data?.data?.summary?.length > 0;
+  }, [data]);
   
-   const currentMonth = new Date().getMonth() + 1;
-  const currentYear = new Date().getFullYear();
+  const currentMonth = useMemo(() => new Date().getMonth() + 1, []);
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
   
  const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
 
-  const handleMonth = (month) => {
+  const handleMonth = useCallback((month) => {
     setSelectedMonth(month);
-  };
+  }, []);
 
-  const handleYear = (year) => {
+  const handleYear = useCallback((year) => {
     setSelectedYear(year);
-  };
+  }, []);
 
   useEffect(() => {
     if (selectedMonth && selectedYear) handlePeriod(selectedMonth, selectedYear);
     if (selectedMonth && !selectedYear) handlePeriod(selectedMonth, currentYear);
     if (!selectedMonth && selectedYear) handlePeriod(currentMonth, selectedYear);
      
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMonth, selectedYear]);
 
   return (

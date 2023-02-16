@@ -1,8 +1,7 @@
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Autocomplete } from '@mui/material';
-
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 
 export const FilterYear = ({getYear}) => {
   const options = [
@@ -13,14 +12,15 @@ export const FilterYear = ({getYear}) => {
     { label: '2023', id: 5 },
   ];
 
-  const currentYear = new Date().toLocaleString('default', { year: 'numeric' });
+  const currentYear = useMemo(() =>  new Date().toLocaleString('default', { year: 'numeric' }), []);;
 
-  const handleYearChange = selectedOption => {
+  const handleYearChange = useCallback((selectedOption) => {
     if (selectedOption) {
       const selectedYear = selectedOption.label;
       getYear(selectedYear);
     }
-  };
+  }, [getYear]);
+
   return (
     <Autocomplete
       disablePortal
