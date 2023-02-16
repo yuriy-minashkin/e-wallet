@@ -1,6 +1,6 @@
-
+import { useState } from 'react';
 import {
-  CheckboxLabel,
+  // CheckboxLabel,
   InputLabel,
   Modal,
   ModalButtonCancel,
@@ -11,32 +11,60 @@ import {
   Overlay,
   InputLabelText,
   ModalTitle,
-  SelectLabel,
+  // SelectLabel,
   ModalButtonClose,
-} from 'components/ModalAddTransaction/ModalAddTransaction.styled';
-import { useDispatch } from 'react-redux';
+  // Input,
+  // LabelText,
+  // LabelTextExpense,
+} from '../ModalAddTransaction/ModalAddTransaction.styled';
+import { useDispatch  } from 'react-redux';
+// import { closeModalAddTransaction } from 'redux/global/globalSlice';
+// import { addTransaction } from 'redux/transaction/transactionOperations';
+// import { selectCategories } from 'redux/categories/categoriesSelectors';
+// import { useEffect } from 'react';
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
+// import moment from 'moment';
+// import { TextField } from '@mui/material';
+import { IoCloseOutline } from 'react-icons/io5';
+import { IconContext } from 'react-icons';
+
+
 import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
 // import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
-export const UpDateModal = (props) => {
-console.log('props in modalka', props.trans);
+export const UpDateModal = props => {
+  // console.log('props in modalka', props.trans);
+  const [categoryId] = useState(props.trans.id);
+  const [amount, setAmount] = useState(props.trans.amount);
+  const [transactionDate] = useState(props.trans.transactionDate);
+  const [comment, setComment] = useState(props.trans.comment);
+  const [type] = useState(props.trans.type);
 
-     const dispatch = useDispatch();
-       const handleSubmit = evt => {
-         evt.preventDefault();
+  const dispatch = useDispatch();
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const newObject = {
+      transactionDate,
+      type,
+      categoryId,
+      comment,
+      amount: Number(amount),
+    };
+    // console.log(newObject);
+    dispatch(upDateTransaction(newObject));
+  };
 
-       
-         // console.log(date);
-         const obj = {
-          
-         };
-         console.log(obj);
-         dispatch(upDateTransaction(obj));
-        
-       };
-
- 
+  const handleChange = evt => {
+    console.log(evt.target);
+    const { value, name } = evt.target;
+    if (name === 'amount') {
+      setAmount(value);
+    } else if (name === 'comment') {
+      setComment(value);
+    }
+  };
 
   return (
     <>
@@ -46,51 +74,41 @@ console.log('props in modalka', props.trans);
             type="button"
             onClick={() => dispatch(closeModalUpDateTransaction())}
           >
-            {/* <svg width="18px" height="18px" >
-            <use href="${icons}#icon-vector-off"></use>
-        </svg> */}
+            <IconContext.Provider value={{ size: '3em' }}>
+              <h3>
+                {' '}
+                <IoCloseOutline />{' '}
+              </h3>
+            </IconContext.Provider>
           </ModalButtonClose>
           <ModalForm onSubmit={handleSubmit}>
             <ModalTitle> Update transaction</ModalTitle>
-            {/* <input  type="checkbox" name="topic" id="topic-1" /> */}
-
-            <ModalWrap>
-              <p>Income</p>
-              <CheckboxLabel htmlFor="topic-1"></CheckboxLabel>
-              <p>Expense</p>
-            </ModalWrap>
-            <SelectLabel
+            {/* <InputLabelText
               name="categoryId"
-              // onChange={handleChange}
-              // value={categoryId}
-            >
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>May</option>
-            </SelectLabel>
+              onChange={handleChange}
+              value={categoryId}
+            /> */}
 
             <ModalWrap>
               <InputLabel
-              //   value={amount}
-              //   onChange={handleChange}
-              //   type="text"
-              //   name="amount"
-              //   placeholder="0.00"
+                value={amount}
+                onChange={handleChange}
+                type="text"
+                name="amount"
+                placeholder="0.00"
               />
-              <InputLabel
-              //   value={transactionDate}
-              //   onChange={handleChange}
-              //   type="text"
-              //   name="transactionDate"
-              //   placeholder="please enter the date"
+              <Datetime
+                timeFormat={false}
+                name={transactionDate}
+                value={transactionDate}
+                renderInput={params => <InputLabel {...params} />}
               />
             </ModalWrap>
             <InputLabelText
-            // value={comment}
-            // onChange={handleChange}
-            // name="comment"
-            // placeholder="Comment"
+              value={comment}
+              onChange={handleChange}
+              name="comment"
+              placeholder="Comment"
             />
 
             <ModalButtonWrap>

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { logOut } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
 import { Logo } from 'components/Logo/Logo';
-import { Container, LogoutWrapper } from './Header.styled';
+import Icons from 'images/icons.svg';
+import { Container, LogoutWrapper, User, Button, Icon } from './Header.styled';
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -12,10 +13,16 @@ export const Header = () => {
   return (
     <Container>
       <Link to="/"><Logo /></Link>
-          <LogoutWrapper>
-            <h3>{userName}</h3>
-            <button type="button" onClick={() => dispatch(logOut())}>Log Out</button>
-          </LogoutWrapper>
+      <LogoutWrapper>
+        <User>{userName}</User>
+        <Button href="#" onClick={() => dispatch(logOut())}>
+          <Icon>
+            <use href={`${Icons}#icon-exit`} />
+          </Icon>
+          exit
+        </Button>
+      </LogoutWrapper>
     </Container>
-  )
+  );
+  
 }
