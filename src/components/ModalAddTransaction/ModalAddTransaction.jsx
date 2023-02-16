@@ -14,12 +14,13 @@ import {
   SelectLabel,
   ModalButtonClose,
   Input,
-  Label,
   LabelText,
+  LabelTextExpense,
 } from './ModalAddTransaction.styled';
 import { useDispatch } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import { addTransaction } from 'redux/transaction/transactionOperations';
+// import Datetime from 'react-datetime';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,14 @@ export const ModalAddTransaction = () => {
   const [categoryId, setCategoryId] = useState('');
   const [comment, setComment] = useState('');
   const [amount, setAmount] = useState('');
+
+  const [checked, setChecked] = useState(false)
+
+  const onChange = (e) => {
+    console.log(e.target.checked);
+    
+    setChecked(e.target.checked);
+  }
 
   const handleChange = evt => {
     const { value, name } = evt.target;
@@ -78,12 +87,24 @@ export const ModalAddTransaction = () => {
         </ModalButtonClose>
         <ModalForm onSubmit={handleSubmit}>
           <ModalTitle> Add transaction</ModalTitle>
-          <Input  type="checkbox" name="topic" id="topic-1" />   
+          
+          <Input  
+          onChange={onChange}
+          checked={checked}
+          
+          type="checkbox" name="topic" id="topic-1" /> 
+
           <ModalWrap>
-            <p>Income</p>
-            <CheckboxLabel htmlFor="topic-1"></CheckboxLabel>
-            <p>Expense</p>
+            <LabelText checked={checked} >Income</LabelText>
+            <CheckboxLabel htmlFor="topic-1"
+           
+            checked={checked} 
+            ></CheckboxLabel>
+            <LabelTextExpense checked={checked}>Expense</LabelTextExpense>
           </ModalWrap>
+
+
+
           <SelectLabel
             name="categoryId"
             onChange={handleChange}
