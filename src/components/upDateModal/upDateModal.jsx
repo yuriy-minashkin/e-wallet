@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {
-  CheckboxLabel,
+  // CheckboxLabel,
   InputLabel,
   Modal,
   ModalButtonCancel,
@@ -17,7 +17,7 @@ import {
   // LabelText,
   // LabelTextExpense,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch  } from 'react-redux';
 // import { closeModalAddTransaction } from 'redux/global/globalSlice';
 // import { addTransaction } from 'redux/transaction/transactionOperations';
 // import { selectCategories } from 'redux/categories/categoriesSelectors';
@@ -52,7 +52,7 @@ export const UpDateModal = props => {
       comment,
       amount: Number(amount),
     };
-    console.log(newObject);
+    // console.log(newObject);
     dispatch(upDateTransaction(newObject));
   };
 
