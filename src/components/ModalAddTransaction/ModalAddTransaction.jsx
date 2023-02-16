@@ -54,7 +54,7 @@ export const ModalAddTransaction = () => {
   };
 
   const handleChange = evt => {
-    // console.log(evt.target);
+    console.log(evt.target);
     const { value, name } = evt.target;
     if (name === 'categoryId') {
       setCategoryId(value);
