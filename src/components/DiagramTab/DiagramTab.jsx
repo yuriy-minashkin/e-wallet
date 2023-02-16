@@ -31,7 +31,8 @@ const StatisticsTitle = styled.h2`
 export const DiagramTab = () => {
   const dispatch = useDispatch();
   const summary = useSelector(selectSummary);
-const [renderSummary, setrenderSummary] = useState('')
+  const [renderChart, setRenderChart] = useState('')
+  const [renderTable, setRenderTable] = useState('')
   const currentMonth = new Date().getMonth() + 1;
   const currentYear = new Date().getFullYear();
 
@@ -58,34 +59,34 @@ const [renderSummary, setrenderSummary] = useState('')
           },
 
       {
-        name: 'beer',
+        name: 'self-care',
         type: 'INCOME',
         total: 20,
       },
       {
-        name: 'food',
+        name: 'house-hold',
         type: 'EXPENSE',
         total: 30,
       },
       {
-        name: 'household products',
+        name: 'main',
         type: 'EXPENSE',
         total: 40,
       },
       {
-        name: 'IT',
+        name: 'child-care',
         type: 'EXPENSE',
-        total: 40,
+        total: 50,
       },
       {
         name: 'leisure',
         type: 'EXPENSE',
-        total: 40,
+        total: 90,
       },
       {
         name: 'other',
         type: 'EXPENSE',
-        total: 40,
+        total: 15,
       },
     ],
     incomeSummary: 30,
@@ -105,15 +106,18 @@ const [renderSummary, setrenderSummary] = useState('')
   } = dataFetch;
 
   useEffect(() => {
-    const updatedCategoriesSummary = categoriesSummary.map(category => {
+    const updatedCategoriesSummary = dataFetch.categoriesSummary.map(category => {
       const color = colorMap[category.name];
       if (color) {
         category.color = color;
       }
       return category;
     });
-    setrenderSummary(updatedCategoriesSummary);
-    console.log('Color updated', renderSummary)
+    setRenderChart(updatedCategoriesSummary);
+    setRenderTable(dataFetch);
+    console.log('UpdatedDataFetch', renderTable)
+    console.log('Color updated', renderChart)
+
     
   }, [summary]);
 
@@ -121,8 +125,8 @@ const [renderSummary, setrenderSummary] = useState('')
     <Wrapper>
       <StatisticsTitle>Statistics</StatisticsTitle>
       <Box>
-        <ChartDoughnut data={renderSummary} />
-        <Table data={dataFetch} handlePeriod={handleFilterChange} />
+        <ChartDoughnut data={renderChart} />
+        <Table data={renderTable} handlePeriod={handleFilterChange} />
       </Box>
     </Wrapper>
   );

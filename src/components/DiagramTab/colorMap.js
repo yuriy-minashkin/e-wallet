@@ -1,9 +1,10 @@
 export const colorMap = {
-    car: '#FD9498',
-    'child-care': 'var(--child-care-color)',
-    'self-care': 'var(--self-care-colo)',
-    'house-hold': 'var(--house-hold-color)',
-    'education': 'var(--education-color)',
-    leisure: 'var(--leisure-color)',
-    other: 'var(--others-color)',
+    'main': '#FED057',
+    'car': '#FD9498',
+    'child-care': '#6E78E8',
+    'self-care': '#C5BAFF',
+    'house-hold': '#4A56E2',
+    'education': '#81E1FF',
+    'leisure': '#24CCA7',
+    'other': '#00AD84',
 };

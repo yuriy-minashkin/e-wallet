@@ -71,7 +71,7 @@ console.log('Donut data comes here: ', data);
       {isDataPerPeriod && (
         <Doughnut data={dataChart} options={options} ref={chartRef} />
       )}
-      <TotalBalance>${userBalance}</TotalBalance>
+      <TotalBalance>${userBalance.toFixed(2)}</TotalBalance>
     </StyledChartContainer>
   );
 };

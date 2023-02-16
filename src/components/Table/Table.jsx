@@ -49,31 +49,35 @@ const ItemTitle = styled.div`
   font-size: 18px;
   font-weight: 700;
 `;
-export const Table = ({data, handlePeriod}) => {
+export const Table = ({ data, handlePeriod }) => {
   const isDataPerPeriod = useMemo(() => {
-    return data?.data?.length > 0 || data?.data?.summary?.length > 0;
+    console.log('TABLE DATA >>>', data);
+    return data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
   }, [data]);
-  
+
   const currentMonth = useMemo(() => new Date().getMonth() + 1, []);
   const currentYear = useMemo(() => new Date().getFullYear(), []);
-  
- const [selectedMonth, setSelectedMonth] = useState('');
+
+  const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
 
-  const handleMonth = useCallback((month) => {
+  const handleMonth = useCallback(month => {
     setSelectedMonth(month);
   }, []);
 
-  const handleYear = useCallback((year) => {
+  const handleYear = useCallback(year => {
     setSelectedYear(year);
   }, []);
 
   useEffect(() => {
-    if (selectedMonth && selectedYear) handlePeriod(selectedMonth, selectedYear);
-    if (selectedMonth && !selectedYear) handlePeriod(selectedMonth, currentYear);
-    if (!selectedMonth && selectedYear) handlePeriod(currentMonth, selectedYear);
-     
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (selectedMonth && selectedYear)
+      handlePeriod(selectedMonth, selectedYear);
+    if (selectedMonth && !selectedYear)
+      handlePeriod(selectedMonth, currentYear);
+    if (!selectedMonth && selectedYear)
+      handlePeriod(currentMonth, selectedYear);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMonth, selectedYear]);
 
   return (
@@ -88,17 +92,15 @@ export const Table = ({data, handlePeriod}) => {
           <ItemTitle>Category</ItemTitle> <ItemTitle>Sum</ItemTitle>
         </CategoryBox>
       )}
-      {isDataPerPeriod && (
-        <BasicTable tableData={data.data.categoriesSummary} />
-      )}
+      {isDataPerPeriod && <BasicTable tableData={data.categoriesSummary} />}
       {isDataPerPeriod && (
         <TotalBox>
           <TotalItem>
             <p>Expenses: </p>
-            <TotalExpenses>{data.data.expenseSummary}</TotalExpenses>
+            <TotalExpenses>{data.expenseSummary}</TotalExpenses>
           </TotalItem>
           <TotalItem>
-            <p>Income: </p> <TotalIncom>{data.data.incomeSummary}</TotalIncom>
+            <p>Income: </p> <TotalIncom>{data.incomeSummary}</TotalIncom>
           </TotalItem>
         </TotalBox>
       )}
