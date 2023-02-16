@@ -204,7 +204,7 @@ export const ModalButtonClose = styled.button`
   width: 32px;
   height: 32px;
   border: none;
-  // background-color: #fff;
+  background-color: #fff;
   outline: blue;
   padding: 0;
   cursor: pointer;
