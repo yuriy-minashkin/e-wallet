@@ -72,7 +72,7 @@ export const CheckboxLabel = styled.label`
   &::after {
     content: '';
     position: absolute;
-    left: 203px;
+    left: 195px;
     top: 139px;
     width: 44px;
     height: 44px;
@@ -88,7 +88,7 @@ export const CheckboxLabel = styled.label`
     line-height: 2.8;
     padding-top: 8px;
 
-    transform: ${props => props.checked && 'translate(35px)'};
+    transform: ${props => props.checked && 'translate(37px)'};
     background-color: ${props => (props.checked ? '#FF6596' : '#24CCA7')};
   }
 `;
