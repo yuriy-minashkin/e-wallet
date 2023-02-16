@@ -13,6 +13,9 @@ import {
   ModalTitle,
   SelectLabel,
   ModalButtonClose,
+  Input,
+  LabelText,
+  LabelTextExpense,
 } from './ModalAddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
@@ -21,6 +24,12 @@ import { addTransaction } from 'redux/transaction/transactionOperations';
 import { fetchCategories } from 'redux/categories/categoriesOperations';
 import { selectCategories } from 'redux/categories/categoriesSelectors';
 import { useEffect } from 'react';
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
+import moment from 'moment';
+import { TextField } from '@mui/material';
+import { IoClose } from "react-icons/io5";
+import { IconContext } from "react-icons";
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -36,16 +45,21 @@ export const ModalAddTransaction = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-//   console.log(categories);
+  // console.log(categories);
+
+  const [checked, setChecked] = useState(false);
+
+  const onChange = e => {
+    setChecked(e.target.checked);
+  };
 
   const handleChange = evt => {
+    console.log(evt.target);
     const { value, name } = evt.target;
     if (name === 'categoryId') {
       setCategoryId(value);
     } else if (name === 'amount') {
       setAmount(value);
-    } else if (name === 'transactionDate') {
-      setTransactionDate(value);
     } else if (name === 'comment') {
       setComment(value);
     }
@@ -88,28 +102,39 @@ export const ModalAddTransaction = () => {
           type="button"
           onClick={() => dispatch(closeModalAddTransaction())}
         >
+          <IconContext.Provider value={{ width: "16px", height: "16px"}}>
+          <h3> <IoClose /> </h3>
+          </IconContext.Provider>
           {/* <svg width="18px" height="18px" >
             <use href="${icons}#icon-vector-off"></use>
         </svg> */}
         </ModalButtonClose>
         <ModalForm onSubmit={handleSubmit}>
           <ModalTitle> Add transaction</ModalTitle>
-          {/* <input  type="checkbox" name="topic" id="topic-1" /> */}
+
+          <Input
+            onChange={onChange}
+            checked={checked}
+            type="checkbox"
+            name="topic"
+            id="topic-1"
+          />
 
           <ModalWrap>
-            <p>Income</p>
-            <CheckboxLabel htmlFor="topic-1"></CheckboxLabel>
-            <p>Expense</p>
+            <LabelText checked={checked}>Income</LabelText>
+            <CheckboxLabel htmlFor="topic-1" checked={checked}></CheckboxLabel>
+            <LabelTextExpense checked={checked}>Expense</LabelTextExpense>
           </ModalWrap>
+
           <SelectLabel
             name="categoryId"
             onChange={handleChange}
             value={categoryId}
           >
-            <option>January</option>
-            <option>February</option>
-            <option>March</option>
-            <option>May</option>
+            {categories &&
+              categories.map(category => {
+                return <option key={category.id} id={category.id}>{category.name}</option>;
+              })}
           </SelectLabel>
 
           <ModalWrap>
@@ -120,12 +145,14 @@ export const ModalAddTransaction = () => {
               name="amount"
               placeholder="0.00"
             />
-            <InputLabel
+            <Datetime
+              timeFormat={false}
+              name={transactionDate}
               value={transactionDate}
-              onChange={handleChange}
-              type="text"
-              name="transactionDate"
-              placeholder="15.02.2023"
+              onChange={newValue => {
+                setTransactionDate(moment(newValue).toISOString());
+              }}
+              renderInput={params => <InputLabel {...params} />}
             />
           </ModalWrap>
           <InputLabelText
