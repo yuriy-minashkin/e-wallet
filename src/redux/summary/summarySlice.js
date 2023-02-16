@@ -27,6 +27,8 @@ const summarySlice = createSlice({
     builder
       .addCase(fetchSummary.fulfilled, (state, { payload }) => {
         state.summaryData = payload;
+        state.isLoading = false;
+        state.error = null;
       })
 
       .addMatcher(isAnyOf(...createActions('pending')), setPending)

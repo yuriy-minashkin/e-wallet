@@ -16,3 +16,16 @@ export const chartConfig = () =>{
     },
   ],}
 };
+
+export const chartOptions = {
+  plugins: {
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      callbacks: {
+        label: () => null,
+      },
+    },
+  },
+};

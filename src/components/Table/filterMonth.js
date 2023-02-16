@@ -4,7 +4,7 @@ import { Autocomplete } from '@mui/material';
 
 import React, { useState } from 'react';
 
-export const FilterMonth = () => {
+export const FilterMonth = ({getMonth}) => {
   const currentMonth = new Date().toLocaleString('default', { month: 'long' });
 
   const options = [
@@ -24,16 +24,18 @@ export const FilterMonth = () => {
 
   const handleMonthChange = selectedOption => {
     if (selectedOption) {
-      const selectedMonth = selectedOption.label;
-      console.log(selectedMonth);
+       const selectedMonthId = selectedOption.id;
+      getMonth(selectedMonthId);
+      console.log('Selected Month', selectedMonthId)
     }
   };
+
   return (
     <Autocomplete
-      enableportal
       id="combo-box-demo"
       options={options}
-      onChange={(event, selectedOption) => handleMonthChange(selectedOption)}
+      onChange={(_, selectedOption) => handleMonthChange(selectedOption)}
+      isOptionEqualToValue={(option, value) => option.id === value.id}
       sx={{ width: 181 }}
       renderInput={params => <TextField {...params} label={currentMonth} />}
     />

@@ -4,7 +4,7 @@ import { Autocomplete } from '@mui/material';
 
 import React from 'react';
 
-export const FilterYear = () => {
+export const FilterYear = ({getYear}) => {
   const options = [
     { label: '2019', id: 1 },
     { label: '2020', id: 2 },
@@ -18,7 +18,7 @@ export const FilterYear = () => {
   const handleYearChange = selectedOption => {
     if (selectedOption) {
       const selectedYear = selectedOption.label;
-      console.log(selectedYear);
+      getYear(selectedYear);
     }
   };
   return (
@@ -27,7 +27,8 @@ export const FilterYear = () => {
       id="combo-box-demo"
       options={options}
       sx={{ width: 181 }}
-      onChange={(event, selectedOption) => handleYearChange(selectedOption)}
+      onChange={(_, selectedOption) => handleYearChange(selectedOption)}
+      isOptionEqualToValue={(option, value) => option.id === value.id}
       renderInput={params => (
         <TextField {...params} label={currentYear} variant="outlined" />
       )}
