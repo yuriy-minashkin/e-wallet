@@ -17,22 +17,21 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
 import { addTransaction } from 'redux/transaction/transactionOperations';
-
 import { selectCategories } from 'redux/categories/categoriesSelectors';
 
-
-export const ModalAddTransaction = () => {
+export const ModalAddTransaction = ()=> {
+  
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
+  const currentDate = new Date(Date.now());
 
-  const [transactionDate, setTransactionDate] = useState(new Date());
-  const [type, setType] = useState('');
+  const [transactionDate, setTransactionDate] = useState(currentDate);
+  const [, setType] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [comment, setComment] = useState('');
   const [amount, setAmount] = useState('');
 
-
-
+  // console.log('transactionDate', currentDate);
 
   const handleChange = evt => {
     const { value, name } = evt.target;
@@ -49,10 +48,11 @@ export const ModalAddTransaction = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-   
-    const date = transactionDate.toISOString();
-    // .toISOString();
-    console.log(date);
+
+    const date = new Date(
+      transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
+    );
+
     const obj = {
       transactionDate: date,
       type: 'INCOME',
@@ -60,17 +60,10 @@ export const ModalAddTransaction = () => {
       comment,
       amount: Number(amount),
     };
-    console.log(obj);
+    // console.log(obj);
     dispatch(addTransaction(obj));
     reset();
   };
-  //   {
-  //   "transactionDate": "string",/
-  //   "type": "INCOME",/
-  //   "categoryId": "string",/
-  //   "comment": "string",/
-  //   "amount": 0/
-  // }
 
   const reset = () => {
     setTransactionDate('');
@@ -124,7 +117,7 @@ export const ModalAddTransaction = () => {
               onChange={handleChange}
               type="text"
               name="transactionDate"
-              placeholder="15.02.2023"
+              placeholder="please enter the date"
             />
           </ModalWrap>
           <InputLabelText

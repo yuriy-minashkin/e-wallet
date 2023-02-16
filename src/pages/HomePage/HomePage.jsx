@@ -1,26 +1,34 @@
 import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { HomeTab } from 'components/HomeTab/HomeTab';
-import { selectAddTransactionOpen } from 'redux/global/globalSelectors';
+import {
+  selectAddTransactionOpen,
+  selectUpDateTransactionsModal,
+} from 'redux/global/globalSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { useEffect } from 'react';
 import { fetchCategories } from 'redux/categories/categoriesOperations';
-
+import { useState } from 'react';
+import { UpDateModal } from 'components/upDateModal/upDateModal';
 
 const HomePage = () => {
   const isModalAddTransactionOpen = useSelector(selectAddTransactionOpen);
+  const isModalUpDateTransaction = useSelector(selectUpDateTransactionsModal);
   const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(fetchCategories());
-    }, [dispatch]);
+  const [data,setData]= useState(null)
 
-  // console.log('isModalAddTransactionOpen', isModalAddTransactionOpen);
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+ 
+
   return (
     <>
-      <HomeTab />
+      <HomeTab info={setData} />
       <ButtonAddTransactions />
-      {isModalAddTransactionOpen && <ModalAddTransaction/>}
+      {isModalUpDateTransaction && <UpDateModal trans={data} />}
+      {isModalAddTransactionOpen && <ModalAddTransaction />}
     </>
   );
 };

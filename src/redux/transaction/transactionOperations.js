@@ -34,16 +34,17 @@ export const deleteTransaction = createAsyncThunk(
   'transactions/deleteTransactions',
   async (transactionId, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/transactions/${transactionId}`);
-      return data;
+      await axios.delete(`/transactions/${transactionId}`);
+      return transactionId;
+
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-export const upDateContacts = createAsyncThunk(
-  'transactions/upDateContacts',
+export const upDateTransaction = createAsyncThunk(
+  'transactions/upDateTransaction',
   async (transactionId, thunkAPI) => {
     try {
       const { data } = await axios.patch(`/transactions/${transactionId}`);

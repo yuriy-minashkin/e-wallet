@@ -1,10 +1,26 @@
 import { GrFormEdit } from 'react-icons/gr';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { selectFinanceData } from 'redux/transaction/transactionSelectors';
+import { openModalUpDateTransaction} from 'redux/global/globalSlice';
 
-export const TransactionsList = ({ data }) => {
+export const TransactionsList = ({ data, info }) => {
   console.log(data);
+  const financeData = useSelector(selectFinanceData);
+  const [trans, setTrans] = useState('');
+
   const dispatch = useDispatch();
+
+  const saveTransaction = id => {
+    dispatch(openModalUpDateTransaction());
+
+    setTrans(financeData.find(trans => trans.id === id));
+    console.log('trans', trans);
+
+    info(trans);
+  };
+
   return (
     <table>
       <thead>
@@ -21,13 +37,13 @@ export const TransactionsList = ({ data }) => {
           ({ id, transactionDate, type, categoryId, comment, amount }) => (
             <tr key={id}>
               <td>{transactionDate}</td>
-              <td>{type}</td>
+              <td>{type.toLowerCase()}</td>
               <td>{categoryId}</td>
               <td>{comment}</td>
               <td>{amount}</td>
               <td>
                 {' '}
-                <button>
+                <button onClick={() => saveTransaction(id)}>
                   <GrFormEdit />
                 </button>
               </td>
@@ -41,22 +57,5 @@ export const TransactionsList = ({ data }) => {
         )}
       </tbody>
     </table>
-    // <ul>
-    //   {data.map(
-    //     ({ id, transactionDate, type, categoryId, comment, amount }) => (
-    //       <li key={id}>
-    //         {' '}
-    //         {transactionDate} {type} {categoryId}
-    //         {comment} {amount}
-    //         <button>
-    //           <GrFormEdit />
-    //         </button>
-    //         <button onClick={() => dispatch(deleteTransaction(id))}>
-    //           Delete
-    //         </button>
-    //       </li>
-    //     )
-    //   )}
-    // </ul>
   );
 };

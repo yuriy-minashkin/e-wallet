@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Rings } from 'react-loader-spinner';
 
-export const HomeTab = () => {
+export const HomeTab = (props) => {
   const financeData = useSelector(selectFinanceData);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export const HomeTab = () => {
             <Rings />
           ) : (
             <>
-              <TransactionsList data={financeData} />
+              <TransactionsList data={financeData} info={props.info}/>
             </>
           )}
         </div>

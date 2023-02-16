@@ -3,7 +3,7 @@ import {
   fetchAllTransactions,
   addTransaction,
   deleteTransaction,
-  upDateContacts,
+  upDateTransaction,
 } from './transactionOperations';
 
 const setError = (state, action) => {
@@ -19,7 +19,7 @@ const extraActions = [
   fetchAllTransactions,
   addTransaction,
   deleteTransaction,
-  upDateContacts,
+  upDateTransaction,
 ];
 const createActions = type => {
   return extraActions.map(action => action[type]);
@@ -49,12 +49,12 @@ const transactionSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-        const {data} = state.finance;
+        const { data } = state.finance;
         state.finance.data = data.filter(trans => trans.id !== payload);
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(upDateContacts.fulfilled, (state, { payload }) => {
+      .addCase(upDateTransaction.fulfilled, (state, { payload }) => {
         state.finance.data = { ...payload };
         state.isLoading = false;
         state.error = null;
