@@ -16,7 +16,7 @@ const createActions = type => {
 };
 
 const categoriesSlice = createSlice({
-  name: 'finance',
+  name: 'categories',
   initialState: {
     categories: [],
     isLoading: false,
@@ -27,6 +27,8 @@ const categoriesSlice = createSlice({
     builder
       .addCase(fetchCategories.fulfilled, (state, { payload }) => {
         state.categories = payload;
+        state.isLoading = false;
+        state.error = null;
       })
 
       .addMatcher(isAnyOf(...createActions('pending')), setPending)

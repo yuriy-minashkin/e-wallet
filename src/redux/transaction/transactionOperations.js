@@ -31,20 +31,20 @@ export const addTransaction = createAsyncThunk(
 );
 
 export const deleteTransaction = createAsyncThunk(
-  'transactions/deleteContacts',
+  'transactions/deleteTransactions',
   async (transactionId, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/transactions/${transactionId}`);
+      await axios.delete(`/transactions/${transactionId}`);
+      return transactionId;
 
-      return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-export const upDateContacts = createAsyncThunk(
-  'transactions/upDateContacts',
+export const upDateTransaction = createAsyncThunk(
+  'transactions/upDateTransaction',
   async (transactionId, thunkAPI) => {
     try {
       const { data } = await axios.patch(`/transactions/${transactionId}`);
