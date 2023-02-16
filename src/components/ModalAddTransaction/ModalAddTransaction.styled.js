@@ -210,6 +210,7 @@ export const ModalButtonClose = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: red;
+    /* background-color: red; */
   }
 `;
+

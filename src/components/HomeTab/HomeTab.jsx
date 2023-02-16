@@ -18,7 +18,7 @@ export const HomeTab = () => {
 // const compareData=(a, b)=> {
 //   return a - b;
 // }
- 
+
 // const sortFinanceData = financeData.sort(compareData);
 // console.log(sortFinanceData);
 
