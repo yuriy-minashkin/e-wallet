@@ -15,12 +15,12 @@ export const HomeTab = () => {
   const dispatch = useDispatch();
   console.log(financeData);
 
-const compareData=(a, b)=> {
-  return a - b;
-}
+// const compareData=(a, b)=> {
+//   return a - b;
+// }
  
-const sortFinanceData = financeData.sort(compareData);
-console.log(sortFinanceData);
+// const sortFinanceData = financeData.sort(compareData);
+// console.log(sortFinanceData);
 
   useEffect(() => {
     dispatch(fetchAllTransactions());
