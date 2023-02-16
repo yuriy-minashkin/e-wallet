@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import { FilterMonth } from 'components/Table/filterMonth';
 import { FilterYear } from './filterYear';
-import { Table } from '@mui/material';
 import { BasicTable } from './basicTable';
-
 
 const Box = styled.div`
   max-width: 336px;
@@ -12,7 +10,7 @@ const Box = styled.div`
   margin: 0 auto;
 `;
 const FiltersBox = styled.div`
-display: flex;
+  display: flex;
   max-width: 395px;
   height: auto;
   margin: 0 auto;
@@ -21,53 +19,93 @@ display: flex;
   margin-bottom: 20px;
 `;
 const TotalBox = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 const TotalItem = styled.div`
-display: flex;
-justify-content: space-between;
-gap: 153px;
-font-size: 16px;
-font-weight: 700;
-
+  display: flex;
+  justify-content: space-between;
+  gap: 153px;
+  font-size: 16px;
+  font-weight: 700;
 `;
 const TotalExpenses = styled.div`
-color: #FF6596;
+  color: #ff6596;
 `;
 const TotalIncom = styled.div`
-color: #24CCA7;
+  color: #24cca7;
 `;
 const CategoryBox = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-background: #FFFFFF;
-border-radius: 30px;
-width: 336px;
-height: 58px;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--main-background-color);
+  border-radius: 30px;
+  width: 336px;
+  height: 58px;
 `;
 const ItemTitle = styled.div`
-padding: 20px;
-font-size: 18px;
-font-weight: 700;
-
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 700;
 `;
-export const TableStatistics = (data) => {
-    console.log('Fetch for Table',data.data)
+export const Table = ({ data, handlePeriod }) => {
+  const isDataPerPeriod = useMemo(() => {
+    console.log('TABLE DATA >>>', data);
+    return data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
+  }, [data]);
+
+  const currentMonth = useMemo(() => new Date().getMonth() + 1, []);
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
+
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
+
+  const handleMonth = useCallback(month => {
+    setSelectedMonth(month);
+  }, []);
+
+  const handleYear = useCallback(year => {
+    setSelectedYear(year);
+  }, []);
+
+  useEffect(() => {
+    if (selectedMonth && selectedYear)
+      handlePeriod(selectedMonth, selectedYear);
+    if (selectedMonth && !selectedYear)
+      handlePeriod(selectedMonth, currentYear);
+    if (!selectedMonth && selectedYear)
+      handlePeriod(currentMonth, selectedYear);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedMonth, selectedYear]);
+
   return (
     <Box>
       <FiltersBox>
-        <FilterMonth />
-        <FilterYear />
-          </FiltersBox>
-          <CategoryBox> <ItemTitle>Category</ItemTitle> <ItemTitle>Sum</ItemTitle></CategoryBox>
-          <BasicTable tableData={data.data.categoriesSummary} />
-          <TotalBox>
-              <TotalItem><p>Expenses: </p> <TotalExpenses>{data.data.expenseSummary}</TotalExpenses></TotalItem>
-              <TotalItem><p>Income: </p> <TotalIncom>{data.data.incomeSummary}</TotalIncom></TotalItem>
-              </TotalBox>
+        <FilterMonth getMonth={handleMonth} />
+        <FilterYear getYear={handleYear} />
+      </FiltersBox>
+      {isDataPerPeriod && (
+        <CategoryBox>
+          {' '}
+          <ItemTitle>Category</ItemTitle> <ItemTitle>Sum</ItemTitle>
+        </CategoryBox>
+      )}
+      {isDataPerPeriod && <BasicTable tableData={data.categoriesSummary} />}
+      {isDataPerPeriod && (
+        <TotalBox>
+          <TotalItem>
+            <p>Expenses: </p>
+            <TotalExpenses>{data.expenseSummary}</TotalExpenses>
+          </TotalItem>
+          <TotalItem>
+            <p>Income: </p> <TotalIncom>{data.incomeSummary}</TotalIncom>
+          </TotalItem>
+        </TotalBox>
+      )}
+
+      {!isDataPerPeriod && <p>There is no data for this period</p>}
     </Box>
   );
-}
+};

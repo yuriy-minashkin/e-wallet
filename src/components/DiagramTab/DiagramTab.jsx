@@ -1,8 +1,12 @@
 import { ChartDoughnut } from 'components/Chart/Chart';
 import { Table } from 'components/Table/Table';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSummary } from 'redux/summary/summaryOperationst';
+import { selectSummary } from 'redux/summary/summarySelectors';
 import styled from 'styled-components';
-import { TableStatistics } from './../Table/Table';
+import { colorMap } from './colorMap';
+
 
 const Wrapper = styled.section`
   display: flex;
@@ -11,8 +15,8 @@ const Wrapper = styled.section`
   gap: 5px;
 `;
 const Box = styled.section`
-max-height: 676px;
-width: 715px;
+  max-height: 676px;
+  width: 715px;
   display: flex;
 `;
 
@@ -25,6 +29,27 @@ const StatisticsTitle = styled.h2`
 `;
 
 export const DiagramTab = () => {
+  const dispatch = useDispatch();
+  const summary = useSelector(selectSummary);
+  const [renderChart, setRenderChart] = useState('')
+  const [renderTable, setRenderTable] = useState('')
+  const currentMonth = new Date().getMonth() + 1;
+  const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    dispatch(fetchSummary({ month: currentMonth, year: currentYear }));
+  }, []);
+
+  const handleFilterChange = ( month, year ) => {
+   
+    if (!month && !year) {
+      dispatch(fetchSummary({ month: currentMonth, year: currentYear }));
+    } else if (!month)
+      dispatch(fetchSummary({ month: month, year: currentYear }));
+    else if (!year) dispatch(fetchSummary({ month: currentMonth, year: year }));
+    else dispatch(fetchSummary({ month: month, year: year }));
+  };
+
   const dataFetch = {
     categoriesSummary: [
       {
@@ -32,36 +57,36 @@ export const DiagramTab = () => {
         type: 'INCOME',
         total: 10,
           },
-      
+
       {
-        name: 'beer',
+        name: 'self-care',
         type: 'INCOME',
         total: 20,
       },
       {
-        name: 'food',
+        name: 'house-hold',
         type: 'EXPENSE',
         total: 30,
       },
       {
-        name: 'household products',
+        name: 'main',
         type: 'EXPENSE',
         total: 40,
       },
       {
-        name: 'IT',
+        name: 'child-care',
         type: 'EXPENSE',
-        total: 40,
+        total: 50,
       },
       {
         name: 'leisure',
         type: 'EXPENSE',
-        total: 40,
+        total: 90,
       },
       {
         name: 'other',
         type: 'EXPENSE',
-        total: 40,
+        total: 15,
       },
     ],
     incomeSummary: 30,
@@ -80,26 +105,28 @@ export const DiagramTab = () => {
     month,
   } = dataFetch;
 
-  dataFetch.categoriesSummary = dataFetch.categoriesSummary.map(category => {
-    const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-      Math.random() * 256
-    )}, ${Math.floor(Math.random() * 256)})`;
-    return { ...category, backgroundColor: randomColor };
-  });
+  useEffect(() => {
+    const updatedCategoriesSummary = dataFetch.categoriesSummary.map(category => {
+      const color = colorMap[category.name];
+      if (color) {
+        category.color = color;
+      }
+      return category;
+    });
+    setRenderChart(updatedCategoriesSummary);
+    setRenderTable(dataFetch);
+    console.log('UpdatedDataFetch', renderTable)
+    console.log('Color updated', renderChart)
 
-  // Використовуючи хук useSelector з react-redux отримати дані зі стору.
-  // У цьому компоненті міститься логіка підписки на redux store, отримання всіх потрібних даних.
-  //Реалізація методів фільтрації даних.
-  //І дані шматки стану та методи прокинути пропами в дочірні елементи Table та Chart
+    
+  }, [summary]);
 
   return (
     <Wrapper>
-      
-        <StatisticsTitle>Statistics</StatisticsTitle>
-<Box>
-        <ChartDoughnut data={dataFetch.categoriesSummary} />
-
-        <TableStatistics data={dataFetch}/>
+      <StatisticsTitle>Statistics</StatisticsTitle>
+      <Box>
+        <ChartDoughnut data={renderChart} />
+        <Table data={renderTable} handlePeriod={handleFilterChange} />
       </Box>
     </Wrapper>
   );

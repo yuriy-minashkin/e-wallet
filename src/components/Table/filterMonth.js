@@ -4,9 +4,8 @@ import { Autocomplete } from '@mui/material';
 
 import React, { useState } from 'react';
 
-
-export const FilterMonth = () => {
-    const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+export const FilterMonth = ({getMonth}) => {
+  const currentMonth = new Date().toLocaleString('default', { month: 'long' });
 
   const options = [
     { label: 'January', id: 1 },
@@ -21,23 +20,24 @@ export const FilterMonth = () => {
     { label: 'October', id: 10 },
     { label: 'November', id: 11 },
     { label: 'December', id: 12 },
-  ]
-
+  ];
 
   const handleMonthChange = selectedOption => {
     if (selectedOption) {
-      const selectedMonth = selectedOption.label;
-      console.log(selectedMonth);
+       const selectedMonthId = selectedOption.id;
+      getMonth(selectedMonthId);
+      console.log('Selected Month', selectedMonthId)
     }
   };
-    return (
-        <Autocomplete
-  enablePortal
-  id="combo-box-demo"
-        options={options}
-       onChange={(event, selectedOption) => handleMonthChange(selectedOption)}
-  sx={{ width: 181}}
-  renderInput={(params) => <TextField {...params} label={currentMonth} />}
-/>
-    )
-}
+
+  return (
+    <Autocomplete
+      id="combo-box-demo"
+      options={options}
+      onChange={(_, selectedOption) => handleMonthChange(selectedOption)}
+      isOptionEqualToValue={(option, value) => option.id === value.id}
+      sx={{ width: 181 }}
+      renderInput={params => <TextField {...params} label={currentMonth} />}
+    />
+  );
+};

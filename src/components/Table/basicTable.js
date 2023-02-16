@@ -46,7 +46,7 @@ export function BasicTable(tableData) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell style={cellColorStyle}>
-                <ColorBox backgroundColor={row.backgroundColor}></ColorBox>
+                <ColorBox backgroundColor={row.color}></ColorBox>
               </TableCell>
               <TableCell style={cellStyle} align="left">{row.name}</TableCell>
               <TableCell style={cellStyle} align="right">{row.total}</TableCell>
