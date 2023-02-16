@@ -3,7 +3,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import styled from 'styled-components';
@@ -12,6 +11,7 @@ const ColorBox = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 2px;
+  margin-left: 8px;
   background-color: ${props => props.backgroundColor};
 `;
 
@@ -24,7 +24,8 @@ const rowStyle = {
 
 const cellStyle = {
     width: '100px',
-       padding: '14px',
+  padding: '14px',
+       paddingLeft: '0px',
 };
 
 const cellColorStyle = {
@@ -35,7 +36,7 @@ const cellColorStyle = {
 
 
 export function BasicTable(tableData) {
-  console.log('Table props', tableData.tableData);
+  // console.log('Table props', tableData.tableData);
   return (
     <TableContainer component={Paper} style={tableStyle}>
       <Table sx={{ maxWidth: 650 }} aria-label="simple table">
@@ -49,7 +50,7 @@ export function BasicTable(tableData) {
                 <ColorBox backgroundColor={row.color}></ColorBox>
               </TableCell>
               <TableCell style={cellStyle} align="left">{row.name}</TableCell>
-              <TableCell style={cellStyle} align="right">{row.total}</TableCell>
+              <TableCell style={cellStyle} align="right">{row.total.toFixed(2)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
