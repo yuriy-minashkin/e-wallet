@@ -72,11 +72,21 @@ export const ModalAddTransaction = () => {
       transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
     );
 
-    const currentCategorie = categories.find(cat => cat.name === categoryId);
+    const checkedCategories = () => {
+      if (!checked) {
+        const currentCategorie = categories.find(category => category.name === categoryId);
+        return currentCategorie 
+      } else {
+        return categories[0].id
+      }
+      }
+      
+
+    // const currentCategorie = categories.find(cat => cat.name === categoryId);
     const obj = {
       transactionDate: date,
       type: !checked ? 'INCOME' : 'EXPENSE',
-      categoryId: !checked ? categories[10].id : currentCategorie.id,
+      categoryId: !checked ? categories[10].id : checkedCategories(),
       comment,
       amount: !checked ? Number(amount) : -Number(amount),
     };
@@ -94,19 +104,21 @@ export const ModalAddTransaction = () => {
   };
 
   const onClose = evt => {
-    if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
+    if (evt.code === 'Escape' || evt.currentTarget === evt.target || evt.target.nodeName === 'svg') {
       dispatch(closeModalAddTransaction());
     }
   }
 
   window.addEventListener('keydown', onClose);
 
+  const categoriesFilter = categories.filter(cat => cat.name !== "Income")
+
   return (
     <Overlay onClick={onClose}>
       <Modal>
         <ModalButtonClose
           type="button"
-          onClick={() => dispatch(closeModalAddTransaction())}
+          onClick={onClose}
         >
 
           <IconContext.Provider value={{ size: "3em"}}>
@@ -137,7 +149,7 @@ export const ModalAddTransaction = () => {
               value={categoryId}
             >
               {categories &&
-                categories.map(({ id, name }) => {
+                categoriesFilter.map(({ id, name }) => {
                   return (
                     <option 
                       key={id}
@@ -179,7 +191,7 @@ export const ModalAddTransaction = () => {
             <ModalButtonAdd type="submit">Add</ModalButtonAdd>
             <ModalButtonCancel
               type="button"
-              onClick={() => dispatch(closeModalAddTransaction())}
+              onClick={onClose}
             >
               Cancel
             </ModalButtonCancel>
