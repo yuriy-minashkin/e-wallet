@@ -96,6 +96,7 @@ export const tableStyle = {
 };
 export const rowStyle = {
   padding: '0px',
+    border: 'none',
 };
 
 export const cellStyle = {
