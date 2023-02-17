@@ -1,25 +1,20 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { StyledChartContainer, TotalBalance } from './Chart.styled';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { selectBalance } from 'redux/auth/authSelectors';
+import { formatNumberSaveMinus } from 'utils/serviceFunctions';
+
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const ChartDoughnut = ({ data }) => {
+export const ChartDoughnut = React.memo(({ data }) => {
   const userBalance = useSelector(selectBalance);
   const chartRef = useRef(null);
 
-  // console.log('Donut data comes here: ', data);
-
-  const isDataPerPeriod = useMemo(() => {
-    return data?.data?.length > 0 || data?.length > 0;
-  }, [data]);
-
-  // console.log(isDataPerPeriod)
-
   const dataChart = useMemo(() => {
+    const isDataPerPeriod = data && data.length > 0;
     if (isDataPerPeriod) {
       const labels = data.map(item => item.name);
       const values = data.map(item => Math.abs(item.total));
@@ -32,6 +27,19 @@ export const ChartDoughnut = ({ data }) => {
             data: values,
             backgroundColor: color,
             borderWidth: 1,
+            hoverOffset: 1,
+          },
+        ],
+      };
+    } else {
+      return {
+        labels: ['No expenses'],
+        datasets: [
+          {
+            label: '',
+            data: [1],
+            backgroundColor: ['rgb(230, 225, 213)'],
+            hoverOffset: 4,
           },
         ],
       };
@@ -47,23 +55,11 @@ export const ChartDoughnut = ({ data }) => {
     cutout: 95,
   };
 
- 
-  function addSpaces(number) {
-  const str = number.toFixed(2).toString();
-  const parts = [];
-  for (let i = str.length; i > 0; i -= 3) {
-    parts.unshift(str.substring(Math.max(0, i - 3), i));
-  }
-  return parts.join(" ");
-  }
-  
-const formattedNumber = addSpaces(userBalance);
   return (
     <StyledChartContainer>
-      {isDataPerPeriod && (
-        <Doughnut data={dataChart} options={options} ref={chartRef} />
-      )}
-      <TotalBalance>&#8372; {formattedNumber}</TotalBalance>
+      <Doughnut data={dataChart} options={options} ref={chartRef} />
+
+      <TotalBalance>&#8372; {formatNumberSaveMinus(userBalance)}</TotalBalance>
     </StyledChartContainer>
   );
-};
+});

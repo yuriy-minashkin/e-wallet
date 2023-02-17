@@ -3,12 +3,13 @@ import { FilterMonth } from 'components/Table/filterMonth';
 import { FilterYear } from './filterYear';
 import { BasicTable } from './basicTable';
 import { Box, FiltersBox, CategoryBox, ItemTitle, TotalBox, TotalItem, TotalExpenses, TotalIncom } from './Table.styled';
+import { formatNumber } from 'utils/serviceFunctions';
 
 export const Table = ({ data, handlePeriod }) => {
-  console.log(data)
+
   const isDataPerPeriod = data || data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
   ;
-console.log('TABLE DATA >>>', data);
+// console.log('TABLE DATA >>>', data);
   const currentMonth = useMemo(() => new Date().getMonth() + 1, []);
   const currentYear = useMemo(() => new Date().getFullYear(), []);
 
@@ -51,10 +52,10 @@ console.log('TABLE DATA >>>', data);
         <TotalBox>
           <TotalItem>
             <p>Expenses: </p>
-            <TotalExpenses>{data.expenseSummary.toFixed(2)}</TotalExpenses>
+            <TotalExpenses>{formatNumber(data.expenseSummary)}</TotalExpenses>
           </TotalItem>
           <TotalItem>
-            <p>Income: </p> <TotalIncom>{data.incomeSummary.toFixed(2)}</TotalIncom>
+            <p>Income: </p> <TotalIncom>{formatNumber(data.incomeSummary)}</TotalIncom>
           </TotalItem>
         </TotalBox>
       )}

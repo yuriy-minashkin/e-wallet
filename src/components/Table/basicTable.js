@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {ColorBox, tableStyle, rowStyle, cellStyle, cellColorStyle} from './Table.styled';
+import { formatNumber } from 'utils/serviceFunctions';
 
 
 export function BasicTable(tableData) {
@@ -23,7 +24,7 @@ export function BasicTable(tableData) {
                 <ColorBox backgroundColor={row.color}></ColorBox>
               </TableCell>
               <TableCell style={cellStyle} align="left">{row.name}</TableCell>
-              <TableCell style={cellStyle} align="right">{Math.abs(row.total).toFixed(2)}</TableCell>
+              <TableCell style={cellStyle} align="right">{formatNumber(row.total)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

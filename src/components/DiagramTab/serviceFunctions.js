@@ -26,3 +26,5 @@ export const addColorToArray = (summary, colorMap) => {
   });
   return updatedCategoriesSummary;
 };
+
+
