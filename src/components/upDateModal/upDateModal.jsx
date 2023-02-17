@@ -66,9 +66,17 @@ export const UpDateModal = props => {
     }
   };
 
+  const onClose = evt => {
+    if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
+      dispatch(closeModalUpDateTransaction());
+    }
+  }
+
+  window.addEventListener('keydown', onClose);
+
   return (
     <>
-      <Overlay>
+      <Overlay onClick={onClose}>
         <Modal>
           <ModalButtonClose
             type="button"

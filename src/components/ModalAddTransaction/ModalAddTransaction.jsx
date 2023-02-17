@@ -93,8 +93,16 @@ export const ModalAddTransaction = () => {
     setAmount('');
   };
 
+  const onClose = evt => {
+    if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
+      dispatch(closeModalAddTransaction());
+    }
+  }
+
+  window.addEventListener('keydown', onClose);
+
   return (
-    <Overlay>
+    <Overlay onClick={onClose}>
       <Modal>
         <ModalButtonClose
           type="button"
