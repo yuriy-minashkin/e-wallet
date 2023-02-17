@@ -13,7 +13,10 @@ import {
   ModalTitle,
   // SelectLabel,
   ModalButtonClose,
-  // Input,
+  LabelText,
+  CheckboxLabel,
+  LabelTextExpense,
+  Input,
   // LabelText,
   // LabelTextExpense,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
@@ -32,15 +35,17 @@ import { IconContext } from 'react-icons';
 
 import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
+
 // import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
 export const UpDateModal = props => {
   // console.log('props in modalka', props.trans);
-  const [categoryId] = useState(props.trans.id);
+  const [categoryId, setCategoryId] = useState(props.trans.id);
   const [amount, setAmount] = useState(props.trans.amount);
-  const [transactionDate] = useState(props.trans.transactionDate);
+  const [transactionDate, setTransactionDate] = useState(props.trans.transactionDate);
   const [comment, setComment] = useState(props.trans.comment);
-  const [type] = useState(props.trans.type);
+  const [type, setType] = useState(props.trans.type);
+  const [checked, setChecked] = useState(false);
 
   const dispatch = useDispatch();
   const handleSubmit = evt => {
@@ -54,6 +59,15 @@ export const UpDateModal = props => {
     };
     // console.log(newObject);
     dispatch(upDateTransaction(newObject));
+    reset();
+  };
+
+  const reset = () => {
+    setTransactionDate('');
+    setType('');
+    setCategoryId('');
+    setComment('');
+    setAmount('');
   };
 
   const handleChange = evt => {
@@ -66,8 +80,13 @@ export const UpDateModal = props => {
     }
   };
 
+  const onChange = e => {
+    setChecked(e.target.checked);
+  };
+
   const onClose = evt => {
-    if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
+    // console.log(evt.target.nodeName)
+    if (evt.code === 'Escape' || evt.currentTarget === evt.target || evt.target.nodeName === 'svg') {
       dispatch(closeModalUpDateTransaction());
     }
   }
@@ -80,9 +99,10 @@ export const UpDateModal = props => {
         <Modal>
           <ModalButtonClose
             type="button"
-            onClick={() => dispatch(closeModalUpDateTransaction())}
+            onClick={onClose}
+            name="button"
           >
-            <IconContext.Provider value={{ size: '3em' }}>
+            <IconContext.Provider value={{ size: '3em' }} name="button">
               <h3>
                 {' '}
                 <IoCloseOutline />{' '}
@@ -91,6 +111,19 @@ export const UpDateModal = props => {
           </ModalButtonClose>
           <ModalForm onSubmit={handleSubmit}>
             <ModalTitle> Update transaction</ModalTitle>
+            <Input
+            onChange={onChange}
+            checked={checked}
+            type="checkbox"
+            name="topic"
+            id="topic-1"
+          />
+            <ModalWrap>
+            <LabelText checked={checked}>Income</LabelText>
+            <CheckboxLabel htmlFor="topic-1" checked={checked}></CheckboxLabel>
+            <LabelTextExpense checked={checked}>Expense</LabelTextExpense>
+          </ModalWrap>
+
             {/* <InputLabelText
               name="categoryId"
               onChange={handleChange}
@@ -105,12 +138,19 @@ export const UpDateModal = props => {
                 name="amount"
                 placeholder="0.00"
               />
-              <Datetime
+              <InputLabel
+                value={transactionDate}
+                onChange={handleChange}
+                type="text"
+                name="amount"
+                disabled
+              />
+              {/* <Datetime
                 timeFormat={false}
                 name={transactionDate}
                 value={transactionDate}
                 renderInput={params => <InputLabel {...params} />}
-              />
+              /> */}
             </ModalWrap>
             <InputLabelText
               value={comment}
@@ -123,7 +163,7 @@ export const UpDateModal = props => {
               <ModalButtonAdd type="submit">upDate</ModalButtonAdd>
               <ModalButtonCancel
                 type="button"
-                onClick={() => dispatch(closeModalUpDateTransaction())}
+                onClick={onClose}
               >
                 Cancel
               </ModalButtonCancel>
