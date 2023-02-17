@@ -9,18 +9,20 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Rings } from 'react-loader-spinner';
 
-export const HomeTab = (props) => {
+export const HomeTab = props => {
   const financeData = useSelector(selectFinanceData);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-  // console.log(financeData);
 
-// const compareData=(a, b)=> {
-//   return a - b;
-// }
+  const compareData = financeData.map(obj => ({
+    ...obj,
+    transactionDate: Date.parse(obj.transactionDate),
+  }));
+  const sortDate = [...compareData].sort(
+    (a, b) => a.transactionDate - b.transactionDate
+  );
 
-// const sortFinanceData = financeData.sort(compareData);
-// console.log(sortFinanceData);
+  // console.log(sortDate);
 
   useEffect(() => {
     dispatch(fetchAllTransactions());
@@ -36,7 +38,7 @@ export const HomeTab = (props) => {
             <Rings />
           ) : (
             <>
-              <TransactionsList data={financeData} info={props.info}/>
+              <TransactionsList data={sortDate} info={props.info} />
             </>
           )}
         </div>
