@@ -16,6 +16,7 @@ const HomePage = () => {
   const isModalAddTransactionOpen = useSelector(selectAddTransactionOpen);
   const isModalUpDateTransaction = useSelector(selectUpDateTransactionsModal);
   const dispatch = useDispatch();
+
   const [data,setData]= useState(null)
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const HomePage = () => {
     <BlockForAddButton>
       <HomeTab info={setData} />
       <ButtonAddTransactions />
-      {isModalUpDateTransaction && <UpDateModal trans={data} />}
+      {isModalUpDateTransaction && data && <UpDateModal trans={data} close={setData}/>}
       {isModalAddTransactionOpen && <ModalAddTransaction />}
     </BlockForAddButton>
   );

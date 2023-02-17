@@ -34,13 +34,13 @@ import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
 // import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
-export const UpDateModal = props => {
-  // console.log('props in modalka', props.trans);
-  const [categoryId] = useState(props.trans.id);
-  const [amount, setAmount] = useState(props.trans.amount);
-  const [transactionDate] = useState(props.trans.transactionDate);
-  const [comment, setComment] = useState(props.trans.comment);
-  const [type] = useState(props.trans.type);
+export const UpDateModal = ({trans,close}) => {
+  // console.log('props in modalka upDate',trans);
+  const [categoryId] = useState(trans.id);
+  const [amount, setAmount] = useState(trans.amount);
+  const [transactionDate] = useState(trans.transactionDate);
+  const [comment, setComment] = useState(trans.comment);
+  const [type] = useState(trans.type);
 
   const dispatch = useDispatch();
   const handleSubmit = evt => {
@@ -52,12 +52,12 @@ export const UpDateModal = props => {
       comment,
       amount: Number(amount),
     };
-    // console.log(newObject);
+    // console.log('obj to update',newObject);
     dispatch(upDateTransaction(newObject));
   };
 
   const handleChange = evt => {
-    console.log(evt.target);
+    // console.log(evt.target);
     const { value, name } = evt.target;
     if (name === 'amount') {
       setAmount(value);
@@ -69,6 +69,8 @@ export const UpDateModal = props => {
   const onClose = evt => {
     if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
       dispatch(closeModalUpDateTransaction());
+      // console.log('qwewqewqe')
+      close('')
     }
   }
 
