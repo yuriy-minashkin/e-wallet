@@ -47,6 +47,7 @@ export const UpDateModal = props => {
   const [type, setType] = useState(props.trans.type);
   const [checked, setChecked] = useState(false);
 
+
   const dispatch = useDispatch();
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -57,7 +58,7 @@ export const UpDateModal = props => {
       comment,
       amount: Number(amount),
     };
-    // console.log(newObject);
+    // console.log('obj to update',newObject);
     dispatch(upDateTransaction(newObject));
     reset();
   };
@@ -71,7 +72,7 @@ export const UpDateModal = props => {
   };
 
   const handleChange = evt => {
-    console.log(evt.target);
+    // console.log(evt.target);
     const { value, name } = evt.target;
     if (name === 'amount') {
       setAmount(value);
@@ -88,6 +89,8 @@ export const UpDateModal = props => {
     // console.log(evt.target.nodeName)
     if (evt.code === 'Escape' || evt.currentTarget === evt.target || evt.target.nodeName === 'svg') {
       dispatch(closeModalUpDateTransaction());
+      // console.log('qwewqewqe')
+      close('')
     }
   }
 
