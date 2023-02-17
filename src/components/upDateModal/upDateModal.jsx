@@ -38,8 +38,8 @@ import { upDateTransaction } from 'redux/transaction/transactionOperations';
 // import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
 export const UpDateModal = ({ trans, close }) => {
-  // console.log('props in modalka upDate',trans);
-  const [categoryId] = useState(trans.id);
+
+  const [categoryId] = useState(trans.categoryId);
   const [amount, setAmount] = useState(trans.amount);
   const [transactionDate] = useState(trans.transactionDate);
   const [comment, setComment] = useState(trans.comment);
@@ -47,7 +47,9 @@ export const UpDateModal = ({ trans, close }) => {
   const [checked, setChecked] = useState(false);
 
   const dispatch = useDispatch();
+
   const handleSubmit = evt => {
+    // console.log('props in modalka upDate', trans);
     evt.preventDefault();
     const newObject = {
       transactionDate,
@@ -56,9 +58,13 @@ export const UpDateModal = ({ trans, close }) => {
       comment,
       amount: Number(amount),
     };
-    // console.log('obj to update',newObject);
-    dispatch(upDateTransaction(newObject));
+
+    // console.log('obj to update', newObject);
+    dispatch(
+      upDateTransaction({ transactionId:trans.id, dataInfo: newObject })
+    );
   };
+
 
   const handleChange = evt => {
     // console.log(evt.target);
@@ -77,7 +83,7 @@ export const UpDateModal = ({ trans, close }) => {
       evt.target.nodeName === 'svg'
     ) {
       dispatch(closeModalUpDateTransaction());
-      // console.log('qwewqewqe')
+
       close('');
     }
   };
