@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/49.f1d8e826.chunk.js","mappings":"qIAQA,UANoB,WAClB,OACE,wCAEH,C","sources":["pages/SummaryPage/SummaryPage.jsx"],"sourcesContent":["import React from 'react'\n\nconst SummaryPage = () => {\n  return (\n    <div>SummaryPage</div>\n  )\n}\n\nexport default SummaryPage;\n"],"names":[],"sourceRoot":""}
