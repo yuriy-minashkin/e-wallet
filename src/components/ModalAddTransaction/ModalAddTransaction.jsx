@@ -27,7 +27,9 @@ import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
 
 // import { TextField } from '@mui/material';
+
 import { IoCloseOutline } from "react-icons/io5";
+
 import { IconContext } from "react-icons";
 import { fetchCategories } from 'redux/categories/categoriesOperations';
 
@@ -91,8 +93,16 @@ export const ModalAddTransaction = () => {
     setAmount('');
   };
 
+  const onClose = evt => {
+    if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
+      dispatch(closeModalAddTransaction());
+    }
+  }
+
+  window.addEventListener('keydown', onClose);
+
   return (
-    <Overlay>
+    <Overlay onClick={onClose}>
       <Modal>
         <ModalButtonClose
           type="button"

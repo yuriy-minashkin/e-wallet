@@ -9,9 +9,17 @@ import { ModalBtnCancel, ModalButtonWrapper, ModalButtonYes, ModalConfirmationTe
 export const ModalConfirmation = ()=> {
   const dispatch = useDispatch();
 
+  const onClose = evt => {
+    if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
+      dispatch(closeModalAddTransaction());
+    }
+  }
+
+  window.addEventListener('keydown', onClose);
+
     return (
       <>
-      <Overlay>
+      <Overlay onClick={onClose}>
         <ModalContainer>
         <ModalButtonClose
           type="button"
