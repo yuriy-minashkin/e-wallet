@@ -5,11 +5,10 @@ import { BasicTable } from './basicTable';
 import { Box, FiltersBox, CategoryBox, ItemTitle, TotalBox, TotalItem, TotalExpenses, TotalIncom } from './Table.styled';
 
 export const Table = ({ data, handlePeriod }) => {
-  const isDataPerPeriod = useMemo(() => {
-    // console.log('TABLE DATA >>>', data);
-    return data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
-  }, [data]);
-
+  console.log(data)
+  const isDataPerPeriod = data || data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
+  ;
+console.log('TABLE DATA >>>', data);
   const currentMonth = useMemo(() => new Date().getMonth() + 1, []);
   const currentYear = useMemo(() => new Date().getFullYear(), []);
 

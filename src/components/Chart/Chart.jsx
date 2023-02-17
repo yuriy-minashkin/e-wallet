@@ -22,7 +22,7 @@ export const ChartDoughnut = ({ data }) => {
   const dataChart = useMemo(() => {
     if (isDataPerPeriod) {
       const labels = data.map(item => item.name);
-      const values = data.map(item => item.total);
+      const values = data.map(item => Math.abs(item.total));
       const color = data.map(item => item.color);
 
       return {
@@ -47,12 +47,23 @@ export const ChartDoughnut = ({ data }) => {
     cutout: 95,
   };
 
+ 
+  function addSpaces(number) {
+  const str = number.toFixed(2).toString();
+  const parts = [];
+  for (let i = str.length; i > 0; i -= 3) {
+    parts.unshift(str.substring(Math.max(0, i - 3), i));
+  }
+  return parts.join(" ");
+  }
+  
+const formattedNumber = addSpaces(userBalance);
   return (
     <StyledChartContainer>
       {isDataPerPeriod && (
         <Doughnut data={dataChart} options={options} ref={chartRef} />
       )}
-      <TotalBalance>${userBalance.toFixed(2)}</TotalBalance>
+      <TotalBalance>&#8372; {formattedNumber}</TotalBalance>
     </StyledChartContainer>
   );
 };
