@@ -56,3 +56,31 @@ export const ItemTitle = styled.div`
   font-weight: 700;
   
 `;
+
+export const ColorBox = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  margin-left: 8px;
+  background-color: ${props => props.backgroundColor};
+`;
+
+export const tableStyle = {
+       backgroundColor: 'transparent',
+};
+export const rowStyle = {
+    padding: '0px',
+};
+
+export const cellStyle = {
+    width: '100px',
+  padding: '14px',
+       paddingLeft: '0px',
+};
+
+export const cellColorStyle = {
+    width: '10px',
+    margin: '0px',
+    padding: '10px',
+};
+
