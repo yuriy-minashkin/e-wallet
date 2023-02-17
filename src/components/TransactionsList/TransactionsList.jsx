@@ -4,6 +4,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { selectFinanceData } from 'redux/transaction/transactionSelectors';
 import { openModalUpDateTransaction} from 'redux/global/globalSlice';
+import {
+  Container,
+  Table,
+  TrHead,
+  ThDay,
+  ThType,
+  ThCategore,
+  ThComment,
+  ThCurrency,
+  ThEdit,
+  ThDel,
+  TrData,
+  TdDate,
+  TdType,
+  TdCadegory,
+  TdComment,
+  TdAmount,
+  TdEdit,
+  TdDel,
+  EditButton,
+  DelButton,
+} from './TransactionsList.styled';
 
 export const TransactionsList = ({ data, info }) => {
   console.log(data);
@@ -22,40 +44,43 @@ export const TransactionsList = ({ data, info }) => {
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Type</th>
-          <th>Cotegory</th>
-          <th>Comment</th>
-          <th>Currency</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map(
-          ({ id, transactionDate, type, categoryId, comment, amount }) => (
-            <tr key={id}>
-              <td>{transactionDate}</td>
-              <td>{type.toLowerCase()}</td>
-              <td>{categoryId}</td>
-              <td>{comment}</td>
-              <td>{amount}</td>
-              <td>
-                {' '}
-                <button onClick={() => saveTransaction(id)}>
-                  <GrFormEdit />
-                </button>
-              </td>
-              <td>
-                <button onClick={() => dispatch(deleteTransaction(id))}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          )
-        )}
-      </tbody>
-    </table>
+    <Container>
+      <Table>
+        <thead>
+          <TrHead>
+            <ThDay>Date</ThDay>
+            <ThType>Type</ThType>
+            <ThCategore>Cotegory</ThCategore>
+            <ThComment>Comment</ThComment>
+            <ThCurrency>Currency</ThCurrency>
+            <ThEdit></ThEdit>
+            <ThDel></ThDel>
+          </TrHead>
+        </thead>
+        <tbody>
+          {data.map(
+            ({ id, transactionDate, type, categoryId, comment, amount }) => (
+              <TrData key={id}>
+                <TdDate>{transactionDate}</TdDate>
+                <TdType>{type.toLowerCase() === 'income' ? '+' : '-'}</TdType>
+                <TdCadegory>{categoryId}</TdCadegory>
+                <TdComment>{comment}</TdComment>
+                <TdAmount type={type}>{amount.toFixed(2)}</TdAmount>
+                <TdEdit>
+                  <EditButton onClick={() => saveTransaction(id)}>
+                    <GrFormEdit style={{ width:"30px", height:"30px" }} />
+                  </EditButton>
+                </TdEdit>
+                <TdDel>
+                  <DelButton onClick={() => dispatch(deleteTransaction(id))}>
+                    Delete
+                  </DelButton>
+                </TdDel>
+              </TrData>
+            )
+          )}
+        </tbody>
+      </Table>
+    </Container>
   );
 };
