@@ -7,7 +7,7 @@ export const colorMap = {
   Education: '#81E1FF',
   Leisure: '#24CCA7',
   'Other expenses': '#00AD84',
-  Income: '#eba597',
+  'Main expenses': '#eba597',
   Products: '#6973e6',
   Entertainment: '#53daba',
 };

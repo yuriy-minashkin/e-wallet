@@ -14,7 +14,7 @@ export function BasicTable(tableData) {
   return (
     <TableContainer component={Paper} style={tableStyle}>
       <Table sx={{ maxWidth: 650 }} aria-label="simple table">
-        <TableBody>
+        <TableBody style={rowStyle}>
           {tableData.tableData.map(row => (
             <TableRow  style={rowStyle}
               key={row.name}

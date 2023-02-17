@@ -8,8 +8,7 @@ import { formatNumber } from 'utils/serviceFunctions';
 export const Table = ({ data, handlePeriod }) => {
 
   const isDataPerPeriod = data || data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
-  ;
-// console.log('TABLE DATA >>>', data);
+  
   const currentMonth = useMemo(() => new Date().getMonth() + 1, []);
   const currentYear = useMemo(() => new Date().getFullYear(), []);
 
@@ -38,8 +37,8 @@ export const Table = ({ data, handlePeriod }) => {
   return (
     <Box>
       <FiltersBox>
-        <FilterMonth getMonth={handleMonth} />
-        <FilterYear getYear={handleYear} />
+        <FilterMonth  getMonth={handleMonth} />
+        <FilterYear  getYear={handleYear} />
       </FiltersBox>
       {isDataPerPeriod && (
         <CategoryBox>

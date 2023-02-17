@@ -4,21 +4,28 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { selectBalance } from 'redux/auth/authSelectors';
-import { formatNumberSaveMinus } from 'utils/serviceFunctions';
-
+import { formatBalance } from 'utils/serviceFunctions';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
+const options = {
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+  cutout: 95,
+};
 
 export const ChartDoughnut = React.memo(({ data }) => {
   const userBalance = useSelector(selectBalance);
   const chartRef = useRef(null);
 
   const dataChart = useMemo(() => {
-    const isDataPerPeriod = data && data.length > 0;
-    if (isDataPerPeriod) {
-      const labels = data.map(item => item.name);
-      const values = data.map(item => Math.abs(item.total));
-      const color = data.map(item => item.color);
+    if (data && data.length > 0) {
+      const labels = data.map((item) => item.name);
+      const values = data.map((item) => Math.abs(item.total));
+      const color = data.map((item) => item.color);
 
       return {
         labels,
@@ -46,20 +53,15 @@ export const ChartDoughnut = React.memo(({ data }) => {
     }
   }, [data]);
 
-  const options = {
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    cutout: 95,
-  };
+  const totalBalance = useMemo(() => {
+    return formatBalance(userBalance);
+  }, [userBalance]);
 
   return (
     <StyledChartContainer>
       <Doughnut data={dataChart} options={options} ref={chartRef} />
 
-      <TotalBalance>&#8372; {formatNumberSaveMinus(userBalance)}</TotalBalance>
+      <TotalBalance dangerouslySetInnerHTML={{ __html: totalBalance }} /> 
     </StyledChartContainer>
   );
 });
