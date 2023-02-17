@@ -13,34 +13,38 @@ import {
   ModalTitle,
   // SelectLabel,
   ModalButtonClose,
+  Input,
+  LabelText,
+  CheckboxLabel,
+  LabelTextExpense,
   // Input,
   // LabelText,
   // LabelTextExpense,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
-import { useDispatch  } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { closeModalAddTransaction } from 'redux/global/globalSlice';
 // import { addTransaction } from 'redux/transaction/transactionOperations';
 // import { selectCategories } from 'redux/categories/categoriesSelectors';
 // import { useEffect } from 'react';
-import Datetime from 'react-datetime';
+// import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 // import moment from 'moment';
 // import { TextField } from '@mui/material';
 import { IoCloseOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 
-
 import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
 // import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
-export const UpDateModal = ({trans,close}) => {
+export const UpDateModal = ({ trans, close }) => {
   // console.log('props in modalka upDate',trans);
   const [categoryId] = useState(trans.id);
   const [amount, setAmount] = useState(trans.amount);
   const [transactionDate] = useState(trans.transactionDate);
   const [comment, setComment] = useState(trans.comment);
   const [type] = useState(trans.type);
+  const [checked, setChecked] = useState(false);
 
   const dispatch = useDispatch();
   const handleSubmit = evt => {
@@ -67,23 +71,28 @@ export const UpDateModal = ({trans,close}) => {
   };
 
   const onClose = evt => {
-    if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
+    if (
+      evt.code === 'Escape' ||
+      evt.currentTarget === evt.target ||
+      evt.target.nodeName === 'svg'
+    ) {
       dispatch(closeModalUpDateTransaction());
       // console.log('qwewqewqe')
-      close('')
+      close('');
     }
-  }
+  };
 
   window.addEventListener('keydown', onClose);
+
+  const onChange = e => {
+    setChecked(e.target.checked);
+  };
 
   return (
     <>
       <Overlay onClick={onClose}>
         <Modal>
-          <ModalButtonClose
-            type="button"
-            onClick={() => dispatch(closeModalUpDateTransaction())}
-          >
+          <ModalButtonClose type="button" onClick={onClose}>
             <IconContext.Provider value={{ size: '3em' }}>
               <h3>
                 {' '}
@@ -93,11 +102,21 @@ export const UpDateModal = ({trans,close}) => {
           </ModalButtonClose>
           <ModalForm onSubmit={handleSubmit}>
             <ModalTitle> Update transaction</ModalTitle>
-            {/* <InputLabelText
-              name="categoryId"
-              onChange={handleChange}
-              value={categoryId}
-            /> */}
+            <Input
+              onChange={onChange}
+              checked={checked}
+              type="checkbox"
+              name="topic"
+              id="topic-1"
+            />
+            <ModalWrap>
+              <LabelText checked={checked}>Income</LabelText>
+              <CheckboxLabel
+                htmlFor="topic-1"
+                checked={checked}
+              ></CheckboxLabel>
+              <LabelTextExpense checked={checked}>Expense</LabelTextExpense>
+            </ModalWrap>
 
             <ModalWrap>
               <InputLabel
@@ -107,11 +126,18 @@ export const UpDateModal = ({trans,close}) => {
                 name="amount"
                 placeholder="0.00"
               />
-              <Datetime
+              {/* <Datetime
                 timeFormat={false}
                 name={transactionDate}
                 value={transactionDate}
                 renderInput={params => <InputLabel {...params} />}
+              /> */}
+              <InputLabel
+                value={transactionDate}
+                onChange={handleChange}
+                type="text"
+                name="amount"
+                disabled
               />
             </ModalWrap>
             <InputLabelText
@@ -123,10 +149,7 @@ export const UpDateModal = ({trans,close}) => {
 
             <ModalButtonWrap>
               <ModalButtonAdd type="submit">upDate</ModalButtonAdd>
-              <ModalButtonCancel
-                type="button"
-                onClick={() => dispatch(closeModalUpDateTransaction())}
-              >
+              <ModalButtonCancel type="button" onClick={onClose}>
                 Cancel
               </ModalButtonCancel>
             </ModalButtonWrap>
