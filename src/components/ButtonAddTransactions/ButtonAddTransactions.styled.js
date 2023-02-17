@@ -1,5 +1,4 @@
-import { svgIconClasses } from "@mui/material";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Button = styled.button`
   display: block;
