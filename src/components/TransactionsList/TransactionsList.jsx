@@ -8,11 +8,17 @@ import { useEffect } from 'react';
 import { selectCategories } from 'redux/categories/categoriesSelectors';
 
 export const TransactionsList = ({ data, info }) => {
+  //  console.log(data);
+
+  const sortData = data.map(obj => ({
+    ...obj,
+    transactionDate: new Date(obj.transactionDate).toISOString().substr(0, 10),
+  }));
+  // console.log(sortData);
   const categories = useSelector(selectCategories);
   const financeData = useSelector(selectFinanceData);
   const [trans, setTrans] = useState('');
   const dispatch = useDispatch();
-
   const saveTransaction = id => {
     setTrans(financeData.find(trans => trans.id === id));
   };
@@ -40,7 +46,7 @@ export const TransactionsList = ({ data, info }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map(
+        {sortData.map(
           ({ id, transactionDate, type, categoryId, comment, amount }) => (
             <tr key={id}>
               <td>{transactionDate}</td>
