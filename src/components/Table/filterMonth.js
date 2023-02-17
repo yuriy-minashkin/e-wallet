@@ -1,46 +1,10 @@
-import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Autocomplete } from '@mui/material';
+import { Autocomplete, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
-import React, { useState } from 'react';
+import React from 'react';
+import { RoundedBox } from './Table.styled';
 
-const RoundedBox = styled(Box)({
-  borderRadius: '30px',
-  overflow: 'hidden',
-  width: '152px',
-  height: '36px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: '#fffff',
-  border: '1px solid #000000',
-});
 
-const CustomAutocomplete = styled(Autocomplete)({
-  "& .MuiAutocomplete-paper': {": { 
-
-  borderRadius: '50%',
-  width: '152px',
-  marginTop: '88px',
-  },  
-  "& .MuiAutocomplete-inputRoot": {
-    "&:hover": {
-      backgroundColor: 'transparent',
-      borderRadius: '30px'
-    },
-    "& .MuiAutocomplete-input": {
-      backgroundColor: 'transparent',
-      color: '#000000'
-    }
-  },
-  "& .MuiAutocomplete-listbox": {
-    backgroundColor: '#',
-    borderRadius: '30px'
-  },
-  "& .MuiAutocomplete-option": {
-    color: 'transparent'
-  }
-});
 
 export const FilterMonth = ({getMonth}) => {
   const currentMonth = new Date().toLocaleString('default', { month: 'long' });
@@ -69,18 +33,12 @@ export const FilterMonth = ({getMonth}) => {
   };
 
   return (
-  <CustomAutocomplete
+  <Autocomplete
     id="combo-box-demo"
     options={options}
     onChange={(_, selectedOption) => handleMonthChange(selectedOption)}
     isOptionEqualToValue={(option, value) => option.id === value.id}
-    sx={{ width: 181 }}
-    // paperStyle={{
-    //   borderRadius: '50%',
-    //   width: '152px',
-    //   marginTop: '8px',
-    // }}
-    renderInput={(params) => (
+     renderInput={(params) => (
       <RoundedBox>
         <TextField {...params} label={currentMonth} />
       </RoundedBox>

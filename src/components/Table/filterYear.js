@@ -3,18 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Autocomplete } from '@mui/material';
 import React, { useMemo, useCallback } from 'react';
 import Box from '@mui/material/Box';
-
-const RoundedBox = styled(Box)({
-  borderRadius: '30px',
-  overflow: 'hidden',
-  width: '152px',
-  height: '36px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: '#fffff',
-  border: '1px solid #000000',
-});
+import { RoundedBox } from './Table.styled';
 
 export const FilterYear = ({ getYear }) => {
   const options = [
@@ -45,7 +34,6 @@ export const FilterYear = ({ getYear }) => {
       disablePortal
       id="combo-box-demo"
       options={options}
-      sx={{ width: 181 }}
       onChange={(_, selectedOption) => handleYearChange(selectedOption)}
       isOptionEqualToValue={(option, value) => option.id === value.id}
       renderInput={params => (

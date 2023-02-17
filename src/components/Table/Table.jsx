@@ -38,8 +38,8 @@ export const Table = ({ data, handlePeriod }) => {
   return (
     <Box>
       <FiltersBox>
-        <FilterMonth getMonth={handleMonth} />
-        <FilterYear getYear={handleYear} />
+        <FilterMonth  getMonth={handleMonth} />
+        <FilterYear  getYear={handleYear} />
       </FiltersBox>
       {isDataPerPeriod && (
         <CategoryBox>

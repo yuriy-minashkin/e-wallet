@@ -12,17 +12,48 @@ export const FiltersBox = styled.div`
   max-width: 395px;
   height: auto;
   margin: 0 auto;
-  gap: 32px;
+  gap: 20px;
   mix-blend-mode: 20px;
   margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+  
+    @media screen and (min-width: 768px) {
+  gap: 16px;
+    flex-direction: row;
+  }
+  @media screen and (min-width: 1280px) {
+   gap: 32px;
+    flex-direction: row;
+  }
   
 `;
+
+export const RoundedBox = styled(Box)({
+  borderRadius: '30px',
+  overflow: 'hidden',
+  width: '280px',
+  height: '50px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#fffff',
+  border: '1px solid #000000',
+   '@media (min-width: 768px)': {
+    width: '152px',
+  },
+    '@media (min-width: 1280px)': {
+    width: '152px',
+  },
+});
+
 export const TotalBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
   
 `;
+
 export const TotalItem = styled.div`
   display: flex;
   justify-content: space-between;
