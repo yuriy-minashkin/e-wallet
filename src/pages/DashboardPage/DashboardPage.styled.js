@@ -13,6 +13,9 @@ export const SidebarWrapper = styled.div`
   flex-direction: column;
   gap: 32px;
   padding: 40px 69px 63px 0;
+  border-right: 1px solid #e7e5f2;
+  box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+    1px 0px 0px rgba(255, 255, 255, 0.6);
 `;
 
 export const NavBalanceWrapper = styled.div`

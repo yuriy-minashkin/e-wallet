@@ -25,6 +25,7 @@ import { useEffect } from 'react';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
+
 // import { TextField } from '@mui/material';
 
 import { IoCloseOutline } from "react-icons/io5";
@@ -32,9 +33,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import { fetchCategories } from 'redux/categories/categoriesOperations';
 
-
-export const ModalAddTransaction = ()=> {
-  
+export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const currentDate = new Date(Date.now());
@@ -45,12 +44,9 @@ export const ModalAddTransaction = ()=> {
   const [comment, setComment] = useState('');
   const [amount, setAmount] = useState('');
 
-
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
-
-  // console.log(categories);
 
   const [checked, setChecked] = useState(false);
 
@@ -58,9 +54,7 @@ export const ModalAddTransaction = ()=> {
     setChecked(e.target.checked);
   };
 
-
   const handleChange = evt => {
-    console.log(evt.target);
     const { value, name } = evt.target;
     if (name === 'categoryId') {
       setCategoryId(value);
@@ -78,12 +72,13 @@ export const ModalAddTransaction = ()=> {
       transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
     );
 
+    const currentCategorie = categories.find(cat => cat.name === categoryId);
     const obj = {
       transactionDate: date,
-      type: 'INCOME',
-      categoryId: categories[10].id,
+      type: !checked ? 'INCOME' : 'EXPENSE',
+      categoryId: !checked ? categories[10].id : currentCategorie.id,
       comment,
-      amount: Number(amount),
+      amount: !checked ? Number(amount) : -Number(amount),
     };
     // console.log(obj);
     dispatch(addTransaction(obj));
@@ -105,6 +100,7 @@ export const ModalAddTransaction = ()=> {
           type="button"
           onClick={() => dispatch(closeModalAddTransaction())}
         >
+
           <IconContext.Provider value={{ size: "3em"}}>
           <h3> <IoCloseOutline /> </h3>
           </IconContext.Provider>
@@ -126,16 +122,25 @@ export const ModalAddTransaction = ()=> {
             <LabelTextExpense checked={checked}>Expense</LabelTextExpense>
           </ModalWrap>
 
-          <SelectLabel
-            name="categoryId"
-            onChange={handleChange}
-            value={categoryId}
-          >
-            {categories &&
-              categories.map(category => {
-                return <option key={category.id} id={category.id}>{category.name}</option>;
-              })}
-          </SelectLabel>
+          {checked && (
+            <SelectLabel
+              name="categoryId"
+              onChange={handleChange}
+              value={categoryId}
+            >
+              {categories &&
+                categories.map(({ id, name }) => {
+                  return (
+                    <option 
+                      key={id}
+                      id={id}
+                    >
+                      {name}
+                    </option>
+                  );
+                })}
+            </SelectLabel>
+          )}
 
           <ModalWrap>
             <InputLabel
@@ -153,7 +158,6 @@ export const ModalAddTransaction = ()=> {
                 setTransactionDate(moment(newValue).toISOString());
               }}
               renderInput={params => <InputLabel {...params} />}
-
             />
           </ModalWrap>
           <InputLabelText
