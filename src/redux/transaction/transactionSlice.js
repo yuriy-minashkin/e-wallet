@@ -55,7 +55,10 @@ const transactionSlice = createSlice({
         state.error = null;
       })
       .addCase(upDateTransaction.fulfilled, (state, { payload }) => {
-        state.finance.data = { ...payload };
+        const { data } = state.finance;
+        state.finance.data = data.map(obj =>
+          obj.id === payload.id ? payload : obj
+        );
         state.isLoading = false;
         state.error = null;
       })

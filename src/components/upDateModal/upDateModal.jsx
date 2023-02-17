@@ -17,7 +17,7 @@ import {
   // LabelText,
   // LabelTextExpense,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
-import { useDispatch  } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { closeModalAddTransaction } from 'redux/global/globalSlice';
 // import { addTransaction } from 'redux/transaction/transactionOperations';
 // import { selectCategories } from 'redux/categories/categoriesSelectors';
@@ -29,21 +29,21 @@ import 'react-datetime/css/react-datetime.css';
 import { IoCloseOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 
-
 import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
 // import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
-export const UpDateModal = ({trans,close}) => {
-  // console.log('props in modalka upDate',trans);
-  const [categoryId] = useState(trans.id);
+export const UpDateModal = ({ trans, close }) => {
+  const [categoryId] = useState(trans.categoryId);
   const [amount, setAmount] = useState(trans.amount);
   const [transactionDate] = useState(trans.transactionDate);
   const [comment, setComment] = useState(trans.comment);
   const [type] = useState(trans.type);
 
   const dispatch = useDispatch();
+
   const handleSubmit = evt => {
+    // console.log('props in modalka upDate', trans);
     evt.preventDefault();
     const newObject = {
       transactionDate,
@@ -52,9 +52,13 @@ export const UpDateModal = ({trans,close}) => {
       comment,
       amount: Number(amount),
     };
-    // console.log('obj to update',newObject);
-    dispatch(upDateTransaction(newObject));
+
+    // console.log('obj to update', newObject);
+    dispatch(
+      upDateTransaction({ transactionId:trans.id, dataInfo: newObject })
+    );
   };
+
 
   const handleChange = evt => {
     // console.log(evt.target);
@@ -69,10 +73,9 @@ export const UpDateModal = ({trans,close}) => {
   const onClose = evt => {
     if (evt.code === 'Escape' || evt.currentTarget === evt.target) {
       dispatch(closeModalUpDateTransaction());
-      // console.log('qwewqewqe')
-      close('')
+      close('');
     }
-  }
+  };
 
   window.addEventListener('keydown', onClose);
 
