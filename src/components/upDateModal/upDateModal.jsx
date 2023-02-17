@@ -11,7 +11,7 @@ import {
   Overlay,
   InputLabelText,
   ModalTitle,
-  // SelectLabel,
+  SelectLabel,
   ModalButtonClose,
   Input,
   LabelText,
@@ -21,10 +21,10 @@ import {
   // LabelText,
   // LabelTextExpense,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { closeModalAddTransaction } from 'redux/global/globalSlice';
 // import { addTransaction } from 'redux/transaction/transactionOperations';
-// import { selectCategories } from 'redux/categories/categoriesSelectors';
+import { selectCategories } from 'redux/categories/categoriesSelectors';
 // import { useEffect } from 'react';
 // import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
@@ -39,41 +39,51 @@ import { upDateTransaction } from 'redux/transaction/transactionOperations';
 
 export const UpDateModal = ({ trans, close }) => {
 
-  const [categoryId] = useState(trans.categoryId);
+  const [categoryId, setCategoryId] = useState(trans.categoryId);
   const [amount, setAmount] = useState(trans.amount);
-  const [transactionDate] = useState(trans.transactionDate);
+  const [transactionDate, setTransactionDate] = useState(trans.transactionDate);
   const [comment, setComment] = useState(trans.comment);
-  const [type] = useState(trans.type);
-  const [checked, setChecked] = useState(false);
+  const [, setType] = useState(trans.type);
+  const [checked, setChecked] = useState(trans.type === 'INCOME'? false:true);
 
   const dispatch = useDispatch();
+  const categories = useSelector(selectCategories);
+
 
   const handleSubmit = evt => {
-    // console.log('props in modalka upDate', trans);
+    const currentCategorie = categories.find(cat => cat.name === categoryId);
     evt.preventDefault();
     const newObject = {
       transactionDate,
-      type,
-      categoryId,
+      type: !checked ? 'INCOME' : 'EXPENSE',
+      categoryId: !checked
+        ? categories[10].id
+        : (currentCategorie && currentCategorie.id) || categories[0].id,
       comment,
-      amount: Number(amount),
+      amount: !checked ? Number(amount) : -Number(amount),
     };
 
-    // console.log('obj to update', newObject);
     dispatch(
       upDateTransaction({ transactionId:trans.id, dataInfo: newObject })
     );
+      setTransactionDate('');
+      setType('');
+      setCategoryId('');
+      setComment('');
+      setAmount('');
   };
 
 
   const handleChange = evt => {
     // console.log(evt.target);
     const { value, name } = evt.target;
-    if (name === 'amount') {
-      setAmount(value);
-    } else if (name === 'comment') {
-      setComment(value);
-    }
+       if (name === 'categoryId') {
+         setCategoryId(value);
+       } else if (name === 'amount') {
+         setAmount(value);
+       } else if (name === 'comment') {
+         setComment(value);
+       }
   };
 
   const onClose = evt => {
@@ -94,6 +104,7 @@ export const UpDateModal = ({ trans, close }) => {
     setChecked(e.target.checked);
   };
 
+   const categoriesFilter = categories.filter(cat => cat.name !== 'Income');
   return (
     <>
       <Overlay onClick={onClose}>
@@ -123,6 +134,23 @@ export const UpDateModal = ({ trans, close }) => {
               ></CheckboxLabel>
               <LabelTextExpense checked={checked}>Expense</LabelTextExpense>
             </ModalWrap>
+
+            {checked && (
+              <SelectLabel
+                name="categoryId"
+                onChange={handleChange}
+                value={categoryId}
+              >
+                {categories &&
+                  categoriesFilter.map(({ id, name }) => {
+                    return (
+                      <option key={id} id={id}>
+                        {name}
+                      </option>
+                    );
+                  })}
+              </SelectLabel>
+            )}
 
             <ModalWrap>
               <InputLabel

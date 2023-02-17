@@ -28,9 +28,9 @@ import moment from 'moment';
 
 // import { TextField } from '@mui/material';
 
-import { IoCloseOutline } from "react-icons/io5";
+import { IoCloseOutline } from 'react-icons/io5';
 
-import { IconContext } from "react-icons";
+import { IconContext } from 'react-icons';
 import { fetchCategories } from 'redux/categories/categoriesOperations';
 
 export const ModalAddTransaction = () => {
@@ -43,12 +43,10 @@ export const ModalAddTransaction = () => {
   const [categoryId, setCategoryId] = useState('');
   const [comment, setComment] = useState('');
   const [amount, setAmount] = useState('');
-
+  const [checked, setChecked] = useState(false);
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
-
-  const [checked, setChecked] = useState(false);
 
   const onChange = e => {
     setChecked(e.target.checked);
@@ -72,25 +70,19 @@ export const ModalAddTransaction = () => {
       transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
     );
 
-    const checkedCategories = () => {
-      if (!checked) {
-        const currentCategorie = categories.find(category => category.name === categoryId);
-        return currentCategorie 
-      } else {
-        return categories[0].id
-      }
-      }
-      
+    const currentCategorie = categories.find(cat => cat.name === categoryId);
 
-    // const currentCategorie = categories.find(cat => cat.name === categoryId);
     const obj = {
       transactionDate: date,
       type: !checked ? 'INCOME' : 'EXPENSE',
-      categoryId: !checked ? categories[10].id : checkedCategories(),
+      categoryId: !checked
+        ? categories[10].id
+        : (currentCategorie && currentCategorie.id) || categories[0].id,
       comment,
       amount: !checked ? Number(amount) : -Number(amount),
     };
-    // console.log(obj);
+    console.log(obj);
+
     dispatch(addTransaction(obj));
     reset();
   };
@@ -104,25 +96,28 @@ export const ModalAddTransaction = () => {
   };
 
   const onClose = evt => {
-    if (evt.code === 'Escape' || evt.currentTarget === evt.target || evt.target.nodeName === 'svg') {
+    if (
+      evt.code === 'Escape' ||
+      evt.currentTarget === evt.target ||
+      evt.target.nodeName === 'svg'
+    ) {
       dispatch(closeModalAddTransaction());
     }
-  }
+  };
 
   window.addEventListener('keydown', onClose);
 
-  const categoriesFilter = categories.filter(cat => cat.name !== "Income")
+  const categoriesFilter = categories.filter(cat => cat.name !== 'Income');
 
   return (
     <Overlay onClick={onClose}>
       <Modal>
-        <ModalButtonClose
-          type="button"
-          onClick={onClose}
-        >
-
-          <IconContext.Provider value={{ size: "3em"}}>
-          <h3> <IoCloseOutline /> </h3>
+        <ModalButtonClose type="button" onClick={onClose}>
+          <IconContext.Provider value={{ size: '3em' }}>
+            <h3>
+              {' '}
+              <IoCloseOutline />{' '}
+            </h3>
           </IconContext.Provider>
         </ModalButtonClose>
         <ModalForm onSubmit={handleSubmit}>
@@ -151,10 +146,7 @@ export const ModalAddTransaction = () => {
               {categories &&
                 categoriesFilter.map(({ id, name }) => {
                   return (
-                    <option 
-                      key={id}
-                      id={id}
-                    >
+                    <option key={id} id={id}>
                       {name}
                     </option>
                   );
@@ -189,10 +181,7 @@ export const ModalAddTransaction = () => {
 
           <ModalButtonWrap>
             <ModalButtonAdd type="submit">Add</ModalButtonAdd>
-            <ModalButtonCancel
-              type="button"
-              onClick={onClose}
-            >
+            <ModalButtonCancel type="button" onClick={onClose}>
               Cancel
             </ModalButtonCancel>
           </ModalButtonWrap>
