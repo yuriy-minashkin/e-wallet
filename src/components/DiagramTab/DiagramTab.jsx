@@ -6,22 +6,27 @@ import { fetchSummary } from 'redux/summary/summaryOperationst';
 import { selectSummary } from 'redux/summary/summarySelectors';
 import { Wrapper, StatisticsTitle, Box } from './DiagramTab.styled';
 import { colorMap } from './colorMap';
-
+import {
+  deleteIncomeInArray,
+  addArrayToObj,
+  addColorToArray,
+} from './serviceFunctions';
 
 export const DiagramTab = () => {
   const dispatch = useDispatch();
   const summary = useSelector(selectSummary);
-  const [renderChart, setRenderChart] = useState('')
-  const [renderTable, setRenderTable] = useState('')
+  const [renderChart, setRenderChart] = useState('');
+  const [renderTable, setRenderTable] = useState('');
+
   const currentMonth = new Date().getMonth() + 1;
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     dispatch(fetchSummary({ month: currentMonth, year: currentYear }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleFilterChange = ( month, year ) => {
-   
+  const handleFilterChange = (month, year) => {
     if (!month && !year) {
       dispatch(fetchSummary({ month: currentMonth, year: currentYear }));
     } else if (!month)
@@ -30,74 +35,15 @@ export const DiagramTab = () => {
     else dispatch(fetchSummary({ month: month, year: year }));
   };
 
-  const dataFetch =
-  {
-    categoriesSummary: [
-      {
-        name: 'car',
-        type: 'INCOME',
-        total: 10.99,
-          },
-
-      {
-        name: 'self-care',
-        type: 'INCOME',
-        total: 20,
-      },
-      {
-        name: 'house-hold',
-        type: 'EXPENSE',
-        total: 30,
-      },
-      {
-        name: 'main',
-        type: 'EXPENSE',
-        total: 40.00,
-      },
-      {
-        name: 'child-care',
-        type: 'EXPENSE',
-        total: 50.34,
-      },
-      {
-        name: 'leisure',
-        type: 'EXPENSE',
-        total: 90.01,
-      },
-      {
-        name: 'other',
-        type: 'EXPENSE',
-        total: 15.88,
-      },
-    ],
-    incomeSummary: 30,
-    expenseSummary: 70,
-    periodTotal: 0,
-    year: 2020,
-    month: 12,
-  };
-
-  const {
-    categoriesSummary,
-    incomeSummary,
-    expenseSummary,
-    periodTotal,
-    year,
-    month,
-  } = dataFetch;
-
   useEffect(() => {
-    const updatedCategoriesSummary = dataFetch.categoriesSummary.map(category => {
-      const color = colorMap[category.name];
-      if (color) {
-        category.color = color;
-      }
-      category.name = category.name.charAt(0).toUpperCase() + category.name.slice(1);
-       return category;
-    });
-    setRenderChart(updatedCategoriesSummary);
-    setRenderTable(dataFetch);
-  
+    if (summary.length === 0 || summary === undefined) return;
+
+    const updatedCategoriesSummary = addColorToArray(summary, colorMap);
+
+    setRenderChart(deleteIncomeInArray(updatedCategoriesSummary));
+    setRenderTable(
+      addArrayToObj(summary, deleteIncomeInArray(updatedCategoriesSummary))
+    );
   }, [summary]);
 
   return (

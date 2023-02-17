@@ -5,34 +5,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import styled from 'styled-components';
-
-const ColorBox = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 2px;
-  margin-left: 8px;
-  background-color: ${props => props.backgroundColor};
-`;
-
-const tableStyle = {
-       backgroundColor: 'transparent',
-};
-const rowStyle = {
-    padding: '0px',
-};
-
-const cellStyle = {
-    width: '100px',
-  padding: '14px',
-       paddingLeft: '0px',
-};
-
-const cellColorStyle = {
-    width: '10px',
-    margin: '0px',
-    padding: '10px',
-};
+import {ColorBox, tableStyle, rowStyle, cellStyle, cellColorStyle} from './Table.styled';
+import { formatNumber } from 'utils/serviceFunctions';
 
 
 export function BasicTable(tableData) {
@@ -50,7 +24,7 @@ export function BasicTable(tableData) {
                 <ColorBox backgroundColor={row.color}></ColorBox>
               </TableCell>
               <TableCell style={cellStyle} align="left">{row.name}</TableCell>
-              <TableCell style={cellStyle} align="right">{row.total.toFixed(2)}</TableCell>
+              <TableCell style={cellStyle} align="right">{formatNumber(row.total)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
