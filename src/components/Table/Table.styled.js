@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-
-
 export const Box = styled.div`
   max-width: 336px;
   height: 715px;
@@ -17,16 +15,15 @@ export const FiltersBox = styled.div`
   margin-bottom: 20px;
   flex-direction: column;
   align-items: center;
-  
-    @media screen and (min-width: 768px) {
-  gap: 16px;
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
     flex-direction: row;
   }
   @media screen and (min-width: 1280px) {
-   gap: 32px;
+    gap: 32px;
     flex-direction: row;
   }
-  
 `;
 
 export const RoundedBox = styled(Box)({
@@ -39,10 +36,10 @@ export const RoundedBox = styled(Box)({
   justifyContent: 'center',
   backgroundColor: '#fffff',
   border: '1px solid #000000',
-   '@media (min-width: 768px)': {
+  '@media (min-width: 768px)': {
     width: '152px',
   },
-    '@media (min-width: 1280px)': {
+  '@media (min-width: 1280px)': {
     width: '152px',
   },
 });
@@ -51,7 +48,6 @@ export const TotalBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  
 `;
 
 export const TotalItem = styled.div`
@@ -85,7 +81,6 @@ export const ItemTitle = styled.div`
   padding: 20px;
   font-size: 18px;
   font-weight: 700;
-  
 `;
 
 export const ColorBox = styled.div`
@@ -97,21 +92,20 @@ export const ColorBox = styled.div`
 `;
 
 export const tableStyle = {
-       backgroundColor: 'transparent',
+  backgroundColor: 'transparent',
 };
 export const rowStyle = {
-    padding: '0px',
+  padding: '0px',
 };
 
 export const cellStyle = {
-    width: '100px',
+  width: '100px',
   padding: '14px',
-       paddingLeft: '0px',
+  paddingLeft: '0px',
 };
 
 export const cellColorStyle = {
-    width: '10px',
-    margin: '0px',
-    padding: '10px',
+  width: '10px',
+  margin: '0px',
+  padding: '10px',
 };
-

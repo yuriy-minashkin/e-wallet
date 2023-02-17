@@ -18,21 +18,22 @@ export const DiagramTab = () => {
   const [renderChart, setRenderChart] = useState('');
   const [renderTable, setRenderTable] = useState('');
 
-  const currentMonth = new Date().getMonth() + 1;
-  const currentYear = new Date().getFullYear();
+  const { month, year } = {
+    month: new Date().getMonth() + 1,
+    year: new Date().getFullYear(),
+  };
 
   useEffect(() => {
-    dispatch(fetchSummary({ month: currentMonth, year: currentYear }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(fetchSummary({ month, year }));
+  }, [dispatch, month, year]);
 
-  const handleFilterChange = (month, year) => {
-    if (!month && !year) {
-      dispatch(fetchSummary({ month: currentMonth, year: currentYear }));
-    } else if (!month)
-      dispatch(fetchSummary({ month: month, year: currentYear }));
-    else if (!year) dispatch(fetchSummary({ month: currentMonth, year: year }));
-    else dispatch(fetchSummary({ month: month, year: year }));
+  const handleFilterChange = (newMonth, newYear) => {
+    dispatch(
+      fetchSummary({
+        month: newMonth ?? month,
+        year: newYear ?? year,
+      })
+    );
   };
 
   useEffect(() => {
