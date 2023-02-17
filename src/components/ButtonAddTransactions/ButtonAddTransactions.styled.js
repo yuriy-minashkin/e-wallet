@@ -1,10 +1,13 @@
+import { svgIconClasses } from "@mui/material";
 import styled from "styled-components";
 
 export const Button = styled.button`
   display: block;
-  width: 50px;
-  height: 50px;
   position: absolute;
-  top: 85%;
-  left: 100%;
+  top: 87%;
+  left: 91%;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 `;
