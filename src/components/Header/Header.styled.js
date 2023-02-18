@@ -1,12 +1,29 @@
 import styled from 'styled-components';
 
-export const Container = styled.header`
+export const HeaderWrap = styled.header`
+  background-color: var(--white-background-color);
+  width: 100%;
+`;
+
+export const Container = styled.div`
+  padding: 15px 20px;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  padding: 20px 16px;
-  max-width: 1280px;
+  background-color: var(--white-background-color);
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    padding: 20px 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+    padding: 20px 16px;
+  }
 `;
 
 export const LogoutWrapper = styled.div`

@@ -4,14 +4,15 @@ import { Header } from 'components/Header/Header';
 import { Navigation } from 'components/Navigation/Navigation';
 import { Balance } from 'components/Balance/Balance';
 import { Currency } from 'components/Currency/Currency';
-import { Container, SidebarWrapper, NavBalanceWrapper } from './DashboardPage.styled';
+import { Main, Container, SidebarWrapper, NavBalanceWrapper } from './DashboardPage.styled';
 
 export const DashboardPage = () => {
 
   return (
     <>
       <Header />
-        <Container>
+      <Main>
+          <Container>
           <SidebarWrapper>
             <NavBalanceWrapper>
               <Navigation />
@@ -23,6 +24,7 @@ export const DashboardPage = () => {
             <Outlet />
           </Suspense>
         </Container>
+      </Main>
     </>
   );
 };

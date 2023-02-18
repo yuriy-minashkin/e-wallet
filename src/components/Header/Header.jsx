@@ -4,14 +4,15 @@ import { logOut } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
 import { Logo } from 'components/Logo/Logo';
 import Icons from 'images/icons.svg';
-import { Container, LogoutWrapper, User, Button, Icon } from './Header.styled';
+import { HeaderWrap, Container, LogoutWrapper, User, Button, Icon } from './Header.styled';
 
 export const Header = () => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUser);
 
   return (
-    <Container>
+    <HeaderWrap>
+      <Container>
       <Link to="/"><Logo /></Link>
       <LogoutWrapper>
         <User>{userName}</User>
@@ -23,6 +24,7 @@ export const Header = () => {
         </Button>
       </LogoutWrapper>
     </Container>
+    </HeaderWrap>
   );
   
 }
