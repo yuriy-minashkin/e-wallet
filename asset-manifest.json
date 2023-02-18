@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/e-wallet/static/css/main.04c8c17a.css",
-    "main.js": "/e-wallet/static/js/main.3ff4300c.js",
+    "main.js": "/e-wallet/static/js/main.3d0f78de.js",
     "static/css/704.1f0f0c92.chunk.css": "/e-wallet/static/css/704.1f0f0c92.chunk.css",
     "static/js/704.5437fc57.chunk.js": "/e-wallet/static/js/704.5437fc57.chunk.js",
     "static/js/231.6e320e88.chunk.js": "/e-wallet/static/js/231.6e320e88.chunk.js",
@@ -12,6 +12,8 @@
     "static/media/Circe Bold.ttf": "/e-wallet/static/media/Circe Bold.bde9de9b6ab6986fa0a1.ttf",
     "static/media/Poppins.otf": "/e-wallet/static/media/Poppins.b5698e371a66356020b2.otf",
     "static/media/Poppins Bold.otf": "/e-wallet/static/media/Poppins Bold.b08fb6a01c16c613cd7b.otf",
+    "static/media/bg-overlay-blured-tab.png": "/e-wallet/static/media/bg-overlay-blured-tab.bd510cf955620c9035fc.png",
+    "static/media/bg-overlay-blured-desk.png": "/e-wallet/static/media/bg-overlay-blured-desk.25e261b190b81b360f6c.png",
     "static/media/Poppins Bold.eot": "/e-wallet/static/media/Poppins Bold.a1171b1821ac29e60e21.eot",
     "static/media/Poppins Bold.ttf": "/e-wallet/static/media/Poppins Bold.761f65d504e31ce73efd.ttf",
     "static/media/Poppins.eot": "/e-wallet/static/media/Poppins.e52a3e6d9b653561ae69.eot",
@@ -26,7 +28,7 @@
     "static/media/icons.svg": "/e-wallet/static/media/icons.97b5cd85362b569d678b39a119852af7.svg",
     "index.html": "/e-wallet/index.html",
     "main.04c8c17a.css.map": "/e-wallet/static/css/main.04c8c17a.css.map",
-    "main.3ff4300c.js.map": "/e-wallet/static/js/main.3ff4300c.js.map",
+    "main.3d0f78de.js.map": "/e-wallet/static/js/main.3d0f78de.js.map",
     "704.1f0f0c92.chunk.css.map": "/e-wallet/static/css/704.1f0f0c92.chunk.css.map",
     "704.5437fc57.chunk.js.map": "/e-wallet/static/js/704.5437fc57.chunk.js.map",
     "231.6e320e88.chunk.js.map": "/e-wallet/static/js/231.6e320e88.chunk.js.map",
@@ -35,6 +37,6 @@
   },
   "entrypoints": [
     "static/css/main.04c8c17a.css",
-    "static/js/main.3ff4300c.js"
+    "static/js/main.3d0f78de.js"
   ]
 }
