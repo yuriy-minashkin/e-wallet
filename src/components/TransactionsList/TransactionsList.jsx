@@ -1,4 +1,5 @@
 import { GrFormEdit } from 'react-icons/gr';
+import { useMedia } from 'react-use';
 import { deleteTransaction } from 'redux/transaction/transactionOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -36,6 +37,7 @@ import {
 import { normalizedDate } from './normalizedDate';
 
 export const TransactionsList = ({ data, info }) => {
+  const isMobile = useMedia('(max-width: 767px)');
   //  console.log(data);
 
   const sortData = data.map(obj => ({
@@ -64,98 +66,110 @@ export const TransactionsList = ({ data, info }) => {
 
   return (
     <>
-      {/* desctop */}
-
-      <Container>
-        <Table>
-          <thead>
-            <TrHead>
-              <ThDay>Date</ThDay>
-              <ThType>Type</ThType>
-              <ThCategore>Cotegory</ThCategore>
-              <ThComment>Comment</ThComment>
-              <ThCurrency>Currency</ThCurrency>
-              <ThEdit></ThEdit>
-              <ThDel></ThDel>
-            </TrHead>
-          </thead>
-          <tbody>
-            {sortData.map(
-              ({ id, transactionDate, type, categoryId, comment, amount }) => (
-                <TrData key={id}>
-                  <TdDate>{normalizedDate(transactionDate)}</TdDate>
-                  <TdType>{type.toLowerCase() === 'income' ? '+' : '-'}</TdType>
-                  <TdCadegory>{takeNameCategories(categoryId)}</TdCadegory>
-                  <TdComment>{comment}</TdComment>
-                  <TdAmount type={type}>{amount.toFixed(2)}</TdAmount>
-                  <TdEdit>
-                    <EditButton onClick={() => saveTransaction(id)}>
-                      <GrFormEdit
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          width: '30px',
-                          height: '30px',
-                        }}
-                      />
-                    </EditButton>
-                  </TdEdit>
-                  <TdDel>
-                    <DelButton onClick={() => dispatch(deleteTransaction(id))}>
-                      Delete
-                    </DelButton>
-                  </TdDel>
-                </TrData>
-              )
-            )}
-          </tbody>
-        </Table>
-      </Container>
-
-      {/* mmobile */}
-      <>
-        {sortData.map(
-          ({ id, transactionDate, type, categoryId, comment, amount }) => (
-            <MobList key={id} type={type.toLowerCase()}>
-              <MobItem>
-                <MobHeader>Date</MobHeader>
-                {normalizedDate(transactionDate)}
-              </MobItem>
-              <MobItem>
-                <MobHeader>Type</MobHeader>
-                {type.toLowerCase() === 'income' ? '+' : '-'}
-              </MobItem>
-              <MobItem>
-                <MobHeader>Category</MobHeader>
-                {takeNameCategories(categoryId)}
-              </MobItem>
-              <MobItem>
-                <MobHeader>Comment</MobHeader>
-                <MobComment>{comment}</MobComment>
-              </MobItem>
-              <MobItem style={{ fontWeight: '700' }}>
-                <MobHeader>Sum</MobHeader>
-                <MobSum type={type.toLowerCase()}>{amount.toFixed(2)}</MobSum>
-              </MobItem>
-              <MobItem>
-                <DelButton onClick={() => dispatch(deleteTransaction(id))}>
-                  Delete
-                </DelButton>
-                <EditButton onClick={() => saveTransaction(id)}>
-                  <GrFormEdit
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      width: '30px',
-                      height: '30px',
-                    }}
-                  /> Edit
-                </EditButton>
-              </MobItem>
-            </MobList>
-          )
-        )}
-      </>
+      {isMobile ? (
+        <>
+          {sortData.map(
+            ({ id, transactionDate, type, categoryId, comment, amount }) => (
+              <MobList key={id} type={type.toLowerCase()}>
+                <MobItem>
+                  <MobHeader>Date</MobHeader>
+                  {normalizedDate(transactionDate)}
+                </MobItem>
+                <MobItem>
+                  <MobHeader>Type</MobHeader>
+                  {type.toLowerCase() === 'income' ? '+' : '-'}
+                </MobItem>
+                <MobItem>
+                  <MobHeader>Category</MobHeader>
+                  {takeNameCategories(categoryId)}
+                </MobItem>
+                <MobItem>
+                  <MobHeader>Comment</MobHeader>
+                  <MobComment>{comment}</MobComment>
+                </MobItem>
+                <MobItem style={{ fontWeight: '700' }}>
+                  <MobHeader>Sum</MobHeader>
+                  <MobSum type={type.toLowerCase()}>{amount.toFixed(2)}</MobSum>
+                </MobItem>
+                <MobItem>
+                  <DelButton onClick={() => dispatch(deleteTransaction(id))}>
+                    Delete
+                  </DelButton>
+                  <EditButton onClick={() => saveTransaction(id)}>
+                    <GrFormEdit
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '30px',
+                        height: '30px',
+                      }}
+                    />
+                    Edit
+                  </EditButton>
+                </MobItem>
+              </MobList>
+            )
+          )}
+        </>
+      ) : (
+        //desctop
+        <Container>
+          <Table>
+            <thead>
+              <TrHead>
+                <ThDay>Date</ThDay>
+                <ThType>Type</ThType>
+                <ThCategore>Cotegory</ThCategore>
+                <ThComment>Comment</ThComment>
+                <ThCurrency>Currency</ThCurrency>
+                <ThEdit></ThEdit>
+                <ThDel></ThDel>
+              </TrHead>
+            </thead>
+            <tbody>
+              {sortData.map(
+                ({
+                  id,
+                  transactionDate,
+                  type,
+                  categoryId,
+                  comment,
+                  amount,
+                }) => (
+                  <TrData key={id}>
+                    <TdDate>{normalizedDate(transactionDate)}</TdDate>
+                    <TdType>
+                      {type.toLowerCase() === 'income' ? '+' : '-'}
+                    </TdType>
+                    <TdCadegory>{takeNameCategories(categoryId)}</TdCadegory>
+                    <TdComment>{comment}</TdComment>
+                    <TdAmount type={type}>{amount.toFixed(2)}</TdAmount>
+                    <TdEdit>
+                      <EditButton onClick={() => saveTransaction(id)}>
+                        <GrFormEdit
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            width: '30px',
+                            height: '30px',
+                          }}
+                        />
+                      </EditButton>
+                    </TdEdit>
+                    <TdDel>
+                      <DelButton
+                        onClick={() => dispatch(deleteTransaction(id))}
+                      >
+                        Delete
+                      </DelButton>
+                    </TdDel>
+                  </TrData>
+                )
+              )}
+            </tbody>
+          </Table>
+        </Container>
+      )}
     </>
   );
 };

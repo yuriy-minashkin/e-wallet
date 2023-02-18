@@ -12,7 +12,7 @@ export const Container = styled.div`
   background: url(${wavePic}),
     linear-gradient(
       180deg,
-      var(--header-currency-background-color) 34.5%,
+      var(--header-currency-background-color) 29%,
       var(--main-currency-background-color) 20%
     );
   background-size: contain;

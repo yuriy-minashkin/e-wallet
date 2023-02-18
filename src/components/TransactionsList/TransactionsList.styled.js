@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// import Icons from 'images/icons.svg';
+
 export const Container = styled.div`
   font-family: var(--main-font);
   font-style: normal;
@@ -117,12 +119,15 @@ export const TdDel = styled.td`
 // Buttons
 
 export const EditButton = styled.button`
+  font-size: 16px;
   cursor: pointer;
   background-color: transparent;
   padding-right: 0;
   border: none;
   display: flex;
   align-items: center;
+  margin-right: 5px;
+  padding: 0 0 0 12px;
 `;
 
 export const DelButton = styled.button`
@@ -130,7 +135,6 @@ export const DelButton = styled.button`
   min-height: 26px;
   border-radius: 18px;
   margin-right: 12px;
-  margin-left: 5px;
   background-color: var(--text-green-color);
   color: var(--text-white-color);
   border: none;
@@ -139,9 +143,11 @@ export const DelButton = styled.button`
 
 // Mobile
 export const MobList = styled.ul`
-  /* font-family: var(--main-font);
+font-size: 16px;
+  font-family: var(--main-font);
   font-style: normal;
-  color: var(--title-main-color); */
+  color: var(--title-main-color);
+
   width: 280px;
   margin: 0 auto 8px;
   background: var(--form-background-color);
@@ -157,7 +163,7 @@ export const MobItem = styled.li`
   padding: 12px 20px;
   height: 47px;
   display: flex;
-  align-items: center;
+  align-items: center;  
   &:not(:last-child) {
     border-bottom: 1px solid #dcdcdf;
   }
