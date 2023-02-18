@@ -38,17 +38,17 @@ import { upDateTransaction } from 'redux/transaction/transactionOperations';
 // import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
 export const UpDateModal = ({ trans, close }) => {
-
   const [categoryId, setCategoryId] = useState(trans.categoryId);
-  const [amount, setAmount] = useState(trans.amount);
+  const [amount, setAmount] = useState(Math.abs(trans.amount));
   const [transactionDate, setTransactionDate] = useState(trans.transactionDate);
   const [comment, setComment] = useState(trans.comment);
   const [, setType] = useState(trans.type);
-  const [checked, setChecked] = useState(trans.type === 'INCOME'? false:true);
+  const [checked, setChecked] = useState(
+    trans.type === 'INCOME' ? false : true
+  );
 
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
-
 
   const handleSubmit = evt => {
     const currentCategorie = categories.find(cat => cat.name === categoryId);
@@ -58,32 +58,33 @@ export const UpDateModal = ({ trans, close }) => {
       type: !checked ? 'INCOME' : 'EXPENSE',
       categoryId: !checked
         ? categories[10].id
-        : (currentCategorie && currentCategorie.id) || categories[0].id,
+        : // :currentCategorie.id || categories[0].id,
+          (currentCategorie && currentCategorie.id) || categories[0].id,
       comment,
-      amount: !checked ? Number(amount) : -Number(amount),
+      amount: !checked ? Number(amount) : -Number(Math.abs(amount)),
     };
+    // console.log(currentCategorie);
 
     dispatch(
-      upDateTransaction({ transactionId:trans.id, dataInfo: newObject })
+      upDateTransaction({ transactionId: trans.id, dataInfo: newObject })
     );
-      setTransactionDate('');
-      setType('');
-      setCategoryId('');
-      setComment('');
-      setAmount('');
+    setTransactionDate('');
+    setType('');
+    setCategoryId('');
+    setComment('');
+    setAmount('');
   };
-
 
   const handleChange = evt => {
     // console.log(evt.target);
     const { value, name } = evt.target;
-       if (name === 'categoryId') {
-         setCategoryId(value);
-       } else if (name === 'amount') {
-         setAmount(value);
-       } else if (name === 'comment') {
-         setComment(value);
-       }
+    if (name === 'categoryId') {
+      setCategoryId(value);
+    } else if (name === 'amount') {
+      setAmount(value);
+    } else if (name === 'comment') {
+      setComment(value);
+    }
   };
 
   const onClose = evt => {
@@ -104,7 +105,10 @@ export const UpDateModal = ({ trans, close }) => {
     setChecked(e.target.checked);
   };
 
-   const categoriesFilter = categories.filter(cat => cat.name !== 'Income');
+  const categoriesFilter = categories.filter(cat => cat.name !== 'Income');
+  const xxx = [...categoriesFilter].sort(function (x, y) {
+    return x.id === categoryId ? -1 : y.id === categoryId ? 1 : 0;
+  });
   return (
     <>
       <Overlay onClick={onClose}>
@@ -142,7 +146,7 @@ export const UpDateModal = ({ trans, close }) => {
                 value={categoryId}
               >
                 {categories &&
-                  categoriesFilter.map(({ id, name }) => {
+                  xxx.map(({ id, name }) => {
                     return (
                       <option key={id} id={id}>
                         {name}
