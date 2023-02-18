@@ -6,6 +6,7 @@ import {
   upDateTransaction,
 } from './transactionOperations';
 
+
 const setError = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;

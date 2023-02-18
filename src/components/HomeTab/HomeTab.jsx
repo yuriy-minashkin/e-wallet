@@ -20,7 +20,7 @@ export const HomeTab = props => {
     transactionDate: Date.parse(obj.transactionDate),
   }));
   const sortDate = [...compareData].sort(
-    (a, b) => a.transactionDate - b.transactionDate
+    (a, b) => b.transactionDate - a.transactionDate
   );
 
   // console.log(sortDate);

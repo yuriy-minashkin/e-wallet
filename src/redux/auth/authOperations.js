@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { closeModalLogOut } from 'redux/global/globalSlice';
 
 axios.defaults.baseURL = `https://wallet.goit.ua/api`;
 
@@ -45,6 +46,7 @@ export const logOut = createAsyncThunk(
     try {
       await axios.delete('/auth/sign-out');
       authTokenHandler.clearToken();
+      thunkAPI.dispatch(closeModalLogOut());
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

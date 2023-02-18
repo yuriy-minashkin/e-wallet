@@ -1,12 +1,12 @@
 import { GrFormEdit } from 'react-icons/gr';
 import { useMedia } from 'react-use';
-import { deleteTransaction } from 'redux/transaction/transactionOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { selectFinanceData } from 'redux/transaction/transactionSelectors';
 import { openModalUpDateTransaction } from 'redux/global/globalSlice';
 import { useEffect } from 'react';
 import { selectCategories } from 'redux/categories/categoriesSelectors';
+import { openModalConfirmation } from 'redux/global/globalSlice';
 import {
   Container,
   Table,
@@ -44,13 +44,20 @@ export const TransactionsList = ({ data, info }) => {
     ...obj,
     transactionDate: new Date(obj.transactionDate).toISOString().substr(0, 10),
   }));
-  // console.log(sortData);
+
   const categories = useSelector(selectCategories);
   const financeData = useSelector(selectFinanceData);
   const [trans, setTrans] = useState('');
   const dispatch = useDispatch();
+
   const saveTransaction = id => {
     setTrans(financeData.find(trans => trans.id === id));
+    dispatch(openModalUpDateTransaction());
+  };
+
+  const saveTransactionForDelete = id => {
+    setTrans(financeData.find(trans => trans.id === id));
+    dispatch(openModalConfirmation());
   };
 
   const takeNameCategories = id => {
@@ -59,9 +66,8 @@ export const TransactionsList = ({ data, info }) => {
   };
 
   useEffect(() => {
-    console.log('trans', trans);
     trans && info(trans);
-    dispatch(openModalUpDateTransaction());
+    // dispatch(openModalUpDateTransaction());
   }, [dispatch, info, trans]);
 
   return (
@@ -92,7 +98,10 @@ export const TransactionsList = ({ data, info }) => {
                   <MobSum type={type.toLowerCase()}>{amount.toFixed(2)}</MobSum>
                 </MobItem>
                 <MobItem>
-                  <DelButton onClick={() => dispatch(deleteTransaction(id))}>
+                  <DelButton
+                    onClick={() => saveTransactionForDelete(id)}
+                    //  onClick={() => dispatch(deleteTransaction(id))}
+                  >
                     Delete
                   </DelButton>
                   <EditButton onClick={() => saveTransaction(id)}>
@@ -158,7 +167,8 @@ export const TransactionsList = ({ data, info }) => {
                     </TdEdit>
                     <TdDel>
                       <DelButton
-                        onClick={() => dispatch(deleteTransaction(id))}
+                        onClick={() => saveTransactionForDelete(id)}
+                        // onClick={() => dispatch(deleteTransaction(id))}
                       >
                         Delete
                       </DelButton>

@@ -5,14 +5,20 @@ import { Navigation } from 'components/Navigation/Navigation';
 import { Balance } from 'components/Balance/Balance';
 import { Currency } from 'components/Currency/Currency';
 import { Main, Container, SidebarWrapper, NavBalanceWrapper } from './DashboardPage.styled';
+import { useSelector } from 'react-redux';
+import { selectModalLogout } from 'redux/global/globalSelectors';
+import { ModalLogout } from 'components/ModalLogout/ModalLogout';
+
 
 export const DashboardPage = () => {
+  const isModalLogOut= useSelector(selectModalLogout)
 
   return (
     <>
+      {isModalLogOut && <ModalLogout/>}
       <Header />
       <Main>
-          <Container>
+        <Container>
           <SidebarWrapper>
             <NavBalanceWrapper>
               <Navigation />

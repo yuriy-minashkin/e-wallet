@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { closeModalAddTransaction,closeModalUpDateTransaction } from 'redux/global/globalSlice';
-
+import { closeModalAddTransaction} from 'redux/global/globalSlice';
+import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
+import { closeModalConfirmation } from 'redux/global/globalSlice';
 
 export const fetchAllTransactions = createAsyncThunk(
   'transactions/fetchAll',
@@ -35,6 +36,7 @@ export const deleteTransaction = createAsyncThunk(
   async (transactionId, thunkAPI) => {
     try {
       await axios.delete(`/transactions/${transactionId}`);
+      thunkAPI.dispatch(closeModalConfirmation());
       return transactionId;
 
     } catch (e) {
@@ -47,15 +49,11 @@ export const upDateTransaction = createAsyncThunk(
   'transactions/upDateTransaction',
   async ({ transactionId, dataInfo }, thunkAPI) => {
     try {
-      console.log(transactionId);
-      console.log(dataInfo);
       const { data } = await axios.patch(
         `/transactions/${transactionId}`,
         dataInfo
       );
-      
-    
-      thunkAPI.dispatch(closeModalUpDateTransaction());
+      thunkAPI.dispatch(closeModalUpDateTransaction())
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
