@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// import Icons from 'images/icons.svg';
+
 export const Container = styled.div`
   font-family: var(--main-font);
   font-style: normal;
@@ -117,12 +119,15 @@ export const TdDel = styled.td`
 // Buttons
 
 export const EditButton = styled.button`
+  font-size: 16px;
   cursor: pointer;
-  background-color: var(--main-background-color);
+  background-color: transparent;
   padding-right: 0;
   border: none;
   display: flex;
   align-items: center;
+  margin-right: 5px;
+  padding: 0 0 0 12px;
 `;
 
 export const DelButton = styled.button`
@@ -130,9 +135,57 @@ export const DelButton = styled.button`
   min-height: 26px;
   border-radius: 18px;
   margin-right: 12px;
-  margin-left: 5px;
   background-color: var(--text-green-color);
   color: var(--text-white-color);
   border: none;
   cursor: pointer;
+`;
+
+// Mobile
+export const MobList = styled.ul`
+font-size: 16px;
+  font-family: var(--main-font);
+  font-style: normal;
+  color: var(--title-main-color);
+
+  width: 280px;
+  margin: 0 auto 8px;
+  background: var(--form-background-color);
+  border-radius: 10px;
+  border-left: 5px solid
+    ${props =>
+      props.type === 'income'
+        ? 'var(--text-green-color)'
+        : 'var(--text-pink-color)'};
+`;
+
+export const MobItem = styled.li`
+  padding: 12px 20px;
+  height: 47px;
+  display: flex;
+  align-items: center;  
+  &:not(:last-child) {
+    border-bottom: 1px solid #dcdcdf;
+  }
+  justify-content: space-between;
+  line-height: calc(27 / 18);
+`;
+
+export const MobHeader = styled.span`
+  font-weight: 700;
+  font-size: 18px;
+`;
+
+export const MobComment = styled.span`
+  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+`;
+
+export const MobSum = styled.span`
+  color: ${props =>
+      props.type === 'income'
+        ? 'var(--text-green-color)'
+        : 'var(--text-pink-color)'};
 `;
