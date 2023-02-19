@@ -32,12 +32,13 @@ import 'react-datetime/css/react-datetime.css';
 // import { TextField } from '@mui/material';
 import { IoCloseOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
-
 import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
 // import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
 export const UpDateModal = ({ trans, close }) => {
+  const findcategorie = useSelector(selectCategories);
+
   const [categoryId, setCategoryId] = useState(trans.categoryId);
   const [amount, setAmount] = useState(Math.abs(trans.amount));
   const [transactionDate, setTransactionDate] = useState(trans.transactionDate);
@@ -47,23 +48,33 @@ export const UpDateModal = ({ trans, close }) => {
     trans.type === 'INCOME' ? false : true
   );
 
+  console.log('categoryId init', categoryId);
+
+  const findcategoryId = name => {
+    // console.log('findcategorie', findcategorie);
+    // console.log('name', name);
+    // console.log('categoryId before', categoryId);
+    const CategoryId = findcategorie.find(tran => tran.name === name);
+    setCategoryId(CategoryId.id);
+  //   console.log('CategoryId', CategoryId);
+  //   console.log('categoryId in state', categoryId);
+  };
+
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
 
   const handleSubmit = evt => {
-    const currentCategorie = categories.find(cat => cat.name === categoryId);
+    // const currentCategorie = categories.find(cat => cat.name === categoryId);
     evt.preventDefault();
     const newObject = {
       transactionDate,
       type: !checked ? 'INCOME' : 'EXPENSE',
-      categoryId: !checked
-        ? categories[10].id
-        : // :currentCategorie.id || categories[0].id,
-          (currentCategorie && currentCategorie.id) || categories[0].id,
+      categoryId: !checked ? categories[10].id : categoryId,
+      // (currentCategorie && currentCategorie.id) || categories[0].id,
       comment,
       amount: !checked ? Number(amount) : -Number(Math.abs(amount)),
     };
-    // console.log(currentCategorie);
+    console.log(newObject);
 
     dispatch(
       upDateTransaction({ transactionId: trans.id, dataInfo: newObject })
@@ -79,7 +90,7 @@ export const UpDateModal = ({ trans, close }) => {
     // console.log(evt.target);
     const { value, name } = evt.target;
     if (name === 'categoryId') {
-      setCategoryId(value);
+      findcategoryId(value);
     } else if (name === 'amount') {
       setAmount(value);
     } else if (name === 'comment') {
@@ -94,8 +105,7 @@ export const UpDateModal = ({ trans, close }) => {
       evt.target.nodeName === 'svg'
     ) {
       dispatch(closeModalUpDateTransaction());
-
-      close('');
+      close(null);
     }
   };
 
