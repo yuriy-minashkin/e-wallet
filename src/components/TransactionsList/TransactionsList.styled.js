@@ -10,8 +10,7 @@ export const Container = styled.div`
   overflow: auto;
 `;
 
-export const Table = styled.table`
-`;
+export const Table = styled.table``;
 
 // Head of table
 
@@ -143,12 +142,12 @@ export const DelButton = styled.button`
 
 // Mobile
 export const MobList = styled.ul`
-font-size: 16px;
+  font-size: 16px;
   font-family: var(--main-font);
   font-style: normal;
   color: var(--title-main-color);
 
-  width: 280px;
+  width: 100%;
   margin: 0 auto 8px;
   background: var(--form-background-color);
   border-radius: 10px;
@@ -163,7 +162,7 @@ export const MobItem = styled.li`
   padding: 12px 20px;
   height: 47px;
   display: flex;
-  align-items: center;  
+  align-items: center;
   &:not(:last-child) {
     border-bottom: 1px solid #dcdcdf;
   }
@@ -185,7 +184,7 @@ export const MobComment = styled.span`
 
 export const MobSum = styled.span`
   color: ${props =>
-      props.type === 'income'
-        ? 'var(--text-green-color)'
-        : 'var(--text-pink-color)'};
+    props.type === 'income'
+      ? 'var(--text-green-color)'
+      : 'var(--text-pink-color)'};
 `;

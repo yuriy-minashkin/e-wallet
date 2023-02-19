@@ -4,8 +4,13 @@ import { NavLink } from 'react-router-dom';
 export const List = styled.ul`
   display: flex;
   flex-wrap: nowrap;
-  flex-direction: column;
-  gap: 12px;
+  gap: 32px;
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+  }
 `;
 
 export const Item = styled.li``;
@@ -30,8 +35,17 @@ export const Link = styled(NavLink)`
 `;
 
 export const Icon = styled.svg`
-  width: 24px;
-  height: 24px;
+  width: 38px;
+  height: 38px;
+  @media screen and (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
-export const Text = styled.p``;
+export const Text = styled.p`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: contents;
+  }
+`;

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useMedia } from 'react-use';
 import { Link } from 'react-router-dom';
 import { logOut } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
@@ -9,6 +10,7 @@ import { HeaderWrap, Container, LogoutWrapper, User, Button, Icon } from './Head
 export const Header = () => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUser);
+  const isTablet = useMedia('(min-width: 768px)');
 
   return (
     <HeaderWrap>
@@ -20,7 +22,7 @@ export const Header = () => {
           <Icon>
             <use href={`${Icons}#icon-exit`} />
           </Icon>
-          exit
+            {isTablet && <span>exit</span>}
         </Button>
       </LogoutWrapper>
     </Container>

@@ -1,11 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 395px;
+  width: 100%;
   min-height: 80px;
   background-color: var(--form-background-color);
   border-radius: 30px;
   padding: 8px 40px 11px;
+  @media screen and (min-width: 480px) {
+    width: 440px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    height: 80px;
+  }
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const BalanceText = styled.p`
@@ -14,7 +23,7 @@ export const BalanceText = styled.p`
   line-height: 1.5;
   text-transform: uppercase;
   color: var(--text-grey-color);
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 `;
 
 export const Span = styled.span`

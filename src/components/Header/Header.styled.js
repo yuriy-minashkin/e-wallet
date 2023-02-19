@@ -35,16 +35,19 @@ export const LogoutWrapper = styled.div`
 `;
 
 export const User = styled.p`
-  padding: 0 12px 0 0;
+  padding: 0;
   position: relative;
-  &::after {
-    content: '';
-    display: block;
-    top: -4px;
-    right: 0;
-    height: 30px;
-    border: 1px solid var(--tex-logout-color);
-    position: absolute;
+  @media screen and (min-width: 768px) {
+    padding: 0 12px 0 0;
+    &::after {
+      content: '';
+      display: block;
+      top: -4px;
+      right: 0;
+      height: 30px;
+      border: 1px solid var(--tex-logout-color);
+      position: absolute;
+    }
   }
 `;
 
@@ -56,5 +59,8 @@ export const Icon = styled.svg`
 export const Button = styled.a`
   display: flex;
   gap: 8px;
-  padding: 0 0 0 12px;
+  padding: 0 0 0 8px;
+  @media screen and (min-width: 768px) {
+    padding: 0 0 0 12px;
+  }
 `;

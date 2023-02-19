@@ -32,14 +32,18 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  background-color: var(--main-background-color);
   @media screen and (min-width: 480px) {
     width: 480px;
   }
   @media screen and (min-width: 768px) {
     width: 768px;
     padding: 0 32px;
+    background-color: transparent;
   }
   @media screen and (min-width: 1280px) {
+    flex-direction: row;
     width: 1280px;
     padding: 0 16px;
   }
@@ -49,23 +53,44 @@ export const SidebarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 40px 69px 63px 0;
+  padding: 0;
   position: relative;
-  &::after {
-    content: '';
-    display: block;
-    top: 0;
-    right: 0;
-    height: 100%;
-    border: 1px solid #e7e5f2;
-    box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
-      1px 0px 0px rgba(255, 255, 255, 0.6);
-    position: absolute;
+  background-color: var(--main-background-color);
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    align-items: baseline;
+    padding: 0;
+    background-color: transparent;
+    padding: 32px 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    flex-direction: column;
+    padding: 40px 69px 63px 0;
+    &::after {
+      content: '';
+      display: block;
+      top: 0;
+      right: 0;
+      height: 100%;
+      border: 1px solid #e7e5f2;
+      box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+        1px 0px 0px rgba(255, 255, 255, 0.6);
+      position: absolute;
+    }
   }
 `;
 
 export const NavBalanceWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 15px;
+  padding: 15px 0 32px;
+  @media screen and (min-width: 768px) {
+    gap: 32px;
+    padding: 0;
+  }
+  @media screen and (min-width: 1280px) {
+  }
 `;

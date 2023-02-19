@@ -1,7 +1,9 @@
 import { List, Item, Link, Icon, Text } from './Navigation.styled.js';
 import Icons from 'images/icons.svg';
+import { useMedia } from 'react-use';
 
 export const Navigation = () => {
+  const isTablet = useMedia('(min-width: 768px)');
   return (
     <List>
       <Item>
@@ -21,6 +23,16 @@ export const Navigation = () => {
           <Text>Statistics</Text>
         </Link>
       </Item>
+
+      {!isTablet && (
+        <Item>
+          <Link to="/">
+            <Icon>
+              <use href={`${Icons}#icon-currency-icon`}></use>
+            </Icon>
+          </Link>
+        </Item>
+      )}
     </List>
   );
 }

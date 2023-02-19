@@ -4,11 +4,11 @@ import wavePic from './wave.png';
 export const Container = styled.div`
   border-radius: 30px;
   margin: 0 auto;
-  margin-top: 32px;
+  /* margin-top: 32px; */
 
-  width: 280px;
+  width: 100%;
   min-height: 174px;
-  margin-top: 28px;
+  /* margin-top: 28px; */
   background: url(${wavePic}),
     linear-gradient(
       180deg,
@@ -18,10 +18,13 @@ export const Container = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom;
+  @media screen and (min-width: 480px) {
+    width: 440px;
+  }
 
   @media screen and (min-width: 768px) {
     width: 336px;
-    min-height: 182px;
+    height: 182px;
     background: url(${wavePic}),
       linear-gradient(
         180deg,
@@ -94,8 +97,3 @@ export const RowBody = styled.td`
     padding-bottom: 4px;
   }
 `;
-
-// @media screen and (min-width: 768px) {
-// }
-// @media screen and (min-width: 1280px) {
-// }

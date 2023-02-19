@@ -37,7 +37,7 @@ import {
 import { normalizedDate } from './normalizedDate';
 
 export const TransactionsList = ({ data, info }) => {
-  const isMobile = useMedia('(max-width: 767px)');
+  const isTablet = useMedia('(min-width: 768px)');
   //  console.log(data);
 
   const sortData = data.map(obj => ({
@@ -66,7 +66,7 @@ export const TransactionsList = ({ data, info }) => {
 
   return (
     <>
-      {isMobile ? (
+      {!isTablet ? (
         <>
           {sortData.map(
             ({ id, transactionDate, type, categoryId, comment, amount }) => (
