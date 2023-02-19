@@ -64,13 +64,11 @@ export const UpDateModal = ({ trans, close }) => {
   const categories = useSelector(selectCategories);
 
   const handleSubmit = evt => {
-    // const currentCategorie = categories.find(cat => cat.name === categoryId);
     evt.preventDefault();
     const newObject = {
       transactionDate,
       type: !checked ? 'INCOME' : 'EXPENSE',
       categoryId: !checked ? categories[10].id : categoryId,
-      // (currentCategorie && currentCategorie.id) || categories[0].id,
       comment,
       amount: !checked ? Number(amount) : -Number(Math.abs(amount)),
     };
@@ -87,7 +85,6 @@ export const UpDateModal = ({ trans, close }) => {
   };
 
   const handleChange = evt => {
-    // console.log(evt.target);
     const { value, name } = evt.target;
     if (name === 'categoryId') {
       findcategoryId(value);
