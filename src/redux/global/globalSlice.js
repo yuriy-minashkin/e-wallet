@@ -5,6 +5,8 @@ const globalSlice = createSlice({
   initialState: {
     isModalAddTransactionOpen: false,
     isModalUpDateTransaction: false,
+    isModalConfirmation: false,
+    isModalLogOut: false,
   },
 
   reducers: {
@@ -20,12 +22,28 @@ const globalSlice = createSlice({
     closeModalUpDateTransaction(state) {
       state.isModalUpDateTransaction = false;
     },
+    openModalConfirmation(state) {
+      state.isModalConfirmation = true;
+    },
+    closeModalConfirmation(state) {
+      state.isModalConfirmation = false;
+    },
+    openModalLogOut(state) {
+      state.isModalLogOut = true;
+    },
+    closeModalLogOut(state) {
+      state.isModalLogOut = false;
+    },
   },
 });
 export const {
+  openModalLogOut,
+  closeModalLogOut,
   openModalAddTransaction,
   closeModalAddTransaction,
   openModalUpDateTransaction,
   closeModalUpDateTransaction,
+  openModalConfirmation,
+  closeModalConfirmation,
 } = globalSlice.actions;
 export default globalSlice.reducer;

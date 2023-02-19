@@ -10,13 +10,13 @@ import { formatNumber } from 'utils/serviceFunctions';
 
 
 export function BasicTable(tableData) {
-  // console.log('Table props', tableData.tableData);
+
   return (
     <TableContainer component={Paper} style={tableStyle}>
-      <Table sx={{ maxWidth: 650 }} aria-label="simple table">
-        <TableBody style={rowStyle}>
+      <Table sx={{ maxWidth: 650, border: 0 }} >
+        <TableBody >
           {tableData.tableData.map(row => (
-            <TableRow  style={rowStyle}
+            <TableRow style={rowStyle}
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >

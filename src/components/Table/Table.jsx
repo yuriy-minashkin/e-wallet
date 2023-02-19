@@ -2,13 +2,28 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { FilterMonth } from 'components/Table/filterMonth';
 import { FilterYear } from './filterYear';
 import { BasicTable } from './basicTable';
-import { Box, FiltersBox, CategoryBox, ItemTitle, TotalBox, TotalItem, TotalExpenses, TotalIncom } from './Table.styled';
+import {
+  Box,
+  FiltersBox,
+  CategoryBox,
+  ItemTitle,
+  TotalBox,
+  TotalItem,
+  TotalExpenses,
+  TotalIncom,
+} from './Table.styled';
 import { formatNumber } from 'utils/serviceFunctions';
+import { Empty } from 'antd';
+import { Rings } from 'react-loader-spinner';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from 'redux/categories/categoriesSelectors';
 
 export const Table = ({ data, handlePeriod }) => {
+  const isDataPerPeriod =
+    !data?.expenseSummary === 0 || data?.categoriesSummary?.length > 0;
 
-  const isDataPerPeriod = data || data?.data?.length > 0 || data?.categoriesSummary?.length > 0;
-  
+  const isLoading = useSelector(selectIsLoading);
+
   const currentMonth = useMemo(() => new Date().getMonth() + 1, []);
   const currentYear = useMemo(() => new Date().getFullYear(), []);
 
@@ -37,29 +52,40 @@ export const Table = ({ data, handlePeriod }) => {
   return (
     <Box>
       <FiltersBox>
-        <FilterMonth  getMonth={handleMonth} />
-        <FilterYear  getYear={handleYear} />
+        <FilterMonth getMonth={handleMonth} />
+        <FilterYear getYear={handleYear} />
       </FiltersBox>
-      {isDataPerPeriod && (
-        <CategoryBox>
-          {' '}
-          <ItemTitle>Category</ItemTitle> <ItemTitle>Sum</ItemTitle>
-        </CategoryBox>
-      )}
-      {isDataPerPeriod && <BasicTable tableData={data.categoriesSummary} />}
-      {isDataPerPeriod && (
-        <TotalBox>
-          <TotalItem>
-            <p>Expenses: </p>
-            <TotalExpenses>{formatNumber(data.expenseSummary)}</TotalExpenses>
-          </TotalItem>
-          <TotalItem>
-            <p>Income: </p> <TotalIncom>{formatNumber(data.incomeSummary)}</TotalIncom>
-          </TotalItem>
-        </TotalBox>
+
+      <CategoryBox>
+        <ItemTitle>Category</ItemTitle> <ItemTitle>Sum</ItemTitle>
+      </CategoryBox>
+      {/* Spinner when loading */}
+      {isLoading && (
+        <Rings
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="6"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="rings-loading"
+        />
       )}
 
-      {!isDataPerPeriod && <p>There is no data for this period</p>}
+      {isDataPerPeriod && <BasicTable tableData={data.categoriesSummary} />}
+      {!isDataPerPeriod && <Empty />}
+
+      <TotalBox>
+        <TotalItem>
+          <p>Expenses: </p>
+          <TotalExpenses>{formatNumber(data.expenseSummary)}</TotalExpenses>
+        </TotalItem>
+        <TotalItem>
+          <p>Income: </p>{' '}
+          <TotalIncom>{formatNumber(data.incomeSummary)}</TotalIncom>
+        </TotalItem>
+      </TotalBox>
     </Box>
   );
 };

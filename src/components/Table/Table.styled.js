@@ -82,7 +82,7 @@ export const ItemTitle = styled.div`
   font-size: 18px;
   font-weight: 700;
 `;
-
+// Color box styled by props color from tableData
 export const ColorBox = styled.div`
   width: 20px;
   height: 20px;
@@ -91,21 +91,34 @@ export const ColorBox = styled.div`
   background-color: ${props => props.backgroundColor};
 `;
 
+export const borderStyle = {
+  backgroundColor: 'transparent',
+  border: 'none',
+};
+
 export const tableStyle = {
   backgroundColor: 'transparent',
+  border: 'none',
+  borderRadius: 'none',
+  boxShadow: 'none',
 };
 export const rowStyle = {
-  padding: '0px',
-    border: 'none',
+  // padding: '0px',
+  // border: 'none',
+   
 };
 
 export const cellStyle = {
+  borderBottom: '1px solid #DCDCDF',
+  borderTop: '1px solid #fff',
   width: '100px',
   padding: '14px',
   paddingLeft: '0px',
 };
 
 export const cellColorStyle = {
+  borderBottom: '1px solid #DCDCDF',
+  borderTop: '1px solid #fff',
   width: '10px',
   margin: '0px',
   padding: '10px',

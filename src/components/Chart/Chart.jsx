@@ -3,7 +3,7 @@ import { StyledChartContainer, TotalBalance } from './Chart.styled';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { selectBalance } from 'redux/auth/authSelectors';
+import { selectTotalBalance } from 'redux/transaction/transactionSelectors';
 import { formatBalance } from 'utils/serviceFunctions';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -18,14 +18,14 @@ const options = {
 };
 
 export const ChartDoughnut = React.memo(({ data }) => {
-  const userBalance = useSelector(selectBalance);
+  const userBalance = useSelector(selectTotalBalance);
   const chartRef = useRef(null);
 
   const dataChart = useMemo(() => {
     if (data && data.length > 0) {
-      const labels = data.map((item) => item.name);
-      const values = data.map((item) => Math.abs(item.total));
-      const color = data.map((item) => item.color);
+      const labels = data.map(item => item.name);
+      const values = data.map(item => Math.abs(item.total));
+      const color = data.map(item => item.color);
 
       return {
         labels,
@@ -61,7 +61,7 @@ export const ChartDoughnut = React.memo(({ data }) => {
     <StyledChartContainer>
       <Doughnut data={dataChart} options={options} ref={chartRef} />
 
-      <TotalBalance dangerouslySetInnerHTML={{ __html: totalBalance }} /> 
+      <TotalBalance dangerouslySetInnerHTML={{ __html: totalBalance }} />
     </StyledChartContainer>
   );
 });
