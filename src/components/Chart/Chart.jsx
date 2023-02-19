@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectTotalBalance } from 'redux/transaction/transactionSelectors';
 import { formatBalance } from 'utils/serviceFunctions';
 
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const options = {
