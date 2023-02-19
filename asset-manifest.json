@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/e-wallet/static/css/main.04c8c17a.css",
-    "main.js": "/e-wallet/static/js/main.b51ddafa.js",
+    "main.js": "/e-wallet/static/js/main.2b6d3fc9.js",
     "static/css/691.20b127ae.chunk.css": "/e-wallet/static/css/691.20b127ae.chunk.css",
-    "static/js/691.4bd39a04.chunk.js": "/e-wallet/static/js/691.4bd39a04.chunk.js",
+    "static/js/691.7abae8f6.chunk.js": "/e-wallet/static/js/691.7abae8f6.chunk.js",
     "static/js/231.cddb6ece.chunk.js": "/e-wallet/static/js/231.cddb6ece.chunk.js",
     "static/js/285.7f82ca03.chunk.js": "/e-wallet/static/js/285.7f82ca03.chunk.js",
     "static/js/413.b51095a0.chunk.js": "/e-wallet/static/js/413.b51095a0.chunk.js",
@@ -28,15 +28,15 @@
     "static/media/icons.svg": "/e-wallet/static/media/icons.7e32b600ccedfd034a17e735e96a8d4b.svg",
     "index.html": "/e-wallet/index.html",
     "main.04c8c17a.css.map": "/e-wallet/static/css/main.04c8c17a.css.map",
-    "main.b51ddafa.js.map": "/e-wallet/static/js/main.b51ddafa.js.map",
+    "main.2b6d3fc9.js.map": "/e-wallet/static/js/main.2b6d3fc9.js.map",
     "691.20b127ae.chunk.css.map": "/e-wallet/static/css/691.20b127ae.chunk.css.map",
-    "691.4bd39a04.chunk.js.map": "/e-wallet/static/js/691.4bd39a04.chunk.js.map",
+    "691.7abae8f6.chunk.js.map": "/e-wallet/static/js/691.7abae8f6.chunk.js.map",
     "231.cddb6ece.chunk.js.map": "/e-wallet/static/js/231.cddb6ece.chunk.js.map",
     "285.7f82ca03.chunk.js.map": "/e-wallet/static/js/285.7f82ca03.chunk.js.map",
     "413.b51095a0.chunk.js.map": "/e-wallet/static/js/413.b51095a0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.04c8c17a.css",
-    "static/js/main.b51ddafa.js"
+    "static/js/main.2b6d3fc9.js"
   ]
 }
