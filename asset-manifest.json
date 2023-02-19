@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/e-wallet/static/css/main.04c8c17a.css",
-    "main.js": "/e-wallet/static/js/main.55dd860a.js",
+    "main.js": "/e-wallet/static/js/main.22ac3680.js",
     "static/css/691.20b127ae.chunk.css": "/e-wallet/static/css/691.20b127ae.chunk.css",
     "static/js/691.4bd39a04.chunk.js": "/e-wallet/static/js/691.4bd39a04.chunk.js",
     "static/js/231.cddb6ece.chunk.js": "/e-wallet/static/js/231.cddb6ece.chunk.js",
@@ -25,10 +25,10 @@
     "static/media/Circe Regular.eot": "/e-wallet/static/media/Circe Regular.4d7a963503fce5ca3c8b.eot",
     "static/media/Circe Regular.ttf": "/e-wallet/static/media/Circe Regular.3ca95fb637e4dd30c50c.ttf",
     "static/media/Circe Regular.woff": "/e-wallet/static/media/Circe Regular.e865a57a9dcbac40f142.woff",
-    "static/media/icons.svg": "/e-wallet/static/media/icons.34bfd141fd1bb62332d78e1c92928051.svg",
+    "static/media/icons.svg": "/e-wallet/static/media/icons.7e32b600ccedfd034a17e735e96a8d4b.svg",
     "index.html": "/e-wallet/index.html",
     "main.04c8c17a.css.map": "/e-wallet/static/css/main.04c8c17a.css.map",
-    "main.55dd860a.js.map": "/e-wallet/static/js/main.55dd860a.js.map",
+    "main.22ac3680.js.map": "/e-wallet/static/js/main.22ac3680.js.map",
     "691.20b127ae.chunk.css.map": "/e-wallet/static/css/691.20b127ae.chunk.css.map",
     "691.4bd39a04.chunk.js.map": "/e-wallet/static/js/691.4bd39a04.chunk.js.map",
     "231.cddb6ece.chunk.js.map": "/e-wallet/static/js/231.cddb6ece.chunk.js.map",
@@ -37,6 +37,6 @@
   },
   "entrypoints": [
     "static/css/main.04c8c17a.css",
-    "static/js/main.55dd860a.js"
+    "static/js/main.22ac3680.js"
   ]
 }
