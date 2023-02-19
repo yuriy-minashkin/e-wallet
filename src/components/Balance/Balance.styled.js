@@ -6,10 +6,12 @@ export const Container = styled.div`
   background-color: var(--form-background-color);
   border-radius: 30px;
   padding: 8px 40px 11px;
+  margin: 15px 0 32px;
   @media screen and (min-width: 480px) {
     width: 440px;
   }
   @media screen and (min-width: 768px) {
+    margin: 0;
     width: 336px;
     height: 80px;
   }
