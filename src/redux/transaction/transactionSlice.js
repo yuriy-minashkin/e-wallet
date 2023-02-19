@@ -6,7 +6,6 @@ import {
   upDateTransaction,
 } from './transactionOperations';
 
-
 const setError = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
@@ -26,6 +25,15 @@ const createActions = type => {
   return extraActions.map(action => action[type]);
 };
 
+// const totalBalanc=(state)=>{
+//  let initialValue = 0;
+//  let sum =  state.finance.data.reduce((accumulator, currentValue) => {
+//    return accumulator + currentValue.amount;
+//  }, initialValue);
+
+//  state.finance.totalBalance = sum;
+// }
+
 const transactionSlice = createSlice({
   name: 'finance',
   initialState: {
@@ -41,17 +49,34 @@ const transactionSlice = createSlice({
     builder
       .addCase(fetchAllTransactions.fulfilled, (state, { payload }) => {
         state.finance.data = payload;
+        // totalBalanc()
+         let initialValue = 0;
+         let sum = state.finance.data.reduce((accumulator, currentValue) => {
+           return accumulator + currentValue.amount;
+         }, initialValue);
+         state.finance.totalBalance = sum;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(addTransaction.fulfilled, (state, { payload }) => {
         state.finance.data.push(payload);
+        
+         let initialValue = 0;
+         let sum = state.finance.data.reduce((accumulator, currentValue) => {
+           return accumulator + currentValue.amount;
+         }, initialValue);
+        state.finance.totalBalance = sum;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         const { data } = state.finance;
         state.finance.data = data.filter(trans => trans.id !== payload);
+         let initialValue = 0;
+         let sum = state.finance.data.reduce((accumulator, currentValue) => {
+           return accumulator + currentValue.amount;
+         }, initialValue);
+         state.finance.totalBalance = sum;
         state.isLoading = false;
         state.error = null;
       })
@@ -60,6 +85,11 @@ const transactionSlice = createSlice({
         state.finance.data = data.map(obj =>
           obj.id === payload.id ? payload : obj
         );
+         let initialValue = 0;
+         let sum = state.finance.data.reduce((accumulator, currentValue) => {
+           return accumulator + currentValue.amount;
+         }, initialValue);
+         state.finance.totalBalance = sum;
         state.isLoading = false;
         state.error = null;
       })
