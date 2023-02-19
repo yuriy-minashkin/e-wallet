@@ -59,10 +59,10 @@ export const SidebarWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    align-items: baseline;
+    align-items: flex-end;
     padding: 0;
     background-color: transparent;
-    padding: 32px 20px;
+    padding: 32px 0 20px 0;
   }
 
   @media screen and (min-width: 1280px) {
