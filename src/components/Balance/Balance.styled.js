@@ -14,6 +14,7 @@ export const Container = styled.div`
     height: 80px;
   }
   @media screen and (min-width: 1280px) {
+    width: 395px;
   }
 `;
 
