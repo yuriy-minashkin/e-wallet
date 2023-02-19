@@ -29,14 +29,14 @@ export const FilterMonth = ({ getMonth }) => {
   };
 
   return (
-    <Autocomplete
-      id="combo-box-demo"
+    <Autocomplete 
+     sx={{ borderColor: 'transparent' }}
       options={options}
       onChange={(_, selectedOption) => handleMonthChange(selectedOption)}
       isOptionEqualToValue={(option, value) => option.id === value.id}
       renderInput={params => (
         <RoundedBox>
-          <TextField {...params} label={currentMonth} />
+          <TextField {...params} label={currentMonth} sx={{ borderColor: 'transparent' }} />
         </RoundedBox>
       )}
     />
