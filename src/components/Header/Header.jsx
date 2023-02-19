@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useMedia } from 'react-use';
 import { Link } from 'react-router-dom';
-// import { logOut } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
 import { Logo } from 'components/Logo/Logo';
 import Icons from 'images/icons.svg';
@@ -26,7 +25,6 @@ export const Header = () => {
           <Button
             href="#"
             onClick={()=> dispatch(openModalLogOut())}
-            //  onClick={() => dispatch(logOut())}
           >
             <Icon>
               <use href={`${Icons}#icon-exit`} />
