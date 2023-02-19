@@ -66,14 +66,14 @@ export const ModalAddTransaction = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    const date = new Date(
-      transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
-    );
+    // const date = new Date(
+    //   transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
+    // );
 
     const currentCategorie = categories.find(cat => cat.name === categoryId);
 
     const obj = {
-      transactionDate: date,
+      transactionDate,
       type: !checked ? 'INCOME' : 'EXPENSE',
       categoryId: !checked
         ? categories[10].id

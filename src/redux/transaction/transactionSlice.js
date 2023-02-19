@@ -50,10 +50,10 @@ const transactionSlice = createSlice({
       .addCase(fetchAllTransactions.fulfilled, (state, { payload }) => {
         state.finance.data = payload;
         // totalBalanc()
-         let initialValue = 0;
+         
          let sum = state.finance.data.reduce((accumulator, currentValue) => {
            return accumulator + currentValue.amount;
-         }, initialValue);
+         }, 0);
          state.finance.totalBalance = sum;
         state.isLoading = false;
         state.error = null;
@@ -61,10 +61,10 @@ const transactionSlice = createSlice({
       .addCase(addTransaction.fulfilled, (state, { payload }) => {
         state.finance.data.push(payload);
         
-         let initialValue = 0;
+         
          let sum = state.finance.data.reduce((accumulator, currentValue) => {
            return accumulator + currentValue.amount;
-         }, initialValue);
+         }, 0);
         state.finance.totalBalance = sum;
         state.isLoading = false;
         state.error = null;
@@ -72,23 +72,24 @@ const transactionSlice = createSlice({
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         const { data } = state.finance;
         state.finance.data = data.filter(trans => trans.id !== payload);
-         let initialValue = 0;
+         
          let sum = state.finance.data.reduce((accumulator, currentValue) => {
            return accumulator + currentValue.amount;
-         }, initialValue);
+         }, 0);
          state.finance.totalBalance = sum;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(upDateTransaction.fulfilled, (state, { payload }) => {
+        console.log('payload', payload);
         const { data } = state.finance;
         state.finance.data = data.map(obj =>
           obj.id === payload.id ? payload : obj
         );
-         let initialValue = 0;
+         
          let sum = state.finance.data.reduce((accumulator, currentValue) => {
            return accumulator + currentValue.amount;
-         }, initialValue);
+         }, 0);
          state.finance.totalBalance = sum;
         state.isLoading = false;
         state.error = null;
