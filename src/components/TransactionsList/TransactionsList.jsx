@@ -42,9 +42,9 @@ export const TransactionsList = ({ data, info }) => {
 
   const sortData = data.map(obj => ({
     ...obj,
-    transactionDate: new Date(obj.transactionDate).toISOString().substr(0, 10),
+    transactionDate: Date(obj.transactionDate),
   }));
-
+   console.log(sortData);
   const categories = useSelector(selectCategories);
   const financeData = useSelector(selectFinanceData);
   const [trans, setTrans] = useState('');
