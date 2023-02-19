@@ -21,7 +21,7 @@ const currencyAPI = async () => {
 //===main logic===
 const LS_KEY = 'savedRates';
 
-export const Currency = () => {
+const Currency = () => {
   const [currencyRate, setCurrencyRate] = useState(JSON.parse(window.localStorage.getItem(LS_KEY)) ?? []);
   const [loading, setLoading] = useState(false);
 
@@ -72,3 +72,4 @@ export const Currency = () => {
     </Container>
   );
 };
+export default Currency

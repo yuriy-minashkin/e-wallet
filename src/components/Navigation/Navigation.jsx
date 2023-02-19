@@ -26,7 +26,7 @@ export const Navigation = () => {
 
       {!isTablet && (
         <Item>
-          <Link to="/">
+          <Link to="/currency">
             <Icon>
               <use href={`${Icons}#icon-currency-icon`}></use>
             </Icon>

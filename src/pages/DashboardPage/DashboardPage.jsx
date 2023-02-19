@@ -4,7 +4,7 @@ import { useMedia } from 'react-use';
 import { Header } from 'components/Header/Header';
 import { Navigation } from 'components/Navigation/Navigation';
 import { Balance } from 'components/Balance/Balance';
-import { Currency } from 'components/Currency/Currency';
+import  Currency  from 'components/Currency/Currency';
 import { Main, Container, SidebarWrapper, NavBalanceWrapper } from './DashboardPage.styled';
 import { useSelector } from 'react-redux';
 import { selectModalLogout } from 'redux/global/globalSelectors';
