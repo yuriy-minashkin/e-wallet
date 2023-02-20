@@ -70,12 +70,14 @@ export const ModalAddTransaction = () => {
   );
 
   const onClose = evt => {
+    console.dir(evt.target);
     if (
       evt.code === 'Escape' ||
       evt.currentTarget === evt.target 
-      // ||
-      // evt.target.nodeName === 'svg'
+      ||
+      evt.target.nodeName === 'puth'
     ) {
+      
       dispatch(closeModalAddTransaction());
     }
   };
@@ -88,7 +90,7 @@ export const ModalAddTransaction = () => {
   return (
     <Overlay onClick={onClose}>
       <Modal>
-        <ModalButtonClose type="button" onClick={onClose}>
+        <ModalButtonClose type="button" onClick={onClose} >
           <IconContext.Provider value={{ size: '3em' }}>
             <h3>
               {' '}
@@ -136,7 +138,7 @@ export const ModalAddTransaction = () => {
             isSubmitting,
             setFieldValue,
           }) => (
-            <Form autoComplete="off" onSubmit={handleSubmit}>
+            <Form   onSubmit={handleSubmit}>
               <ModalTitle> Add transaction</ModalTitle>
 
               <Input
