@@ -112,6 +112,8 @@ export const ModalAddTransaction = () => {
 
   const categoriesFilter = categories.filter(cat => cat.name !== 'Income');
 
+
+
   return (
     <Overlay onClick={onClose}>
       <Modal>
@@ -171,7 +173,10 @@ export const ModalAddTransaction = () => {
               />
             </div>
 
-            <Datetime
+            
+            {/* <Datetime  inputProps = {  inputProps  }  /> */}
+
+            {/* <Datetime
               timeFormat={false}
               name={transactionDate}
               value={transactionDate}
@@ -180,7 +185,7 @@ export const ModalAddTransaction = () => {
                 setTransactionDate(moment(newValue).toISOString());
               }}
               renderInput={params => <InputLabel {...params} />}
-            />
+            /> */}
             <Icon>
               <use href={`${Icons}#icon-calendar`} />
             </Icon>
