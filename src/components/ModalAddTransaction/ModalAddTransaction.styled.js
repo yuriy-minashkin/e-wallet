@@ -227,12 +227,13 @@ export const InputLabelText = styled.input`
 `;
 
 export const Icon = styled.svg`
-/* position: absolute;
-top: 220px;
-left: 412px; */
+    position: relative;
+    top: -6px;
   width: 24px;
+  left: -63px;
   height: 24px;
 `;
+
 
 
 export const ModalButtonWrap = styled.div`
