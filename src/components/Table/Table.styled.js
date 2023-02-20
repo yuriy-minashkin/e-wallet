@@ -116,7 +116,7 @@ export const rowStyle = {
 
 export const cellStyle = {
   borderBottom: '1px solid #DCDCDF',
-  borderTop: '1px solid #fff',
+  // borderTop: '1px solid #fff',
   width: '100px',
   padding: '14px',
   paddingLeft: '0px',
@@ -124,7 +124,7 @@ export const cellStyle = {
 
 export const cellColorStyle = {
   borderBottom: '1px solid #DCDCDF',
-  borderTop: '1px solid #fff',
+  // borderTop: '1px solid #fff',
   width: '10px',
   margin: '0px',
   padding: '10px',
