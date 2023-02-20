@@ -13,7 +13,7 @@ export const Wrapper = styled.section`
 
   @media screen and (min-width: 1280px) {
     width: 715px;
-    padding: 174px 0 47px 69px;
+    padding: 0px 0 47px 69px;
   }
 `;
 export const Box = styled.section`
@@ -51,9 +51,9 @@ export const StatisticsTitle = styled.h2`
   }
 
   @media screen and (min-width: 1280px) {
-    display: none;
+    /* display: none; */
     /* margin-bottom: 20px; */
-    /* margin-left: 84px;
-    margin-top: 32px; */
+    margin-left: 20px;
+    margin-top: 32px;
   }
 `;

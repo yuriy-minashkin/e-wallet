@@ -6,14 +6,12 @@ export const StyledChartContainer = styled.div`
   height: 280px;
   margin: 0 auto;
   @media screen and (min-width: 768px) {
-    margin: 0;
     width: 336px;
     height: 336px;
   }
   @media screen and (min-width: 1280px) {
     width: 288px;
     height: 288px;
-    margin: 0;
   }
 `;
 
@@ -28,8 +26,10 @@ export const TotalBalance = styled.div`
   color: #000000;
 
   @media screen and (min-width: 768px) {
+    transform: translate(-50%, -140%);
   }
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+    transform: translate(-50%, -50%);
   }
 `;
