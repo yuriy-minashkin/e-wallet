@@ -14,7 +14,7 @@ import {
   LogInInput,
   LogInLabel,
   InputIcon,
-  ErrorText, 
+  ErrorText,
 } from './LoginForm.styled';
 import { Logo } from 'components/Logo/Logo';
 import Icons from 'images/icons.svg';
@@ -66,35 +66,37 @@ export const LoginForm = () => {
             <Logo />
           </LogoContainer>
           <Form autoComplete="off" onSubmit={handleSubmit}>
-            <LogInLabel htmlFor={emailId}></LogInLabel>
-            <LogInInput
-              type="email"
-              name="email"
-              id={emailId}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-              placeholder="E-mail:  example@mail.com"
-            />
-            <InputIcon width="21" height="16">
-              <use href={`${Icons}#icon-email`} />
-            </InputIcon>
+            <LogInLabel htmlFor={emailId}>
+              <LogInInput
+                type="email"
+                name="email"
+                id={emailId}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                placeholder="E-mail:  example@mail.com"
+              />
+              <InputIcon width="21" height="16">
+                <use href={`${Icons}#icon-email`} />
+              </InputIcon>
+            </LogInLabel>
             <ErrorText>
               {errors.email && touched.email && errors.email}
             </ErrorText>
-            <LogInLabel htmlFor={passwordId}></LogInLabel>
-            <LogInInput
-              type="password"
-              name="password"
-              id={passwordId}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-              placeholder="Password"
-            />
-            <InputIcon width="16" height="21">
-              <use href={`${Icons}#icon-lock`} />
-            </InputIcon>
+            <LogInLabel htmlFor={passwordId}>
+              <LogInInput
+                type="password"
+                name="password"
+                id={passwordId}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+                placeholder="Password"
+              />
+              <InputIcon width="16" height="21">
+                <use href={`${Icons}#icon-lock`} />
+              </InputIcon>
+            </LogInLabel>
             <ErrorText>
               {errors.password && touched.password && errors.password}
             </ErrorText>

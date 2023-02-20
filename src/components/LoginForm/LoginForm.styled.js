@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
-
 export const FormLayout = styled.div`
-   display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 480px;
   padding: 32px 20px 36px;
   background-color: var(--form-background-color);
-  
 
   @media screen and (min-width: 768px) {
     width: 533px;
@@ -35,6 +33,7 @@ export const Form = styled.form`
 `;
 
 export const LogInLabel = styled.label`
+  position: relative;
   width: 280px;
   margin-bottom: 10px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -74,6 +73,10 @@ export const LogInInput = styled.input`
 `;
 
 export const InputIcon = styled.svg`
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   fill: var(--border--reg-color);
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
