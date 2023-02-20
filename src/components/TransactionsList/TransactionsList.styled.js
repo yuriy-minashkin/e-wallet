@@ -7,7 +7,7 @@ export const Container = styled.div`
   font-style: normal;
   color: var(--title-main-color);
   height: 520px;
-  overflow: auto;
+  /* overflow: auto; */
 `;
 
 export const Table = styled.table``;
