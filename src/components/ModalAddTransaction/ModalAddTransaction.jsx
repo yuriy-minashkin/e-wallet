@@ -166,7 +166,7 @@ export const ModalAddTransaction = () => {
                 name="amount"
                 required
                 // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Amount must be digits and can contain spaces, dashes, parentheses"
+                // title="Amount must be digits and can contain spaces, dashes, parentheses"
                 placeholder="0.00"
               />
             </div>
@@ -182,9 +182,8 @@ export const ModalAddTransaction = () => {
               renderInput={params => <InputLabel {...params} />}
             />
             <Icon>
-                  <use href={`${Icons}#icon-calendar`} />
-                </Icon>
-
+              <use href={`${Icons}#icon-calendar`} />
+            </Icon>
           </ModalInputWrap>
           <InputLabelText
             value={comment}

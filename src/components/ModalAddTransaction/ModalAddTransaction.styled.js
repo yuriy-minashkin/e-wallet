@@ -4,13 +4,16 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 95%;
-  height: 100%;
+  width: 87%;
+  /* height: 100%; */
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.25);
   z-index: 1200;
+  @media screen and (min-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export const Modal = styled.div`
@@ -64,7 +67,7 @@ display: flex;
 
 export const ModalForm = styled.form`
 max-width: 320px;
-  width: 320px;
+  /* width: 320px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +110,7 @@ export const CheckboxLabel = styled.label`
   &::after {
     content: '';
     position: absolute;
-    left: 125px;
+    left: 115px;
     top: 109px;
     @media screen and (min-width: 768px) {
       left: 195px;
@@ -290,6 +293,12 @@ export const ModalButtonCancel = styled.button`
 `;
 
 export const ModalButtonClose = styled.button`
+
+opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+@media screen and (min-width: 768px) {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -304,6 +313,8 @@ export const ModalButtonClose = styled.button`
   :hover {
   transform: scale(1.10);
   }
+  }
+  
 `;
 
 export const Span = styled.span`
