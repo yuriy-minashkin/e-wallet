@@ -19,7 +19,7 @@ import {
 import Icons from 'images/icons.svg';
 import { Logo } from 'components/Logo/Logo';
 import 'react-toastify/dist/ReactToastify.css';
-import PasswordStrengthBar from 'react-password-strength-bar';
+// import PasswordStrengthBar from 'react-password-strength-bar';
 
 const validationSchema = yup.object().shape({
   email: yup
