@@ -126,7 +126,8 @@ export const EditButton = styled.button`
   display: flex;
   align-items: center;
   margin-right: 5px;
-  padding: 0 0 0 12px;
+  margin-left: 12px;
+  padding: 0;
 `;
 
 export const DelButton = styled.button`

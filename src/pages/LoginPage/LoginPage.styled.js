@@ -5,6 +5,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 60px;
     background-color: #E5E5E5;
   }
@@ -13,6 +14,7 @@ export const Container = styled.div`
     height: 100vh;
     background-color: #E5E5E5;
     align-items: center;
+    justify-content: center;
     background-image: url('images/dashboardBackGround/Rectangle 3.png');
   }
 `;
@@ -29,8 +31,7 @@ export const LogInImage = styled.div`
   }
   @media screen and (min-width: 1280px) {
     flex-direction: column;
-    margin-left: 90px;
-    margin-right: 300px;
+    margin-right: 350px;
   }
 `;
 

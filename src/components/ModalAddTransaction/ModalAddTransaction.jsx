@@ -49,17 +49,34 @@ export const ModalAddTransaction = () => {
   const [transactionDate, setTransactionDate] = useState(new Date(Date.now()));
   const [checked, setChecked] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  
-  
-  const handleClick = (e) => {
+
+  const handleClick = e => {
     e.preventDefault();
     setIsOpen(!isOpen);
   };
 
-
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
+  // 1 Закриваємо по Esc
+  useEffect(() => {
+    const onEscClick = evt => {
+      if (evt.code === 'Escape') dispatch(closeModalAddTransaction());
+    };
+
+    window.addEventListener('keydown', onEscClick);
+    return () => {
+      window.removeEventListener('keydown', onEscClick);
+    };
+  }, [dispatch]);
+  //______________________
+
+  // 2 Закриваємо по Overlay
+  const onOverlayClose = evt => {
+    if (evt.currentTarget === evt.target) dispatch(closeModalAddTransaction());
+  };
+  //______________________
 
   const onChange = e => {
     setChecked(e.target.checked);
@@ -69,33 +86,17 @@ export const ModalAddTransaction = () => {
     transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
   );
 
-  const onClose = evt => {
-    console.dir(evt.target);
-    if (
-      evt.code === 'Escape' ||
-      evt.currentTarget === evt.target 
-      ||
-      evt.target.nodeName === 'puth'
-    ) {
-      
-      dispatch(closeModalAddTransaction());
-    }
-  };
-
-  window.addEventListener('keydown', onClose);
-
   const categoriesFilter = categories.filter(cat => cat.name !== 'Income');
   const renderError = message => <Span>{message}</Span>;
-  
+
   return (
-    <Overlay onClick={onClose}>
+    <Overlay onClick={onOverlayClose}>
       <Modal>
-        <ModalButtonClose type="button" onClick={onClose} >
+
+        <ModalButtonClose type="button" onClick={()=> {dispatch(closeModalAddTransaction());}}>
+
           <IconContext.Provider value={{ size: '3em' }}>
-            <h3>
-              {' '}
-              <IoCloseOutline />{' '}
-            </h3>
+            <IoCloseOutline />
           </IconContext.Provider>
         </ModalButtonClose>
         <Formik
@@ -165,7 +166,6 @@ export const ModalAddTransaction = () => {
                   onChange={handleChange}
                   value={values.categoryId}
                   onBlur={handleBlur}
-
                 >
                   {categories &&
                     categoriesFilter.map(({ id, name }) => {
@@ -195,7 +195,7 @@ export const ModalAddTransaction = () => {
                 </div>
 
                 <Datetime
-                 open={isOpen}
+                  open={isOpen}
                   timeFormat={false}
                   name={transactionDate}
                   value={transactionDate}
@@ -214,7 +214,6 @@ export const ModalAddTransaction = () => {
                 <Icon onClick={handleClick}>
                   <use href={`${Icons}#icon-calendar`} />
                 </Icon>
-                
               </ModalInputWrap>
               <InputLabelText
                 value={values.comment}
@@ -228,7 +227,7 @@ export const ModalAddTransaction = () => {
                 <ModalButtonAdd type="submit" disabled={isSubmitting}>
                   Add
                 </ModalButtonAdd>
-                <ModalButtonCancel type="button" onClick={onClose}>
+                <ModalButtonCancel type="button" onClick={()=>{dispatch(closeModalAddTransaction())}}>
                   Cancel
                 </ModalButtonCancel>
               </ModalButtonWrap>
