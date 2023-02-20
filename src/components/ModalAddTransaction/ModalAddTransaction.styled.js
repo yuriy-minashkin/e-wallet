@@ -4,8 +4,8 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 95%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,32 +14,67 @@ export const Overlay = styled.div`
 `;
 
 export const Modal = styled.div`
-  max-width: 540px;
-  width: 100%;
-  height: 580px;
-  padding: 40px 73px 64px 40px;
-  background-color: #ffffff;
+  max-width: 320px;
+  width: 95%;
+  /* top: 50%;
+    left: 50%; */
+
+    width: 320px;
+    /* height: 600px; */
+  padding: 20px 11px 37px 9px;
+  background-color: var(--form-background-color);
   border-radius: 20px;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* gap: 40px; */
   position: relative;
   z-index: 1200;
+
+  @media screen and (min-width: 768px) {
+  max-width: 540px;
+  width: 100%;
+  height: 580px;
+  padding: 40px 73px 64px 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    /* padding-top: 20px;
+    padding-bottom: 4px; */
+  }
+
 `;
 
 export const ModalTitle = styled.p`
+margin-bottom: 42px;
   font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 45px;
-  display: flex;
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 36px;
+text-align: center;
+display: flex;
   align-items: center;
   text-align: center;
-  margin-bottom: 42px;
-  color: #000000;
+  color: var(--title-main-color);
+  @media screen and (min-width: 768px) {
+  font-size: 30px;
+  line-height: 45px;
+  }
+`;
+
+export const ModalForm = styled.form`
+max-width: 320px;
+  width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0;
+  @media screen and (min-width: 768px) {
+    max-width: 540px;
+    width: 100%;
+  }
+  
 `;
 
 // export const CheckboxInput = styled.input`
@@ -58,7 +93,7 @@ export const CheckboxLabel = styled.label`
 
     width: 80px;
     height: 40px;
-    background-color: #ffffff;
+    background-color: var(--form-background-color);
     border: 1px solid #e0e0e0;
     border-radius: 30px;
     transition: box-shadow 250ms linear;
@@ -72,11 +107,15 @@ export const CheckboxLabel = styled.label`
   &::after {
     content: '';
     position: absolute;
-    left: 195px;
+    left: 125px;
+    top: 109px;
+    @media screen and (min-width: 768px) {
+      left: 195px;
     top: 139px;
+  }
     width: 44px;
     height: 44px;
-    background-color: #24cca7;
+    background-color: var(--leisure-color);
     border-radius: 50px;
     box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
     transition: transform 250ms linear, background-color 250ms linear,
@@ -107,25 +146,30 @@ export const LabelTextExpense = styled.span`
 color: ${props => (props.checked ? `#FF6596` : '#E0E0E0')};
 `;
 
-
-export const ModalForm = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
 export const ModalWrap = styled.div`
   display: flex;
   gap: 32px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 44px;
+ 
+`;
+
+export const ModalInputWrap = styled.div`
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   /* margin-right: 32px; */
   margin-bottom: 44px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const SelectLabel = styled.select`
-  width: 394px;
+  width: 280px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
 
@@ -135,22 +179,53 @@ export const SelectLabel = styled.select`
   font-size: 18px;
   line-height: 27px;
   margin-bottom: 40px;
+  @media screen and (min-width: 768px) {
+    width: 394px;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+
 `;
 
 export const InputLabel = styled.input`
-  width: 190px;
+  width: 280px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
- 
+  @media screen and (min-width: 768px) {
+    width: 190px;
+  }
+  &:focus-visible {
+    outline: none;
+    border-bottom: 1px solid var(--btn-teal-color);
+    background-color: var(--text-white-color);
+  }
 `;
 
 export const InputLabelText = styled.input`
-  width: 394px;
+  width: 280px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 40px;
+  @media screen and (min-width: 768px) {
+    width: 394px;
+  }
+  &:focus-visible {
+    outline: none;
+    border-bottom: 1px solid var(--btn-teal-color);
+  }
+
 `;
+
+export const Icon = styled.svg`
+/* position: absolute;
+top: 220px;
+left: 412px; */
+  width: 24px;
+  height: 24px;
+`;
+
 
 export const ModalButtonWrap = styled.div`
   display: flex;
@@ -158,15 +233,17 @@ export const ModalButtonWrap = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 0;
+  margin: 0;
 `;
 
 export const ModalButtonAdd = styled.button`
   width: 300px;
   padding: 13px 65px 13px 71px;
   border: none;
-  background-color: #24cca7;
+  background-color: var(--btn-teal-color);
   border-radius: 20px;
-  color: #ffffff;
+  color: var(--text-white-color);
 
   font-family: 'Circe';
   font-style: normal;
@@ -176,13 +253,22 @@ export const ModalButtonAdd = styled.button`
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  /* @media screen and (min-width: 768px) {
+    width: 394px;
+  } */
+  :hover {
+  background-color: #24cca7;
+  color: var(--form-background-color);
+  transform: scale(1.04);
+  cursor: pointer;
+  }
 `;
 
 export const ModalButtonCancel = styled.button`
   width: 300px;
   padding: 13px 65px 13px 71px;
   border: none;
-  background-color: #ffffff;
+  background-color: var(--form-background-color);
   border: 1px solid #4a56e2;
   border-radius: 20px;
 
@@ -194,7 +280,13 @@ export const ModalButtonCancel = styled.button`
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #4a56e2;
+  color:var(--btn-blue-color);
+  :hover {
+  background-color: var(--main-currency-background-color);
+  color: var(--form-background-color);
+  transform: scale(1.04);
+  cursor: pointer;
+  }
 `;
 
 export const ModalButtonClose = styled.button`
@@ -204,13 +296,21 @@ export const ModalButtonClose = styled.button`
   width: 32px;
   height: 32px;
   border: none;
-  background-color: #fff;
+  background-color: var(--btn-white-color);
   outline: blue;
   padding: 0;
   cursor: pointer;
 
-  &:hover {
-    /* background-color: red; */
+  :hover {
+  transform: scale(1.10);
   }
 `;
+
+export const Span = styled.span`
+  color: var(--slider-color);
+    font-size: 1rem;
+    margin-top: 0.3rem;
+  
+`;
+
 
