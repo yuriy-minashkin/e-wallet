@@ -1,6 +1,5 @@
 import { Autocomplete, TextField } from '@mui/material';
-import React, {useMemo} from 'react';
-import { RoundedBox } from './Table.styled';
+import React, { useMemo } from 'react';
 
 const options = [
   { label: 'January', id: 1 },
@@ -19,7 +18,8 @@ const options = [
 
 export const FilterMonth = ({ getMonth }) => {
   const currentMonth = useMemo(() => {
-    return options.find(option => option.id === new Date().getMonth() + 1).label;
+    return options.find(option => option.id === new Date().getMonth() + 1)
+      .label;
   }, []);
 
   const handleMonthChange = selectedOption => {
@@ -29,15 +29,29 @@ export const FilterMonth = ({ getMonth }) => {
   };
 
   return (
-    <Autocomplete 
-     sx={{ borderColor: 'transparent' }}
+    <Autocomplete
+      sx={[
+        { width: 181 },
+        { height: 50 },
+{ borderRadius: 30 },
+        {
+          '& .MuiOutlinedInput-root': {
+            borderRadius: 30,
+          },
+          '& .MuiInputBase-input': {
+            fontFamily: 'Circe',
+          },
+        },
+      ]}
       options={options}
       onChange={(_, selectedOption) => handleMonthChange(selectedOption)}
       isOptionEqualToValue={(option, value) => option.id === value.id}
       renderInput={params => (
-        <RoundedBox>
-          <TextField {...params} label={currentMonth} sx={{ borderColor: 'transparent' }} />
-        </RoundedBox>
+        <TextField
+          {...params}
+          label={currentMonth}
+          sx={{ borderColor: 'transparent' }}
+        />
       )}
     />
   );

@@ -94,3 +94,11 @@ export const NavBalanceWrapper = styled.div`
   @media screen and (min-width: 1280px) {
   }
 `;
+
+export const ImageTitle = styled.h2`
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 45px;
+`
