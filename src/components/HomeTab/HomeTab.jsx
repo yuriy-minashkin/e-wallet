@@ -23,7 +23,7 @@ export const HomeTab = props => {
     (a, b) => b.transactionDate - a.transactionDate
   );
 
-  // console.log(sortDate);
+  
 
   useEffect(() => {
     dispatch(fetchAllTransactions());

@@ -38,13 +38,7 @@ import { normalizedDate } from './normalizedDate';
 
 export const TransactionsList = ({ data, info }) => {
   const isTablet = useMedia('(min-width: 768px)');
-  //  console.log(data);
-
-  const sortData = data.map(obj => ({
-    ...obj,
-    transactionDate: Date(obj.transactionDate),
-  }));
-   console.log(sortData);
+ 
   const categories = useSelector(selectCategories);
   const financeData = useSelector(selectFinanceData);
   const [trans, setTrans] = useState('');
@@ -53,6 +47,7 @@ export const TransactionsList = ({ data, info }) => {
   const saveTransaction = id => {
     setTrans(financeData.find(trans => trans.id === id));
     dispatch(openModalUpDateTransaction());
+    
   };
 
   const saveTransactionForDelete = id => {
@@ -67,14 +62,15 @@ export const TransactionsList = ({ data, info }) => {
 
   useEffect(() => {
     trans && info(trans);
-    // dispatch(openModalUpDateTransaction());
+    setTrans('')
+    console.log(trans)
   }, [dispatch, info, trans]);
 
   return (
     <>
       {!isTablet ? (
         <>
-          {sortData.map(
+          {data.map(
             ({ id, transactionDate, type, categoryId, comment, amount }) => (
               <MobList key={id} type={type.toLowerCase()}>
                 <MobItem>
@@ -100,7 +96,6 @@ export const TransactionsList = ({ data, info }) => {
                 <MobItem>
                   <DelButton
                     onClick={() => saveTransactionForDelete(id)}
-                    //  onClick={() => dispatch(deleteTransaction(id))}
                   >
                     Delete
                   </DelButton>
@@ -136,7 +131,7 @@ export const TransactionsList = ({ data, info }) => {
               </TrHead>
             </thead>
             <tbody>
-              {sortData.map(
+              {data.map(
                 ({
                   id,
                   transactionDate,
@@ -168,7 +163,6 @@ export const TransactionsList = ({ data, info }) => {
                     <TdDel>
                       <DelButton
                         onClick={() => saveTransactionForDelete(id)}
-                        // onClick={() => dispatch(deleteTransaction(id))}
                       >
                         Delete
                       </DelButton>
