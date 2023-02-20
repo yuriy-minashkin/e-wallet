@@ -1,6 +1,7 @@
 import { Autocomplete, TextField } from '@mui/material';
 import React, { useMemo } from 'react';
-import { makeStyles } from '@material-ui/styles';
+
+import PropTypes from 'prop-types';
 
 const options = [
   { label: 'January', id: 1 },
@@ -16,14 +17,6 @@ const options = [
   { label: 'November', id: 11 },
   { label: 'December', id: 12 },
 ];
-const useStyles = makeStyles({
-  paper: {
-    background: 'rgba(255, 255, 255, 0.7)',
-    boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-    borderRadius: '20px',
-    backdropFilter: 'blur(25px)',
-  },
-});
 
 export const FilterMonth = ({ getMonth }) => {
   const currentMonth = useMemo(() => {
@@ -37,7 +30,6 @@ export const FilterMonth = ({ getMonth }) => {
     }
   };
 
-  const { paper } = useStyles();
   return (
     <Autocomplete
       sx={[
@@ -52,7 +44,7 @@ export const FilterMonth = ({ getMonth }) => {
             fontFamily: 'Circe',
           },
           '& .MuiAutocomplete-paper': {
-            border: '0px solid black',
+            background: 'rgba(255, 255, 255, 0.7)',
             boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
             borderRadius: '20px',
             backdropFilter: 'blur(25px)',
@@ -67,7 +59,7 @@ export const FilterMonth = ({ getMonth }) => {
           },
         },
       ]}
-      classes={{ paper }}
+
       id="filter-month-autocomplete"
       options={options}
       onChange={(_, selectedOption) => handleMonthChange(selectedOption)}
@@ -81,4 +73,8 @@ export const FilterMonth = ({ getMonth }) => {
       )}
     />
   );
+};
+
+FilterMonth.propTypes = {
+  getMonth: PropTypes.func.isRequired,
 };

@@ -1,6 +1,6 @@
 import { TextField, Autocomplete } from '@mui/material';
 import React, { useMemo, useCallback } from 'react';
-import { makeStyles } from '@material-ui/styles';
+import PropTypes from 'prop-types';
 
 const options = [
   { label: '2019', id: 1 },
@@ -10,24 +10,12 @@ const options = [
   { label: '2023', id: 5 },
 ];
 
-const useStyles = makeStyles({
-  paper: {
-    background: 'rgba(255, 255, 255, 0.7)',
-    boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-    borderRadius: '20px',
-    backdropFilter: 'blur(25px)',
-  },
-  listbox: {
-    borderRadius: '20px',
-  },
-});
-
 export const FilterYear = ({ getYear }) => {
   const currentYear = useMemo(
     () => new Date().toLocaleString('default', { year: 'numeric' }),
     []
   );
-  const classes = useStyles();
+
   const handleYearChange = useCallback(
     selectedOption => {
       if (selectedOption) {
@@ -48,15 +36,19 @@ export const FilterYear = ({ getYear }) => {
             borderRadius: 30,
           },
           '& .MuiInputBase-input': {},
-          '& .MuiAutocomplete-option': {},
+          '& .MuiAutocomplete-paper': {
+            background: 'rgba(255, 255, 255, 0.7)',
+            boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+            borderRadius: '20px',
+            backdropFilter: 'blur(25px)',
+          },
           '& .MuiAutocomplete-listbox': {
             borderRadius: '20px',
             fontFamily: 'Circe',
           },
         },
       ]}
-      classes={{ paper: classes.paper, listbox: classes.listbox }}
-      // disablePortal={false}
+
       id="filter-year-autocomplete"
       options={options}
       onChange={(_, selectedOption) => handleYearChange(selectedOption)}
@@ -73,4 +65,8 @@ export const FilterYear = ({ getYear }) => {
       )}
     />
   );
+};
+
+FilterYear.propTypes = {
+  getYear: PropTypes.func.isRequired,
 };
