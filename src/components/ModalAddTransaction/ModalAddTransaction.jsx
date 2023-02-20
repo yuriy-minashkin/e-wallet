@@ -27,6 +27,8 @@ import { useEffect } from 'react';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 // import { TextField } from '@mui/material';
 
@@ -65,7 +67,7 @@ export const ModalAddTransaction = () => {
       setComment(value);
     }
   };
-
+   
   const handleSubmit = evt => {
     evt.preventDefault();
 
@@ -87,6 +89,7 @@ export const ModalAddTransaction = () => {
     console.log(obj);
 
     dispatch(addTransaction(obj));
+
     reset();
   };
 
@@ -105,6 +108,7 @@ export const ModalAddTransaction = () => {
       evt.target.nodeName === 'svg'
     ) {
       dispatch(closeModalAddTransaction());
+      
     }
   };
 
