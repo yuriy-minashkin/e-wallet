@@ -17,8 +17,11 @@ import { Empty } from 'antd';
 import { Rings } from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/categories/categoriesSelectors';
+import PropTypes from 'prop-types';
+
 
 export const Table = ({ data, handlePeriod }) => {
+  console.log(data)
   const isDataPerPeriod =
     !data?.expenseSummary === 0 || data?.categoriesSummary?.length > 0;
 
@@ -88,4 +91,24 @@ export const Table = ({ data, handlePeriod }) => {
       </TotalBox>
     </Box>
   );
+};
+
+
+Table.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    expenseSummary: PropTypes.number.isRequired,
+    incomeSummary: PropTypes.number.isRequired,
+    month: PropTypes.number.isRequired,
+    year: PropTypes.number.isRequired,
+    periodTotal: PropTypes.number.isRequired,
+    categoriesSummary: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        total: PropTypes.number.isRequired,
+        color: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  })).isRequired,
+  handlePeriod: PropTypes.func.isRequired,
 };

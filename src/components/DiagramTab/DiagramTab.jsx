@@ -12,6 +12,7 @@ import {
   addColorToArray,
 } from './serviceFunctions';
 
+
 export const DiagramTab = () => {
   const dispatch = useDispatch();
   const summary = useSelector(selectSummary);
@@ -57,3 +58,4 @@ export const DiagramTab = () => {
     </Wrapper>
   );
 };
+

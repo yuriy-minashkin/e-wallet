@@ -5,7 +5,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { selectTotalBalance } from 'redux/transaction/transactionSelectors';
 import { formatBalance } from 'utils/serviceFunctions';
-
+import PropTypes from 'prop-types';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -19,6 +19,7 @@ const options = {
 };
 
 export const ChartDoughnut = React.memo(({ data }) => {
+  console.log('Donut', data)
   const userBalance = useSelector(selectTotalBalance);
   const chartRef = useRef(null);
 
@@ -66,3 +67,14 @@ export const ChartDoughnut = React.memo(({ data }) => {
     </StyledChartContainer>
   );
 });
+
+ChartDoughnut.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      total: PropTypes.number.isRequired,
+      color: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
