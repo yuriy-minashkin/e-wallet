@@ -70,11 +70,12 @@ export const ModalAddTransaction = () => {
   );
 
   const onClose = evt => {
+    console.log(evt.target);
     if (
       evt.code === 'Escape' ||
       evt.currentTarget === evt.target 
-      // ||
-      // evt.target.nodeName === 'svg'
+      ||
+      evt.target.nodeName === 'path'
     ) {
       dispatch(closeModalAddTransaction());
     }
@@ -88,7 +89,7 @@ export const ModalAddTransaction = () => {
   return (
     <Overlay onClick={onClose}>
       <Modal>
-        <ModalButtonClose type="button" onClick={onClose}>
+        <ModalButtonClose type="button" name="button" onClick={onClose}>
           <IconContext.Provider value={{ size: '3em' }}>
             <h3>
               {' '}
