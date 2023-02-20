@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-  // CheckboxLabel,
   InputLabel,
   Modal,
   ModalButtonCancel,
@@ -17,28 +16,19 @@ import {
   LabelText,
   CheckboxLabel,
   LabelTextExpense,
-  // Input,
-  // LabelText,
-  // LabelTextExpense,
+  ModalInputWrap,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
-// import { closeModalAddTransaction } from 'redux/global/globalSlice';
-// import { addTransaction } from 'redux/transaction/transactionOperations';
 import { selectCategories } from 'redux/categories/categoriesSelectors';
-// import { useEffect } from 'react';
-// import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-// import moment from 'moment';
-// import { TextField } from '@mui/material';
 import { IoCloseOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
-// import { ModalButtonCancel } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 
 export const UpDateModal = ({ trans, close }) => {
   const findcategorie = useSelector(selectCategories);
-
+  console.log('trans ', trans);
   const [categoryId, setCategoryId] = useState(trans.categoryId);
   const [amount, setAmount] = useState(Math.abs(trans.amount));
   const [transactionDate, setTransactionDate] = useState(trans.transactionDate);
@@ -48,16 +38,9 @@ export const UpDateModal = ({ trans, close }) => {
     trans.type === 'INCOME' ? false : true
   );
 
-  console.log('categoryId init', categoryId);
-
   const findcategoryId = name => {
-    // console.log('findcategorie', findcategorie);
-    // console.log('name', name);
-    // console.log('categoryId before', categoryId);
     const CategoryId = findcategorie.find(tran => tran.name === name);
     setCategoryId(CategoryId.id);
-  //   console.log('CategoryId', CategoryId);
-  //   console.log('categoryId in state', categoryId);
   };
 
   const dispatch = useDispatch();
@@ -72,7 +55,6 @@ export const UpDateModal = ({ trans, close }) => {
       comment,
       amount: !checked ? Number(amount) : -Number(Math.abs(amount)),
     };
-    console.log(newObject);
 
     dispatch(
       upDateTransaction({ transactionId: trans.id, dataInfo: newObject })
@@ -134,7 +116,9 @@ export const UpDateModal = ({ trans, close }) => {
               onChange={onChange}
               checked={checked}
               type="checkbox"
-              name="topic"
+              name="size"
+              disabled
+              // name="topic"
               id="topic-1"
             />
             <ModalWrap>
@@ -148,7 +132,9 @@ export const UpDateModal = ({ trans, close }) => {
 
             {checked && (
               <SelectLabel
-                name="categoryId"
+                name="size"
+                disabled
+                // name="categoryId"
                 onChange={handleChange}
                 value={categoryId}
               >
@@ -163,7 +149,7 @@ export const UpDateModal = ({ trans, close }) => {
               </SelectLabel>
             )}
 
-            <ModalWrap>
+            <ModalInputWrap>
               <InputLabel
                 value={amount}
                 onChange={handleChange}
@@ -171,12 +157,6 @@ export const UpDateModal = ({ trans, close }) => {
                 name="amount"
                 placeholder="0.00"
               />
-              {/* <Datetime
-                timeFormat={false}
-                name={transactionDate}
-                value={transactionDate}
-                renderInput={params => <InputLabel {...params} />}
-              /> */}
               <InputLabel
                 value={transactionDate}
                 onChange={handleChange}
@@ -184,7 +164,7 @@ export const UpDateModal = ({ trans, close }) => {
                 name="amount"
                 disabled
               />
-            </ModalWrap>
+            </ModalInputWrap>
             <InputLabelText
               value={comment}
               onChange={handleChange}
