@@ -4,8 +4,8 @@ export const Overlay = styled.div`
   position: fixed;
   top: 70px;
   left: 0;
-  width: 87%;
-  /* height: 100%; */
+  width: 87vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -298,10 +298,11 @@ export const ModalButtonCancel = styled.button`
 export const ModalButtonClose = styled.button`
 
 opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
+  /* pointer-events: none;
+  visibility: hidden; */
 
 @media screen and (min-width: 768px) {
+  opacity: 1;
   position: absolute;
   top: 20px;
   right: 20px;
