@@ -4,39 +4,43 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  max-width: 320px;
+  /* max-width: 320px; */
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(0, 0, 0, 0.25); */
+  background-color: rgba(0, 0, 0, 0.25);
   z-index: 1200;
+  
   @media screen and (min-width: 768px) {
     max-width: 100%;
     width: 100vw;
-     background-color: rgba(0, 0, 0, 0.25);
-    /* top: 0; */
+    background-color: rgba(0, 0, 0, 0.25);
+    top: 0;
+  left: 0;
   }
 `;
 
 export const Modal = styled.div`
   max-width: 320px;
   width: 100%;
-  top: 18%;
+  top: 45px;
     /* left: 50%; */
 
     /* width: 320px; */
-    /* height: 600px; */
+    /* height: 830px; */
   padding: 20px 11px 37px 9px;
   background-color: var(--form-background-color);
   /* border-radius: 20px; */
 
   display: flex;
   flex-direction: column-reverse;
-  align-items: flex-start;
-  position: relative;
+  align-items: center;
+  
+  position: fixed;
   z-index: 1200;
+
   
 
   @media screen and (min-width: 768px) {
@@ -46,6 +50,8 @@ export const Modal = styled.div`
   padding: 40px 73px 60px 73px;
   border-radius: 20px;
   flex-direction: column;
+  align-items: flex-start;
+  position: relative;
   top: 0;
   /* top: 50%;
     left: 50%; */
@@ -225,9 +231,11 @@ export const InputLabel = styled.input`
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
   margin-right: 32px;
+  
   @media screen and (min-width: 768px) {
     width: 181px;
     margin-right: 32px;
+    margin-bottom: 0;
   }
 
   &:focus-visible {
@@ -243,9 +251,11 @@ export const InputData = styled.input`
   border: none;
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
+  margin-top: 42px;
   /* margin-right: 32px; */
   @media screen and (min-width: 768px) {
     width: 181px;
+    margin-top: 0;
     /* margin-right: 32px; */
   }
 
@@ -274,17 +284,20 @@ export const InputLabelText = styled.input`
 
 export const Icon = styled.svg`
     position: relative;
-    top: -6px;
+    top: -26px;
   width: 24px;
-  left: -43px;
+  left: 60px;
   height: 24px;
+
+    @media screen and (min-width: 768px) {
+      top: -6px;
+  left: -43px;
+  }
   :hover {
   transform: scale(1.10);
   cursor: pointer;
   }
 `;
-
-
 
 export const ModalButtonWrap = styled.div`
   display: flex;

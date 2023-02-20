@@ -139,7 +139,7 @@ export const ModalAddTransaction = () => {
             isSubmitting,
             setFieldValue,
           }) => (
-            <Form autoComplete="off" onSubmit={handleSubmit}>
+            <Form   onSubmit={handleSubmit}>
               <ModalTitle> Add transaction</ModalTitle>
 
               <Input

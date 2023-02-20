@@ -1,6 +1,5 @@
 import {
   ModalButtonClose,
-  Overlay,
 } from 'components/ModalAddTransaction/ModalAddTransaction.styled';
 import { IconContext } from 'react-icons';
 import { IoCloseOutline } from 'react-icons/io5';
@@ -14,6 +13,7 @@ import {
   ModalConfirmationText,
   ModalConfirmationTitle,
   ModalContainer,
+  Overlay,
 } from './ModalConfirmation.styled';
 
 export const ModalConfirmation = ({transId}) => {
