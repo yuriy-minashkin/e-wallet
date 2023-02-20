@@ -1,5 +1,6 @@
 import { Autocomplete, TextField } from '@mui/material';
 import React, { useMemo } from 'react';
+import { makeStyles } from '@material-ui/styles';
 
 const options = [
   { label: 'January', id: 1 },
@@ -15,6 +16,14 @@ const options = [
   { label: 'November', id: 11 },
   { label: 'December', id: 12 },
 ];
+const useStyles = makeStyles({
+  paper: {
+    background: 'rgba(255, 255, 255, 0.7)',
+    boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+    borderRadius: '20px',
+    backdropFilter: 'blur(25px)',
+  },
+});
 
 export const FilterMonth = ({ getMonth }) => {
   const currentMonth = useMemo(() => {
@@ -28,12 +37,13 @@ export const FilterMonth = ({ getMonth }) => {
     }
   };
 
+  const { paper } = useStyles();
   return (
     <Autocomplete
       sx={[
         { width: 181 },
         { height: 50 },
-{ borderRadius: 30 },
+        { borderRadius: 30 },
         {
           '& .MuiOutlinedInput-root': {
             borderRadius: 30,
@@ -41,8 +51,24 @@ export const FilterMonth = ({ getMonth }) => {
           '& .MuiInputBase-input': {
             fontFamily: 'Circe',
           },
+          '& .MuiAutocomplete-paper': {
+            border: '0px solid black',
+            boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+            borderRadius: '20px',
+            backdropFilter: 'blur(25px)',
+          },
+          '& .MuiAutocomplete-option': {
+            fontFamily: 'Circe',
+            borderRadius: '30px',
+          },
+          '& .MuiAutocomplete-listbox': {
+            borderRadius: '20px',
+            fontFamily: 'Circe',
+          },
         },
       ]}
+      classes={{ paper }}
+      id="filter-month-autocomplete"
       options={options}
       onChange={(_, selectedOption) => handleMonthChange(selectedOption)}
       isOptionEqualToValue={(option, value) => option.id === value.id}

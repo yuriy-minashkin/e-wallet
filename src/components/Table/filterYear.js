@@ -1,5 +1,6 @@
 import { TextField, Autocomplete } from '@mui/material';
 import React, { useMemo, useCallback } from 'react';
+import { makeStyles } from '@material-ui/styles';
 
 const options = [
   { label: '2019', id: 1 },
@@ -9,17 +10,28 @@ const options = [
   { label: '2023', id: 5 },
 ];
 
+const useStyles = makeStyles({
+  paper: {
+    background: 'rgba(255, 255, 255, 0.7)',
+    boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+    borderRadius: '20px',
+    backdropFilter: 'blur(25px)',
+  },
+  listbox: {
+    borderRadius: '20px',
+  },
+});
+
 export const FilterYear = ({ getYear }) => {
   const currentYear = useMemo(
     () => new Date().toLocaleString('default', { year: 'numeric' }),
     []
   );
-
+  const classes = useStyles();
   const handleYearChange = useCallback(
     selectedOption => {
       if (selectedOption) {
-        const selectedYear = selectedOption.label;
-        getYear(selectedYear);
+        getYear(selectedOption.label);
       }
     },
     [getYear]
@@ -30,15 +42,22 @@ export const FilterYear = ({ getYear }) => {
       sx={[
         { width: 181 },
         { height: 50 },
-
+        { borderRadius: 30 },
         {
           '& .MuiOutlinedInput-root': {
             borderRadius: 30,
           },
+          '& .MuiInputBase-input': {},
+          '& .MuiAutocomplete-option': {},
+          '& .MuiAutocomplete-listbox': {
+            borderRadius: '20px',
+            fontFamily: 'Circe',
+          },
         },
       ]}
-      disablePortal
-      id="combo-box-demo"
+      classes={{ paper: classes.paper, listbox: classes.listbox }}
+      // disablePortal={false}
+      id="filter-year-autocomplete"
       options={options}
       onChange={(_, selectedOption) => handleYearChange(selectedOption)}
       isOptionEqualToValue={(option, value) => option.id === value.id}
