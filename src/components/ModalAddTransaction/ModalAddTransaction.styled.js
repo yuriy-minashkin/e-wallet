@@ -134,6 +134,7 @@ export const CheckboxLabel = styled.label`
     position: absolute;
     left: 115px;
     top: 109px;
+    
     @media screen and (min-width: 768px) {
       left: 219px;
     top: 139px;
@@ -151,9 +152,13 @@ export const CheckboxLabel = styled.label`
     font-weight: 500;
     line-height: 2.8;
     padding-top: 8px;
+    cursor: pointer;
+    transform: scale(1.10);
 
     transform: ${props => props.checked && 'translate(48px)'};
     background-color: ${props => (props.checked ? '#FF6596' : '#24CCA7')};
+    
+    
   }
 `;
 
@@ -273,6 +278,10 @@ export const Icon = styled.svg`
   width: 24px;
   left: -43px;
   height: 24px;
+  :hover {
+  transform: scale(1.10);
+  cursor: pointer;
+  }
 `;
 
 
