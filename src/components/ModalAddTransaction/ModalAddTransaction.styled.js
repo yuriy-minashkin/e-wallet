@@ -2,26 +2,29 @@ import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: fixed;
-  top: 70px;
+  top: 0;
   left: 0;
-  width: 87%;
-  /* height: 100%; */
+  max-width: 320px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.25);
+  /* background-color: rgba(0, 0, 0, 0.25); */
   z-index: 1200;
   @media screen and (min-width: 768px) {
-    width: 95%;
-    top: 0;
+    max-width: 100%;
+    width: 100vw;
+     background-color: rgba(0, 0, 0, 0.25);
+    /* top: 0; */
   }
 `;
 
 export const Modal = styled.div`
   max-width: 320px;
   width: 100%;
-  /* top: 50%;
-    left: 50%; */
+  top: 18%;
+    /* left: 50%; */
 
     /* width: 320px; */
     /* height: 600px; */
@@ -34,6 +37,7 @@ export const Modal = styled.div`
   align-items: flex-start;
   position: relative;
   z-index: 1200;
+  
 
   @media screen and (min-width: 768px) {
   max-width: 540px;
@@ -42,12 +46,10 @@ export const Modal = styled.div`
   padding: 40px 73px 64px 40px;
   border-radius: 20px;
   flex-direction: column;
+  top: 0;
+  /* top: 50%;
+    left: 50%; */
   }
-  @media screen and (min-width: 1280px) {
-    /* padding-top: 20px;
-    padding-bottom: 4px; */
-  }
-
 `;
 
 export const ModalTitle = styled.p`
@@ -133,7 +135,7 @@ export const CheckboxLabel = styled.label`
     line-height: 2.8;
     padding-top: 8px;
 
-    transform: ${props => props.checked && 'translate(42px)'};
+    transform: ${props => props.checked && 'translate(48px)'};
     background-color: ${props => (props.checked ? '#FF6596' : '#24CCA7')};
   }
 `;
@@ -298,10 +300,11 @@ export const ModalButtonCancel = styled.button`
 export const ModalButtonClose = styled.button`
 
 opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
+  /* pointer-events: none;
+  visibility: hidden; */
 
 @media screen and (min-width: 768px) {
+  opacity: 1;
   position: absolute;
   top: 20px;
   right: 20px;

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
-  max-width: 540px;
-  width: 100%;
+  max-width: 320px;
+  width: 320px;
   /* height: 580px; */
-  padding: 40px;
+  /* padding: 40px; */
   background-color: #ffffff;
-  border-radius: 20px;
+  /* border-radius: 20px; */
+  padding: 20px;
 
   display: flex;
   flex-direction: column;
@@ -14,35 +15,54 @@ export const ModalContainer = styled.div`
   /* gap: 40px; */
   position: relative;
   z-index: 1200;
+  @media screen and (min-width: 768px) {
+  max-width: 540px;
+  width: 100%;
+  /* height: 580px; */
+  padding: 40px 73px 64px 40px;
+  border-radius: 20px;
+  flex-direction: column;
+  }
 `;
 
 export const ModalConfirmationTitle = styled.p`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
-  font-size: 30px;
-  line-height: 45px;
+  font-size: 24px;
+line-height: 36px;
   display: flex;
   align-items: center;
   text-align: center;
   margin-bottom: 16px;
   color: #000000;
+  @media screen and (min-width: 768px) {
+  font-size: 30px;
+  line-height: 45px;
+  }
 `;
 
 export const ModalConfirmationText = styled.p`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 42px;
   color: #000000;
+  @media screen and (min-width: 768px) {
+  font-size: 18px;
+
+  }
 `;
 
 export const ModalButtonWrapper = styled.div`
   display: flex;
-  gap: 80px;
+  gap: 8px;
   align-items: center;
   justify-content: center;
+  @media screen and (min-width: 768px) {
+    gap: 60px;
+  }
 `;
 
 export const ModalButtonYes = styled.button`
@@ -65,7 +85,7 @@ export const ModalButtonYes = styled.button`
 
 export const ModalBtnCancel = styled.button`
   
-  padding: 10px 55px;
+  padding: 10px 15px;
   border: none;
   background-color: #ffffff;
   border: 1px solid #4a56e2;
@@ -74,10 +94,14 @@ export const ModalBtnCancel = styled.button`
   font-family: 'Circe';
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 27px;
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #4a56e2;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    padding: 10px 55px;
+  }
 `;
