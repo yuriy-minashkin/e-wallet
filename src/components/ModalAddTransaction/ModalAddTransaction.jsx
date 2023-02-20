@@ -16,6 +16,8 @@ import {
   Input,
   LabelText,
   LabelTextExpense,
+  ModalInputWrap,
+  Icon,
 } from './ModalAddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
@@ -32,6 +34,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 
 import { IconContext } from 'react-icons';
 import { fetchCategories } from 'redux/categories/categoriesOperations';
+import Icons from 'images/icons.svg';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -154,24 +157,34 @@ export const ModalAddTransaction = () => {
             </SelectLabel>
           )}
 
-          <ModalWrap>
-            <InputLabel
-              value={amount}
-              onChange={handleChange}
-              type="text"
-              name="amount"
-              placeholder="0.00"
-            />
+          <ModalInputWrap>
+            <div>
+              <InputLabel
+                value={amount}
+                onChange={handleChange}
+                type="number"
+                name="amount"
+                required
+                // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                // title="Amount must be digits and can contain spaces, dashes, parentheses"
+                placeholder="0.00"
+              />
+            </div>
+
             <Datetime
               timeFormat={false}
               name={transactionDate}
               value={transactionDate}
+              maxDate={new Date()}
               onChange={newValue => {
                 setTransactionDate(moment(newValue).toISOString());
               }}
               renderInput={params => <InputLabel {...params} />}
             />
-          </ModalWrap>
+            <Icon>
+              <use href={`${Icons}#icon-calendar`} />
+            </Icon>
+          </ModalInputWrap>
           <InputLabelText
             value={comment}
             onChange={handleChange}

@@ -17,6 +17,7 @@ import {
   LabelText,
   CheckboxLabel,
   LabelTextExpense,
+  ModalInputWrap,
   // Input,
   // LabelText,
   // LabelTextExpense,
@@ -163,7 +164,7 @@ export const UpDateModal = ({ trans, close }) => {
               </SelectLabel>
             )}
 
-            <ModalWrap>
+            <ModalInputWrap>
               <InputLabel
                 value={amount}
                 onChange={handleChange}
@@ -184,7 +185,7 @@ export const UpDateModal = ({ trans, close }) => {
                 name="amount"
                 disabled
               />
-            </ModalWrap>
+            </ModalInputWrap>
             <InputLabelText
               value={comment}
               onChange={handleChange}
