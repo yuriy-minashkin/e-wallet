@@ -25,7 +25,7 @@ export const DashboardPage = () => {
           <SidebarWrapper>
             <NavBalanceWrapper>
               <Navigation />
-              <Balance />
+              {isTablet && <Balance />}
             </NavBalanceWrapper>
             {isTablet && <Currency />}
           </SidebarWrapper>

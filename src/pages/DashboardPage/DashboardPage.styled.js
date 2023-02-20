@@ -86,7 +86,7 @@ export const NavBalanceWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 15px 0 32px;
+  padding: 15px 0 0;
   @media screen and (min-width: 768px) {
     gap: 32px;
     padding: 0;

@@ -4,7 +4,7 @@ import wavePic from './wave.png';
 export const Container = styled.div`
   border-radius: 30px;
   margin: 0 auto;
-  /* margin-top: 32px; */
+  margin-top: 31px;
 
   width: 100%;
   min-height: 174px;
@@ -23,6 +23,7 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 768px) {
+    margin: 0;
     width: 336px;
     height: 182px;
     background: url(${wavePic}),
