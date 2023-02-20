@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: fixed;
-  top: 70px;
+  top: 0;
   left: 0;
-  width: 87vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -12,16 +12,16 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
   z-index: 1200;
   @media screen and (min-width: 768px) {
-    width: 95%;
-    top: 0;
+    width: 100vw;
+    /* top: 0; */
   }
 `;
 
 export const Modal = styled.div`
   max-width: 320px;
   width: 100%;
-  /* top: 50%;
-    left: 50%; */
+  top: 18%;
+    /* left: 50%; */
 
     /* width: 320px; */
     /* height: 600px; */
@@ -34,6 +34,7 @@ export const Modal = styled.div`
   align-items: flex-start;
   position: relative;
   z-index: 1200;
+  
 
   @media screen and (min-width: 768px) {
   max-width: 540px;
@@ -42,12 +43,9 @@ export const Modal = styled.div`
   padding: 40px 73px 64px 40px;
   border-radius: 20px;
   flex-direction: column;
+  /* top: 50%;
+    left: 50%; */
   }
-  @media screen and (min-width: 1280px) {
-    /* padding-top: 20px;
-    padding-bottom: 4px; */
-  }
-
 `;
 
 export const ModalTitle = styled.p`
@@ -133,7 +131,7 @@ export const CheckboxLabel = styled.label`
     line-height: 2.8;
     padding-top: 8px;
 
-    transform: ${props => props.checked && 'translate(42px)'};
+    transform: ${props => props.checked && 'translate(48px)'};
     background-color: ${props => (props.checked ? '#FF6596' : '#24CCA7')};
   }
 `;
