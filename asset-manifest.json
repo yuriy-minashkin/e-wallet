@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/e-wallet/static/css/main.04c8c17a.css",
-    "main.js": "/e-wallet/static/js/main.2b6d3fc9.js",
+    "main.css": "/e-wallet/static/css/main.84f8e4f7.css",
+    "main.js": "/e-wallet/static/js/main.ac1ab934.js",
     "static/css/691.20b127ae.chunk.css": "/e-wallet/static/css/691.20b127ae.chunk.css",
     "static/js/691.7abae8f6.chunk.js": "/e-wallet/static/js/691.7abae8f6.chunk.js",
-    "static/js/231.cddb6ece.chunk.js": "/e-wallet/static/js/231.cddb6ece.chunk.js",
+    "static/js/231.be2d9385.chunk.js": "/e-wallet/static/js/231.be2d9385.chunk.js",
     "static/js/285.7f82ca03.chunk.js": "/e-wallet/static/js/285.7f82ca03.chunk.js",
     "static/js/413.b51095a0.chunk.js": "/e-wallet/static/js/413.b51095a0.chunk.js",
     "static/media/Circe Bold.otf": "/e-wallet/static/media/Circe Bold.f7a8e82475783e7e15d0.otf",
@@ -27,16 +27,16 @@
     "static/media/Circe Regular.woff": "/e-wallet/static/media/Circe Regular.e865a57a9dcbac40f142.woff",
     "static/media/icons.svg": "/e-wallet/static/media/icons.7e32b600ccedfd034a17e735e96a8d4b.svg",
     "index.html": "/e-wallet/index.html",
-    "main.04c8c17a.css.map": "/e-wallet/static/css/main.04c8c17a.css.map",
-    "main.2b6d3fc9.js.map": "/e-wallet/static/js/main.2b6d3fc9.js.map",
+    "main.84f8e4f7.css.map": "/e-wallet/static/css/main.84f8e4f7.css.map",
+    "main.ac1ab934.js.map": "/e-wallet/static/js/main.ac1ab934.js.map",
     "691.20b127ae.chunk.css.map": "/e-wallet/static/css/691.20b127ae.chunk.css.map",
     "691.7abae8f6.chunk.js.map": "/e-wallet/static/js/691.7abae8f6.chunk.js.map",
-    "231.cddb6ece.chunk.js.map": "/e-wallet/static/js/231.cddb6ece.chunk.js.map",
+    "231.be2d9385.chunk.js.map": "/e-wallet/static/js/231.be2d9385.chunk.js.map",
     "285.7f82ca03.chunk.js.map": "/e-wallet/static/js/285.7f82ca03.chunk.js.map",
     "413.b51095a0.chunk.js.map": "/e-wallet/static/js/413.b51095a0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.04c8c17a.css",
-    "static/js/main.2b6d3fc9.js"
+    "static/css/main.84f8e4f7.css",
+    "static/js/main.ac1ab934.js"
   ]
 }
