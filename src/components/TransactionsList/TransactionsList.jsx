@@ -35,6 +35,7 @@ import {
   MobSum,
 } from './TransactionsList.styled';
 import { normalizedDate } from './normalizedDate';
+import PropTypes from 'prop-types';
 
 export const TransactionsList = ({ data, info }) => {
   const isTablet = useMedia('(min-width: 768px)');
@@ -176,4 +177,19 @@ export const TransactionsList = ({ data, info }) => {
       )}
     </>
   );
+};
+
+
+TransactionsList.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      transactionDate: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
+      categoryId: PropTypes.string.isRequired,
+      comment: PropTypes.string.isRequired,
+      amount: PropTypes.number.isRequired,
+    }).isRequired
+  ),
+  info: PropTypes.func,
 };
