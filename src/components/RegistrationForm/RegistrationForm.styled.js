@@ -173,8 +173,3 @@ export const ErrorText = styled.span`
   margin-top: 7px;
   color: red;
 `;
-
-export const PasswordMeter = styled.div`
-border: 3px solid #E5F1EF;
-margin-top: 1px;
-`
