@@ -4,15 +4,18 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  max-width: 320px;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.25);
+  /* background-color: rgba(0, 0, 0, 0.25); */
   z-index: 1200;
   @media screen and (min-width: 768px) {
+    max-width: 100%;
     width: 100vw;
+     background-color: rgba(0, 0, 0, 0.25);
     /* top: 0; */
   }
 `;
@@ -43,6 +46,7 @@ export const Modal = styled.div`
   padding: 40px 73px 64px 40px;
   border-radius: 20px;
   flex-direction: column;
+  top: 0;
   /* top: 50%;
     left: 50%; */
   }
