@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: fixed;
-  top: 0;
+  top: 70px;
   left: 0;
   width: 87%;
   /* height: 100%; */
@@ -13,23 +13,24 @@ export const Overlay = styled.div`
   z-index: 1200;
   @media screen and (min-width: 768px) {
     width: 95%;
+    top: 0;
   }
 `;
 
 export const Modal = styled.div`
   max-width: 320px;
-  width: 95%;
+  width: 100%;
   /* top: 50%;
     left: 50%; */
 
-    width: 320px;
+    /* width: 320px; */
     /* height: 600px; */
   padding: 20px 11px 37px 9px;
   background-color: var(--form-background-color);
-  border-radius: 20px;
+  /* border-radius: 20px; */
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: flex-start;
   position: relative;
   z-index: 1200;
@@ -39,6 +40,8 @@ export const Modal = styled.div`
   width: 100%;
   height: 580px;
   padding: 40px 73px 64px 40px;
+  border-radius: 20px;
+  flex-direction: column;
   }
   @media screen and (min-width: 1280px) {
     /* padding-top: 20px;
