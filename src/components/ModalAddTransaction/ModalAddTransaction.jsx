@@ -92,7 +92,9 @@ export const ModalAddTransaction = () => {
   return (
     <Overlay onClick={onOverlayClose}>
       <Modal>
+
         <ModalButtonClose type="button" onClick={()=> {dispatch(closeModalAddTransaction());}}>
+
           <IconContext.Provider value={{ size: '3em' }}>
             <IoCloseOutline />
           </IconContext.Provider>

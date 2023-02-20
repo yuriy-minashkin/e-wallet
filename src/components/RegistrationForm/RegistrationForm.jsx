@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { register } from '../../redux/auth/authOperations';
 import { Formik } from 'formik';
@@ -16,12 +15,11 @@ import {
   ErrorText,
   ButtonLogIn,
   LogoContainer,
-  PasswordMeter,
 } from './RegistrationForm.styled';
 import Icons from 'images/icons.svg';
 import { Logo } from 'components/Logo/Logo';
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -70,35 +68,7 @@ export const RegistrationForm = () => {
             email: values.email,
             password: values.password,
           })
-        )
-          .unwrap()
-          .then(() => {
-            toast.success(
-              `Great, we've created an account for ${values.username}`,
-              {
-                position: 'bottom-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'light',
-              }
-            );
-          })
-          .catch(() => {
-            toast.error('Registration failed, please check your details', {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-            });
-          });
+        );
         resetForm();
       }}
       validationSchema={validationSchema}
@@ -163,7 +133,6 @@ export const RegistrationForm = () => {
               <InputIcon width="16" height="21">
                 <use href={`${Icons}#icon-lock`} />
               </InputIcon>
-              <PasswordMeter></PasswordMeter>
             </RegistrationLabel>
             <ErrorText>
               {errors.passwordConfirmation &&
@@ -186,11 +155,7 @@ export const RegistrationForm = () => {
             </RegistrationLabel>
             <ErrorText>{errors.name && touched.name && errors.name}</ErrorText>
             <ButtonContainer>
-              <ButtonRegister
-                type="submit"
-                disabled={isSubmitting}
-                onClick={toast}
-              >
+              <ButtonRegister type="submit" disabled={isSubmitting}>
                 {'Register'.toUpperCase()}
               </ButtonRegister>
               <Link to="/login">
