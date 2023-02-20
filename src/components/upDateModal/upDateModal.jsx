@@ -16,6 +16,7 @@ import {
   LabelText,
   CheckboxLabel,
   LabelTextExpense,
+  ModalInputWrap,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategories } from 'redux/categories/categoriesSelectors';
