@@ -6,7 +6,6 @@ import {
   ModalButtonCancel,
   ModalButtonAdd,
   ModalButtonWrap,
-  ModalForm,
   ModalWrap,
   Overlay,
   InputLabelText,
@@ -16,8 +15,11 @@ import {
   Input,
   LabelText,
   LabelTextExpense,
-  ModalInputWrap,
+  Form,
+  Span,
   Icon,
+  ModalInputWrap,
+  InputData,
 } from './ModalAddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalAddTransaction } from 'redux/global/globalSlice';
@@ -27,26 +29,34 @@ import { useEffect } from 'react';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
-
-// import { TextField } from '@mui/material';
-
 import { IoCloseOutline } from 'react-icons/io5';
-
 import { IconContext } from 'react-icons';
 import { fetchCategories } from 'redux/categories/categoriesOperations';
+import { Formik, ErrorMessage } from 'formik';
+import { object, string, number, date } from 'yup';
 import Icons from 'images/icons.svg';
+
+const validationSchema = object().shape({
+  transactionDate: date().required('Data is a required field'),
+  categoryId: string(),
+  amount: number().required('Amount is a required field'),
+  comment: string(),
+});
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
-  const currentDate = new Date(Date.now());
-
-  const [transactionDate, setTransactionDate] = useState(currentDate);
-  const [, setType] = useState('');
-  const [categoryId, setCategoryId] = useState('');
-  const [comment, setComment] = useState('');
-  const [amount, setAmount] = useState('');
+  const [transactionDate, setTransactionDate] = useState(new Date(Date.now()));
   const [checked, setChecked] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    setIsOpen(!isOpen);
+  };
+
+
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -55,54 +65,16 @@ export const ModalAddTransaction = () => {
     setChecked(e.target.checked);
   };
 
-  const handleChange = evt => {
-    const { value, name } = evt.target;
-    if (name === 'categoryId') {
-      setCategoryId(value);
-    } else if (name === 'amount') {
-      setAmount(value);
-    } else if (name === 'comment') {
-      setComment(value);
-    }
-  };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-
-    // const date = new Date(
-    //   transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
-    // );
-
-    const currentCategorie = categories.find(cat => cat.name === categoryId);
-
-    const obj = {
-      transactionDate,
-      type: !checked ? 'INCOME' : 'EXPENSE',
-      categoryId: !checked
-        ? categories[10].id
-        : (currentCategorie && currentCategorie.id) || categories[0].id,
-      comment,
-      amount: !checked ? Number(amount) : -Number(amount),
-    };
-    console.log(obj);
-
-    dispatch(addTransaction(obj));
-    reset();
-  };
-
-  const reset = () => {
-    setTransactionDate('');
-    setType('');
-    setCategoryId('');
-    setComment('');
-    setAmount('');
-  };
+  const date = new Date(
+    transactionDate.toString().replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1')
+  );
 
   const onClose = evt => {
     if (
       evt.code === 'Escape' ||
-      evt.currentTarget === evt.target ||
-      evt.target.nodeName === 'svg'
+      evt.currentTarget === evt.target 
+      // ||
+      // evt.target.nodeName === 'svg'
     ) {
       dispatch(closeModalAddTransaction());
     }
@@ -111,7 +83,8 @@ export const ModalAddTransaction = () => {
   window.addEventListener('keydown', onClose);
 
   const categoriesFilter = categories.filter(cat => cat.name !== 'Income');
-
+  const renderError = message => <Span>{message}</Span>;
+  
   return (
     <Overlay onClick={onClose}>
       <Modal>
@@ -123,82 +96,143 @@ export const ModalAddTransaction = () => {
             </h3>
           </IconContext.Provider>
         </ModalButtonClose>
-        <ModalForm onSubmit={handleSubmit}>
-          <ModalTitle> Add transaction</ModalTitle>
+        <Formik
+          initialValues={{
+            transactionDate,
+            categoryId: '',
+            amount: '',
+            comment: '',
+            type: '',
+          }}
+          onSubmit={values => {
+            const currentCategorie = categories.find(
+              cat => cat.name === values.categoryId
+            );
 
-          <Input
-            onChange={onChange}
-            checked={checked}
-            type="checkbox"
-            name="topic"
-            id="topic-1"
-          />
+            dispatch(
+              addTransaction({
+                transactionDate,
+                type: !checked ? 'INCOME' : 'EXPENSE',
+                categoryId: !checked
+                  ? categories[10].id
+                  : (currentCategorie && currentCategorie.id) ||
+                    categories[0].id,
+                comment: values.comment,
+                amount: !checked
+                  ? Number(values.amount)
+                  : -Number(values.amount),
+              })
+            );
+          }}
+          validationSchema={validationSchema}
+        >
+          {({
+            errors,
+            touched,
+            values,
+            handleSubmit,
+            handleBlur,
+            handleChange,
+            isSubmitting,
+            setFieldValue,
+          }) => (
+            <Form autoComplete="off" onSubmit={handleSubmit}>
+              <ModalTitle> Add transaction</ModalTitle>
 
-          <ModalWrap>
-            <LabelText checked={checked}>Income</LabelText>
-            <CheckboxLabel htmlFor="topic-1" checked={checked}></CheckboxLabel>
-            <LabelTextExpense checked={checked}>Expense</LabelTextExpense>
-          </ModalWrap>
-
-          {checked && (
-            <SelectLabel
-              name="categoryId"
-              onChange={handleChange}
-              value={categoryId}
-            >
-              {categories &&
-                categoriesFilter.map(({ id, name }) => {
-                  return (
-                    <option key={id} id={id}>
-                      {name}
-                    </option>
-                  );
-                })}
-            </SelectLabel>
-          )}
-
-          <ModalInputWrap>
-            <div>
-              <InputLabel
-                value={amount}
-                onChange={handleChange}
-                type="number"
-                name="amount"
-                required
-                // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                // title="Amount must be digits and can contain spaces, dashes, parentheses"
-                placeholder="0.00"
+              <Input
+                onChange={onChange}
+                checked={checked}
+                type="checkbox"
+                name="checkbox"
+                id="topic-1"
+                onBlur={handleBlur}
               />
-            </div>
 
-            <Datetime
-              timeFormat={false}
-              name={transactionDate}
-              value={transactionDate}
-              maxDate={new Date()}
-              onChange={newValue => {
-                setTransactionDate(moment(newValue).toISOString());
-              }}
-              renderInput={params => <InputLabel {...params} />}
-            />
-            <Icon>
-              <use href={`${Icons}#icon-calendar`} />
-            </Icon>
-          </ModalInputWrap>
-          <InputLabelText
-            value={comment}
-            onChange={handleChange}
-            name="comment"
-            placeholder="Comment"
-          />
+              <ModalWrap>
+                <LabelText checked={checked}>Income</LabelText>
+                <CheckboxLabel
+                  htmlFor="topic-1"
+                  checked={checked}
+                ></CheckboxLabel>
+                <LabelTextExpense checked={checked}>Expense</LabelTextExpense>
+              </ModalWrap>
 
-          <ModalButtonWrap>
-            <ModalButtonAdd type="submit">Add</ModalButtonAdd>
-            <ModalButtonCancel type="button" onClick={onClose}>
-              Cancel
-            </ModalButtonCancel>
-          </ModalButtonWrap>
-        </ModalForm>
+              {checked && (
+                <SelectLabel
+                  name="categoryId"
+                  onChange={handleChange}
+                  value={values.categoryId}
+                  onBlur={handleBlur}
+
+                >
+                  {categories &&
+                    categoriesFilter.map(({ id, name }) => {
+                      return (
+                        <option key={id} id={id}>
+                          {name}
+                        </option>
+                      );
+                    })}
+                </SelectLabel>
+              )}
+
+              <ModalInputWrap>
+                <div>
+                  <InputLabel
+                    value={values.amount}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    type="text"
+                    name="amount"
+                    placeholder="0.00"
+
+                    // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                    // title="Amount must be digits and can contain spaces, dashes, parentheses"
+                  />
+                  <ErrorMessage name="amount" render={renderError} />
+                </div>
+
+                <Datetime
+                 open={isOpen}
+                  timeFormat={false}
+                  name={transactionDate}
+                  value={transactionDate}
+                  id="date"
+                  type="date"
+                  input={true}
+                  selected={transactionDate}
+                  maxDate={new Date()}
+                  onBlur={handleBlur}
+                  // dateFormat = "dd-MM-yyyy"
+                  onChange={newValue => {
+                    setTransactionDate(moment(newValue).toISOString());
+                  }}
+                  renderInput={params => <InputData {...params} />}
+                />
+                <Icon onClick={handleClick}>
+                  <use href={`${Icons}#icon-calendar`} />
+                </Icon>
+                
+              </ModalInputWrap>
+              <InputLabelText
+                value={values.comment}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="comment"
+                placeholder="Comment"
+              />
+
+              <ModalButtonWrap>
+                <ModalButtonAdd type="submit" disabled={isSubmitting}>
+                  Add
+                </ModalButtonAdd>
+                <ModalButtonCancel type="button" onClick={onClose}>
+                  Cancel
+                </ModalButtonCancel>
+              </ModalButtonWrap>
+            </Form>
+          )}
+        </Formik>
       </Modal>
     </Overlay>
   );

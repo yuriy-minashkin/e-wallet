@@ -42,8 +42,8 @@ export const Modal = styled.div`
   @media screen and (min-width: 768px) {
   max-width: 540px;
   width: 100%;
-  height: 580px;
-  padding: 40px 73px 64px 40px;
+  /* height: 603px; */
+  padding: 40px 73px 60px 73px;
   border-radius: 20px;
   flex-direction: column;
   top: 0;
@@ -51,6 +51,8 @@ export const Modal = styled.div`
     left: 50%; */
   }
 `;
+
+
 
 export const ModalTitle = styled.p`
 margin-bottom: 42px;
@@ -71,6 +73,21 @@ display: flex;
 `;
 
 export const ModalForm = styled.form`
+max-width: 320px;
+  /* width: 320px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0;
+  @media screen and (min-width: 768px) {
+    max-width: 540px;
+    width: 100%;
+  }
+  
+`;
+
+export const Form = styled.form`
 max-width: 320px;
   /* width: 320px; */
   display: flex;
@@ -118,7 +135,7 @@ export const CheckboxLabel = styled.label`
     left: 115px;
     top: 109px;
     @media screen and (min-width: 768px) {
-      left: 195px;
+      left: 219px;
     top: 139px;
   }
     width: 44px;
@@ -165,7 +182,7 @@ export const ModalWrap = styled.div`
 
 export const ModalInputWrap = styled.div`
   display: flex;
-  gap: 32px;
+  /* gap: 32px; */
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -173,6 +190,7 @@ export const ModalInputWrap = styled.div`
   margin-bottom: 44px;
   @media screen and (min-width: 768px) {
     flex-direction: row;
+    align-items: flex-start;
   }
 `;
 
@@ -201,10 +219,33 @@ export const InputLabel = styled.input`
   border: none;
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
+  margin-right: 32px;
   @media screen and (min-width: 768px) {
-    width: 190px;
+    width: 181px;
+    margin-right: 32px;
   }
+
   &:focus-visible {
+    
+    outline: none;
+    border-bottom: 1px solid var(--btn-teal-color);
+    background-color: var(--text-white-color);
+  }
+`;
+
+export const InputData = styled.input`
+  width: 280px;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  /* margin-right: 32px; */
+  @media screen and (min-width: 768px) {
+    width: 181px;
+    /* margin-right: 32px; */
+  }
+
+  &:focus-visible {
+    
     outline: none;
     border-bottom: 1px solid var(--btn-teal-color);
     background-color: var(--text-white-color);
@@ -230,7 +271,7 @@ export const Icon = styled.svg`
     position: relative;
     top: -6px;
   width: 24px;
-  left: -63px;
+  left: -43px;
   height: 24px;
 `;
 
