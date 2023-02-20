@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-  max-width: 336px;
-  height: 715px;
+  width: 100%;
+  height: 100vh;
   margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    margin: 0;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 395px;
+    margin: 0;
+  }
 `;
 export const FiltersBox = styled.div`
   display: flex;
-  max-width: 395px;
+  width: auto;
   height: auto;
   margin: 0 auto;
   gap: 20px;
@@ -23,6 +31,7 @@ export const FiltersBox = styled.div`
   @media screen and (min-width: 1280px) {
     gap: 32px;
     flex-direction: row;
+    width: 395px;
   }
 `;
 
@@ -37,7 +46,7 @@ export const RoundedBox = styled(Box)({
   backgroundColor: '#fffff',
   border: '1px solid #000000',
   '@media (min-width: 768px)': {
-    width: '152px',
+    width: '160px',
   },
   '@media (min-width: 1280px)': {
     width: '152px',
@@ -48,24 +57,22 @@ export const TotalBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+  padding: 0 20px;
 `;
 
 export const TotalItem = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 153px;
+  /* gap: 153px; */
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 14px;
-  margin-left: 15px;
 `;
 export const TotalExpenses = styled.div`
   color: #ff6596;
-  margin-right: 15px;
 `;
 export const TotalIncom = styled.div`
   color: #24cca7;
-  margin-right: 15px;
 `;
 export const CategoryBox = styled.div`
   display: flex;
@@ -73,7 +80,7 @@ export const CategoryBox = styled.div`
   align-items: center;
   background: var(--main-background-color);
   border-radius: 30px;
-  width: 336px;
+  width: 100%;
   height: 58px;
   background-color: var(--form-background-color);
 `;
@@ -84,10 +91,10 @@ export const ItemTitle = styled.div`
 `;
 // Color box styled by props color from tableData
 export const ColorBox = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 2px;
-  margin-left: 8px;
+  /* margin-left: 8px; */
   background-color: ${props => props.backgroundColor};
 `;
 
@@ -105,12 +112,11 @@ export const tableStyle = {
 export const rowStyle = {
   // padding: '0px',
   // border: 'none',
-   
 };
 
 export const cellStyle = {
   borderBottom: '1px solid #DCDCDF',
-  borderTop: '1px solid #fff',
+  // borderTop: '1px solid #fff',
   width: '100px',
   padding: '14px',
   paddingLeft: '0px',
@@ -118,7 +124,7 @@ export const cellStyle = {
 
 export const cellColorStyle = {
   borderBottom: '1px solid #DCDCDF',
-  borderTop: '1px solid #fff',
+  // borderTop: '1px solid #fff',
   width: '10px',
   margin: '0px',
   padding: '10px',

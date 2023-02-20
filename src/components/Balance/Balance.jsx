@@ -45,10 +45,7 @@ export const Balance = () => {
           </BalanceState>
         </>
       )}
-      {/* <BalanceState>
-        <Span>&#8372;&#160;</Span>
-        {showBalance.format(balance.toFixed(2))}
-      </BalanceState> */}
+     
     </Container>
   );
 };
