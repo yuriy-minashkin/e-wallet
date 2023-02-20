@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { register } from '../../redux/auth/authOperations';
 import { Formik } from 'formik';
@@ -15,10 +16,12 @@ import {
   ErrorText,
   ButtonLogIn,
   LogoContainer,
+  PasswordMeter,
 } from './RegistrationForm.styled';
 import Icons from 'images/icons.svg';
 import { Logo } from 'components/Logo/Logo';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -60,7 +63,7 @@ export const RegistrationForm = () => {
         password: '',
         passwordConfirmation: '',
       }}
-      onSubmit={values => {
+      onSubmit={(values, { resetForm }) => {
         dispatch(
           register({
             username: values.name,
@@ -68,6 +71,35 @@ export const RegistrationForm = () => {
             password: values.password,
           })
         )
+          .unwrap()
+          .then(() => {
+            toast.success(
+              `Great, we've created an account for ${values.username}`,
+              {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              }
+            );
+          })
+          .catch(() => {
+            toast.error('Registration failed, please check your details', {
+              position: 'bottom-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light',
+            });
+          });
+        resetForm();
       }}
       validationSchema={validationSchema}
     >
@@ -85,71 +117,80 @@ export const RegistrationForm = () => {
             <Logo />
           </LogoContainer>
           <Form autoComplete="off" onSubmit={handleSubmit}>
-            <RegistrationLabel htmlFor={emailId} />
-            <RegistrationInput
-              type="email"
-              name="email"
-              id={emailId}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-              placeholder="E-mail:  example@mail.com"
-            />
-            <InputIcon width="21" height="16">
-              <use href={`${Icons}#icon-email`} />
-            </InputIcon>
+            <RegistrationLabel htmlFor={emailId}>
+              <RegistrationInput
+                type="email"
+                name="email"
+                id={emailId}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                placeholder="E-mail:  example@mail.com"
+              />
+              <InputIcon width="21" height="16">
+                <use href={`${Icons}#icon-email`} />
+              </InputIcon>
+            </RegistrationLabel>
             <ErrorText>
               {errors.email && touched.email && errors.email}
             </ErrorText>
-            <RegistrationLabel htmlFor={passwordId} />
-            <RegistrationInput
-              type="password"
-              name="password"
-              id={passwordId}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-              placeholder="Password"
-            />
-            <InputIcon width="16" height="21">
-              <use href={`${Icons}#icon-lock`} />
-            </InputIcon>
+            <RegistrationLabel htmlFor={passwordId}>
+              <RegistrationInput
+                type="password"
+                name="password"
+                id={passwordId}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+                placeholder="Password"
+              />
+              <InputIcon width="16" height="21">
+                <use href={`${Icons}#icon-lock`} />
+              </InputIcon>
+            </RegistrationLabel>
             <ErrorText>
               {errors.password && touched.password && errors.password}
             </ErrorText>
-            <RegistrationLabel htmlFor={passwordId} />
-            <RegistrationInput
-              type="password"
-              name="passwordConfirmation"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.passwordConfirmation}
-              placeholder="Confirm password"
-            />
-            <InputIcon width="16" height="21">
-              <use href={`${Icons}#icon-lock`} />
-            </InputIcon>
+            <RegistrationLabel htmlFor={passwordId}>
+              <RegistrationInput
+                type="password"
+                name="passwordConfirmation"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.passwordConfirmation}
+                placeholder="Confirm password"
+              />
+              <InputIcon width="16" height="21">
+                <use href={`${Icons}#icon-lock`} />
+              </InputIcon>
+              <PasswordMeter></PasswordMeter>
+            </RegistrationLabel>
             <ErrorText>
               {errors.passwordConfirmation &&
                 touched.passwordConfirmation &&
                 errors.passwordConfirmation}
             </ErrorText>
-            <RegistrationLabel htmlFor={nameId} />
-            <RegistrationInput
-              type="text"
-              name="name"
-              id={nameId}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.name}
-              placeholder="First name:  Adrian"
-            />
-            <InputIcon width="18" height="18">
-              <use href={`${Icons}#icon-account_box`} />
-            </InputIcon>
+            <RegistrationLabel htmlFor={nameId}>
+              <RegistrationInput
+                type="text"
+                name="name"
+                id={nameId}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.name}
+                placeholder="First name:  Adrian"
+              />
+              <InputIcon width="18" height="18">
+                <use href={`${Icons}#icon-account_box`} />
+              </InputIcon>
+            </RegistrationLabel>
             <ErrorText>{errors.name && touched.name && errors.name}</ErrorText>
             <ButtonContainer>
-              <ButtonRegister type="submit" disabled={isSubmitting}>
+              <ButtonRegister
+                type="submit"
+                disabled={isSubmitting}
+                onClick={toast}
+              >
                 {'Register'.toUpperCase()}
               </ButtonRegister>
               <Link to="/login">
@@ -159,7 +200,6 @@ export const RegistrationForm = () => {
               </Link>
             </ButtonContainer>
           </Form>
-          <ToastContainer/>
         </FormLayout>
       )}
     </Formik>

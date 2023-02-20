@@ -33,6 +33,7 @@ export const Form = styled.form`
 `;
 
 export const RegistrationLabel = styled.label`
+  position: relative;
   width: 280px;
   margin-bottom: 10px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,6 +73,10 @@ export const RegistrationInput = styled.input`
 `;
 
 export const InputIcon = styled.svg`
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   fill: var(--border--reg-color);
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -168,3 +173,8 @@ export const ErrorText = styled.span`
   margin-top: 7px;
   color: red;
 `;
+
+export const PasswordMeter = styled.div`
+border: 3px solid #E5F1EF;
+margin-top: 1px;
+`
