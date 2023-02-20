@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/e-wallet/static/css/main.84f8e4f7.css",
-    "main.js": "/e-wallet/static/js/main.ac1ab934.js",
+    "main.css": "/e-wallet/static/css/main.781ecdaa.css",
+    "main.js": "/e-wallet/static/js/main.c7c7ca23.js",
     "static/css/691.20b127ae.chunk.css": "/e-wallet/static/css/691.20b127ae.chunk.css",
-    "static/js/691.7abae8f6.chunk.js": "/e-wallet/static/js/691.7abae8f6.chunk.js",
-    "static/js/231.be2d9385.chunk.js": "/e-wallet/static/js/231.be2d9385.chunk.js",
-    "static/js/285.7f82ca03.chunk.js": "/e-wallet/static/js/285.7f82ca03.chunk.js",
+    "static/js/691.b9fe3825.chunk.js": "/e-wallet/static/js/691.b9fe3825.chunk.js",
+    "static/js/231.8ac35ee6.chunk.js": "/e-wallet/static/js/231.8ac35ee6.chunk.js",
+    "static/js/285.d2909520.chunk.js": "/e-wallet/static/js/285.d2909520.chunk.js",
     "static/js/413.b51095a0.chunk.js": "/e-wallet/static/js/413.b51095a0.chunk.js",
     "static/media/Circe Bold.otf": "/e-wallet/static/media/Circe Bold.f7a8e82475783e7e15d0.otf",
     "static/media/Circe Bold.eot": "/e-wallet/static/media/Circe Bold.82c40144f05a425e7532.eot",
@@ -24,19 +24,26 @@
     "static/media/Circe Regular.otf": "/e-wallet/static/media/Circe Regular.e95729d0847f92e3a1c0.otf",
     "static/media/Circe Regular.eot": "/e-wallet/static/media/Circe Regular.4d7a963503fce5ca3c8b.eot",
     "static/media/Circe Regular.ttf": "/e-wallet/static/media/Circe Regular.3ca95fb637e4dd30c50c.ttf",
+    "static/media/login-desk-2x.png": "/e-wallet/static/media/login-desk-2x.cff25cf4ec4c4a2a7cb1.png",
+    "static/media/reg-desk-1x.png": "/e-wallet/static/media/reg-desk-1x.dfc261f6c69fd03fb44a.png",
+    "static/media/reg-desk-2x.png": "/e-wallet/static/media/reg-desk-2x.955312f13d0d2af98176.png",
+    "static/media/login-tablet-2x.png": "/e-wallet/static/media/login-tablet-2x.d0752eace262567e5edc.png",
     "static/media/Circe Regular.woff": "/e-wallet/static/media/Circe Regular.e865a57a9dcbac40f142.woff",
-    "static/media/icons.svg": "/e-wallet/static/media/icons.7e32b600ccedfd034a17e735e96a8d4b.svg",
+    "static/media/login-desk-1x.png": "/e-wallet/static/media/login-desk-1x.6004ccede158996dfc43.png",
+    "static/media/reg-tablet-2x.png": "/e-wallet/static/media/reg-tablet-2x.a4dbfc31b81e53f046d2.png",
+    "static/media/login-tablet-1x.png": "/e-wallet/static/media/login-tablet-1x.dc0b0efeaec1104d2601.png",
+    "static/media/icons.svg": "/e-wallet/static/media/icons.75bd7eec1e3a8a4336a35d441431123c.svg",
     "index.html": "/e-wallet/index.html",
-    "main.84f8e4f7.css.map": "/e-wallet/static/css/main.84f8e4f7.css.map",
-    "main.ac1ab934.js.map": "/e-wallet/static/js/main.ac1ab934.js.map",
+    "main.781ecdaa.css.map": "/e-wallet/static/css/main.781ecdaa.css.map",
+    "main.c7c7ca23.js.map": "/e-wallet/static/js/main.c7c7ca23.js.map",
     "691.20b127ae.chunk.css.map": "/e-wallet/static/css/691.20b127ae.chunk.css.map",
-    "691.7abae8f6.chunk.js.map": "/e-wallet/static/js/691.7abae8f6.chunk.js.map",
-    "231.be2d9385.chunk.js.map": "/e-wallet/static/js/231.be2d9385.chunk.js.map",
-    "285.7f82ca03.chunk.js.map": "/e-wallet/static/js/285.7f82ca03.chunk.js.map",
+    "691.b9fe3825.chunk.js.map": "/e-wallet/static/js/691.b9fe3825.chunk.js.map",
+    "231.8ac35ee6.chunk.js.map": "/e-wallet/static/js/231.8ac35ee6.chunk.js.map",
+    "285.d2909520.chunk.js.map": "/e-wallet/static/js/285.d2909520.chunk.js.map",
     "413.b51095a0.chunk.js.map": "/e-wallet/static/js/413.b51095a0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.84f8e4f7.css",
-    "static/js/main.ac1ab934.js"
+    "static/css/main.781ecdaa.css",
+    "static/js/main.c7c7ca23.js"
   ]
 }
