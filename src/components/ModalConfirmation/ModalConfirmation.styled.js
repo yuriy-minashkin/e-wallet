@@ -1,17 +1,41 @@
 import styled from 'styled-components';
 
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* max-width: 320px; */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1200;
+  outline: red;
+  
+  @media screen and (min-width: 768px) {
+    max-width: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.25);
+    top: 0;
+  left: 0;
+  }
+`;
+
 export const ModalContainer = styled.div`
   max-width: 320px;
   width: 320px;
-  /* height: 580px; */
+  height: 280px;
   /* padding: 40px; */
   background-color: #ffffff;
   /* border-radius: 20px; */
   padding: 20px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  /* display: flex;
+  flex-direction: column; */
+  /* align-items: flex-start; */
   /* gap: 40px; */
   position: relative;
   z-index: 1200;

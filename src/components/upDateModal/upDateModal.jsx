@@ -17,6 +17,7 @@ import {
   CheckboxLabel,
   LabelTextExpense,
   ModalInputWrap,
+  InputData,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategories } from 'redux/categories/categoriesSelectors';
@@ -157,7 +158,7 @@ export const UpDateModal = ({ trans, close }) => {
                 name="amount"
                 placeholder="0.00"
               />
-              <InputLabel
+              <InputData
                 value={transactionDate}
                 onChange={handleChange}
                 type="text"
