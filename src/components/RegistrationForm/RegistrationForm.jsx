@@ -1,5 +1,4 @@
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { register } from '../../redux/auth/authOperations';
 import { Formik } from 'formik';
@@ -22,6 +21,7 @@ import Icons from 'images/icons.svg';
 import { Logo } from 'components/Logo/Logo';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { selectErrorAuth } from 'redux/auth/authSelectors';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -54,7 +54,7 @@ export const RegistrationForm = () => {
   const emailId = nanoid();
   const passwordId = nanoid();
   const nameId = nanoid();
-
+ const error = useSelector(selectErrorAuth);
   return (
     <Formik
       initialValues={{
@@ -70,35 +70,38 @@ export const RegistrationForm = () => {
             email: values.email,
             password: values.password,
           })
-        )
-          .unwrap()
-          .then(() => {
-            toast.success(
-              `Great, we've created an account for ${values.username}`,
-              {
-                position: 'bottom-right',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'light',
-              }
-            );
-          })
-          .catch(() => {
-            toast.error('Registration failed, please check your details', {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-            });
-          });
+        );
+        if (error) {
+          toast.error('Oops...something is wrong, try again!');
+        }
+        //     .unwrap()
+        //     .then(() => {
+        //       toast.success(
+        //         `Great, we've created an account for ${values.username}`,
+        //         {
+        //           position: 'bottom-right',
+        //           autoClose: 5000,
+        //           hideProgressBar: false,
+        //           closeOnClick: true,
+        //           pauseOnHover: true,
+        //           draggable: true,
+        //           progress: undefined,
+        //           theme: 'light',
+        //         }
+        //       );
+        //     })
+        //     .catch(() => {
+        //       toast.error('Registration failed, please check your details', {
+        //         position: 'bottom-right',
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: 'light',
+        //       });
+        //     });
         resetForm();
       }}
       validationSchema={validationSchema}
@@ -117,6 +120,7 @@ export const RegistrationForm = () => {
             <Logo />
           </LogoContainer>
           <Form autoComplete="off" onSubmit={handleSubmit}>
+            <ToastContainer />
             <RegistrationLabel htmlFor={emailId}>
               <RegistrationInput
                 type="email"

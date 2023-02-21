@@ -9,6 +9,7 @@ import {
 const setError = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  console.log('error',action.payload)
 };
 
 const setPending = state => {

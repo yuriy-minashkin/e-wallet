@@ -25,10 +25,12 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
+import { selectErrorTransactions } from 'redux/transaction/transactionSelectors';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UpDateModal = ({ trans, close }) => {
   const findcategorie = useSelector(selectCategories);
-  console.log('trans ', trans);
   const [categoryId, setCategoryId] = useState(trans.categoryId);
   const [amount, setAmount] = useState(Math.abs(trans.amount));
   const [transactionDate, setTransactionDate] = useState(trans.transactionDate);
@@ -43,8 +45,11 @@ export const UpDateModal = ({ trans, close }) => {
     setCategoryId(CategoryId.id);
   };
 
+  const error = useSelector(selectErrorTransactions);
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
+
+  console.log('error in update modal', error);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -59,6 +64,9 @@ export const UpDateModal = ({ trans, close }) => {
     dispatch(
       upDateTransaction({ transactionId: trans.id, dataInfo: newObject })
     );
+     if (error) {
+       toast.error('Oops...something went wrong, try again!');
+     }
     setTransactionDate('');
     setType('');
     setCategoryId('');
@@ -111,6 +119,7 @@ export const UpDateModal = ({ trans, close }) => {
             </IconContext.Provider>
           </ModalButtonClose>
           <ModalForm onSubmit={handleSubmit}>
+            <ToastContainer />
             <ModalTitle> Update transaction</ModalTitle>
             <Input
               onChange={onChange}

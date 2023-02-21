@@ -27,9 +27,9 @@ import { useEffect } from 'react';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
-  import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { selectErrorTransactions } from 'redux/transaction/transactionSelectors';
 // import { TextField } from '@mui/material';
 
 import { IoCloseOutline } from 'react-icons/io5';
@@ -42,7 +42,7 @@ export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const currentDate = new Date(Date.now());
-
+  const error = useSelector(selectErrorTransactions);
   const [transactionDate, setTransactionDate] = useState(currentDate);
   const [, setType] = useState('');
   const [categoryId, setCategoryId] = useState('');
@@ -67,7 +67,7 @@ export const ModalAddTransaction = () => {
       setComment(value);
     }
   };
-   
+
   const handleSubmit = evt => {
     evt.preventDefault();
 
@@ -89,7 +89,9 @@ export const ModalAddTransaction = () => {
     console.log(obj);
 
     dispatch(addTransaction(obj));
-
+    if (error) {
+      toast.error('Oops...something is wrong, try again!');
+    }
     reset();
   };
 
@@ -108,7 +110,6 @@ export const ModalAddTransaction = () => {
       evt.target.nodeName === 'svg'
     ) {
       dispatch(closeModalAddTransaction());
-      
     }
   };
 
@@ -128,6 +129,7 @@ export const ModalAddTransaction = () => {
           </IconContext.Provider>
         </ModalButtonClose>
         <ModalForm onSubmit={handleSubmit}>
+          <ToastContainer />
           <ModalTitle> Add transaction</ModalTitle>
 
           <Input

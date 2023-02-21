@@ -48,25 +48,22 @@ export const LoginForm = () => {
         email: '',
         password: '',
       }}
-      onSubmit={values => {
+      onSubmit=
+      {(values, { resetForm }) => {
+      // {values
+        //  => {
         dispatch(
           logIn({
             email: values.email,
             password: values.password,
           })
-            
-        )
+        );
         if (error) {
-           toast.error('Oops...something is wrong, try again!');
-  //  alert('qqq');
+          toast.error('Oops...something is wrong, try again!');
         }
-     
-       
-      //   initialValues={
-      //   email: '',
-      //   password: '',
-      // }
+         resetForm();
       }}
+      
       validationSchema={validationSchema}
     >
       {({
@@ -83,6 +80,8 @@ export const LoginForm = () => {
             <Logo />
           </LogoContainer>
           <Form autoComplete="off" onSubmit={handleSubmit}>
+            <ToastContainer />
+
             <LogInLabel htmlFor={emailId}>
               <LogInInput
                 type="email"
