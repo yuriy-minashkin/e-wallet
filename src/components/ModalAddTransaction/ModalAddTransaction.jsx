@@ -39,7 +39,7 @@ import Icons from 'images/icons.svg';
 const validationSchema = object().shape({
   transactionDate: date().required('Data is a required field'),
   categoryId: string(),
-  amount: number().required('Amount is a required field'),
+  amount: number().required('Amount is a required field').positive(),
   comment: string(),
 });
 
