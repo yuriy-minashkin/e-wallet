@@ -9,8 +9,9 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Rings } from 'react-loader-spinner';
 import { Container } from './HomeTab.styles';
+import PropTypes from 'prop-types';
 
-export const HomeTab = props => {
+export const HomeTab = ({info}) => {
   const financeData = useSelector(selectFinanceData);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
@@ -39,11 +40,15 @@ export const HomeTab = props => {
             <Rings />
           ) : (
             <>
-              <TransactionsList data={sortDate} info={props.info} />
+              <TransactionsList data={sortDate} info={info} />
             </>
           )}
         </div>
       )}
     </Container>
   );
+};
+
+HomeTab.propTypes = {
+  info:PropTypes.func,
 };

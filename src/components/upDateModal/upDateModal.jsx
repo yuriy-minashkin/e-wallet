@@ -26,6 +26,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 import { closeModalUpDateTransaction } from 'redux/global/globalSlice';
 import { upDateTransaction } from 'redux/transaction/transactionOperations';
+import PropTypes from 'prop-types';
 
 export const UpDateModal = ({ trans, close }) => {
   const findcategorie = useSelector(selectCategories);
@@ -184,4 +185,16 @@ export const UpDateModal = ({ trans, close }) => {
       </Overlay>
     </>
   );
+};
+
+UpDateModal.propTypes = {
+  trans: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    transactionDate: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    categoryId: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+  }).isRequired,
+  close: PropTypes.func.isRequired,
 };

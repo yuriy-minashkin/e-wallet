@@ -15,6 +15,7 @@ import {
   ModalContainer,
   Overlay,
 } from './ModalConfirmation.styled';
+import PropTypes from 'prop-types';
 
 export const ModalConfirmation = ({transId}) => {
   console.log(transId);
@@ -72,4 +73,10 @@ export const ModalConfirmation = ({transId}) => {
       </Overlay>
     </>
   );
+};
+
+ModalConfirmation.propTypes = {
+  transId: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
 };
