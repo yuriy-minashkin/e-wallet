@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import bgImageDesk from 'images/regLoginImg/bg-login-overlay-desk.png';
+import bgImageTab from 'images/regLoginImg/bg-login-overlay-tab.png';
 
 export const Container = styled.div`
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -6,15 +8,26 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px;
-    background-color: #E5E5E5;
+    gap: 50px;
+    padding: 60px 117px 48px;
+    background: url(${bgImageTab});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--main-background-color);
   }
   @media screen and (min-width: 1280px) {
     display: flex;
     height: 100vh;
-    background-color: #E5E5E5;
     align-items: center;
     justify-content: center;
+    gap: 154px;
+    padding: 0;
+    background: url(${bgImageDesk});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--main-background-color);
   }
 `;
 
@@ -25,12 +38,12 @@ export const RegistrationImage = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-wrap: wrap;
-    gap: 40px;
-    margin-bottom: 30px;
+    gap: 50px;
   }
   @media screen and (min-width: 1280px) {
+    width: 410px;
+    gap: 32px;
     flex-direction: column;
-    margin-right: 350px;
   }
 `;
 

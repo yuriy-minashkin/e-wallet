@@ -11,11 +11,12 @@ export const FormLayout = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 533px;
-    height: 480px;
+    height: 468px;
     padding: 40px 60px 65px;
     border-radius: 20px;
   }
   @media screen and (min-width: 1280px) {
+    padding: 40px 59px 62px 65px;
   }
 `;
 

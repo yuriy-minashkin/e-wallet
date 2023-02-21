@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import bgImageDesk from 'images/regLoginImg/bg-login-overlay-desk.png';
+import bgImageTab from 'images/regLoginImg/bg-login-overlay-tab.png';
 
 export const Container = styled.div`
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -6,16 +8,25 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 60px;
-    background-color: #E5E5E5;
+    gap: 50px;
+    padding: 60px 118px 196px;
+    background: url(${bgImageTab});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--main-background-color);
   }
   @media screen and (min-width: 1280px) {
     display: flex;
     height: 100vh;
-    background-color: #E5E5E5;
     align-items: center;
     justify-content: center;
-    background-image: url('images/dashboardBackGround/Rectangle 3.png');
+    gap: 145px;
+    background: url(${bgImageDesk});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--main-background-color);
   }
 `;
 
@@ -27,11 +38,9 @@ export const LogInImage = styled.div`
   @media screen and (min-width: 768px) {
     flex-wrap: wrap;
     gap: 40px;
-    margin-bottom: 30px;
   }
   @media screen and (min-width: 1280px) {
     flex-direction: column;
-    margin-right: 350px;
   }
 `;
 
