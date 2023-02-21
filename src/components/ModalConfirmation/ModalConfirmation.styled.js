@@ -105,10 +105,15 @@ export const ModalButtonYes = styled.button`
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  :hover {
+    background-color: #24cca7;
+    color: var(--form-background-color);
+    transform: scale(1.04);
+    cursor: pointer;
+  }
 `;
 
 export const ModalBtnCancel = styled.button`
-  
   padding: 10px 15px;
   border: none;
   background-color: #ffffff;
@@ -127,5 +132,11 @@ export const ModalBtnCancel = styled.button`
   @media screen and (min-width: 768px) {
     font-size: 16px;
     padding: 10px 55px;
+  }
+  :hover {
+    background-color: var(--main-currency-background-color);
+    color: var(--form-background-color);
+    transform: scale(1.04);
+    cursor: pointer;
   }
 `;

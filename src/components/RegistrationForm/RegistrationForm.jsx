@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { register } from '../../redux/auth/authOperations';
 import { Formik } from 'formik';
@@ -18,7 +18,9 @@ import {
 } from './RegistrationForm.styled';
 import Icons from 'images/icons.svg';
 import { Logo } from 'components/Logo/Logo';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { selectErrorAuth } from 'redux/auth/authSelectors';
 // import PasswordStrengthBar from 'react-password-strength-bar';
 
 const validationSchema = yup.object().shape({
@@ -52,6 +54,7 @@ export const RegistrationForm = () => {
   const emailId = nanoid();
   const passwordId = nanoid();
   const nameId = nanoid();
+  const error = useSelector(selectErrorAuth);
 
   return (
     <Formik
@@ -69,6 +72,9 @@ export const RegistrationForm = () => {
             password: values.password,
           })
         );
+        if (error) {
+          toast.error('Oops...something is wrong, try again!');
+        }
         resetForm();
       }}
       validationSchema={validationSchema}
@@ -87,6 +93,7 @@ export const RegistrationForm = () => {
             <Logo />
           </LogoContainer>
           <Form autoComplete="off" onSubmit={handleSubmit}>
+            <ToastContainer />
             <RegistrationLabel htmlFor={emailId}>
               <RegistrationInput
                 type="email"
