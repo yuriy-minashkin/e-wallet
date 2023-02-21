@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/e-wallet/static/css/main.781ecdaa.css",
-    "main.js": "/e-wallet/static/js/main.c7c7ca23.js",
+    "main.js": "/e-wallet/static/js/main.e85a0346.js",
     "static/css/691.20b127ae.chunk.css": "/e-wallet/static/css/691.20b127ae.chunk.css",
     "static/js/691.b9fe3825.chunk.js": "/e-wallet/static/js/691.b9fe3825.chunk.js",
     "static/js/231.8ac35ee6.chunk.js": "/e-wallet/static/js/231.8ac35ee6.chunk.js",
@@ -18,6 +18,7 @@
     "static/media/Poppins Bold.ttf": "/e-wallet/static/media/Poppins Bold.761f65d504e31ce73efd.ttf",
     "static/media/Poppins.eot": "/e-wallet/static/media/Poppins.e52a3e6d9b653561ae69.eot",
     "static/media/Poppins.ttf": "/e-wallet/static/media/Poppins.ba223fa77a376aea90d4.ttf",
+    "static/media/bg-login-overlay-desk.png": "/e-wallet/static/media/bg-login-overlay-desk.0632278875a94728f0c5.png",
     "static/media/Circe Bold.woff": "/e-wallet/static/media/Circe Bold.59a90631e19b50c82a26.woff",
     "static/media/Poppins Bold.woff": "/e-wallet/static/media/Poppins Bold.5d5c6776d9bec844be9d.woff",
     "static/media/Poppins.woff": "/e-wallet/static/media/Poppins.070650bdb2cfdc7e4a19.woff",
@@ -26,6 +27,7 @@
     "static/media/Circe Regular.ttf": "/e-wallet/static/media/Circe Regular.3ca95fb637e4dd30c50c.ttf",
     "static/media/login-desk-2x.png": "/e-wallet/static/media/login-desk-2x.cff25cf4ec4c4a2a7cb1.png",
     "static/media/reg-desk-1x.png": "/e-wallet/static/media/reg-desk-1x.dfc261f6c69fd03fb44a.png",
+    "static/media/bg-login-overlay-tab.png": "/e-wallet/static/media/bg-login-overlay-tab.6ab28466b67b687d46b1.png",
     "static/media/reg-desk-2x.png": "/e-wallet/static/media/reg-desk-2x.955312f13d0d2af98176.png",
     "static/media/login-tablet-2x.png": "/e-wallet/static/media/login-tablet-2x.d0752eace262567e5edc.png",
     "static/media/Circe Regular.woff": "/e-wallet/static/media/Circe Regular.e865a57a9dcbac40f142.woff",
@@ -35,7 +37,7 @@
     "static/media/icons.svg": "/e-wallet/static/media/icons.75bd7eec1e3a8a4336a35d441431123c.svg",
     "index.html": "/e-wallet/index.html",
     "main.781ecdaa.css.map": "/e-wallet/static/css/main.781ecdaa.css.map",
-    "main.c7c7ca23.js.map": "/e-wallet/static/js/main.c7c7ca23.js.map",
+    "main.e85a0346.js.map": "/e-wallet/static/js/main.e85a0346.js.map",
     "691.20b127ae.chunk.css.map": "/e-wallet/static/css/691.20b127ae.chunk.css.map",
     "691.b9fe3825.chunk.js.map": "/e-wallet/static/js/691.b9fe3825.chunk.js.map",
     "231.8ac35ee6.chunk.js.map": "/e-wallet/static/js/231.8ac35ee6.chunk.js.map",
@@ -44,6 +46,6 @@
   },
   "entrypoints": [
     "static/css/main.781ecdaa.css",
-    "static/js/main.c7c7ca23.js"
+    "static/js/main.e85a0346.js"
   ]
 }
